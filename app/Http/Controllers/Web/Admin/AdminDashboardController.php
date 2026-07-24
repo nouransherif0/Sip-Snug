@@ -27,8 +27,8 @@ class AdminDashboardController extends Controller
         $activeOrdersCount = $orders->whereIn('status', ['pending', 'confirmed', 'preparing', 'out_for_delivery'])->count();
         $bestSellingProducts = Product::where('is_featured', true)->take(6)->get();
         $highRatedProducts = Product::with('subcategory')->latest()->take(6)->get();
-        $outOfStockCount = $products->where('stock', '<=', 0)->count();
-        $lowStockProducts = $products->where('stock', '<=', 5);
+        $lowStockCount = $products->where('stock', '<=', 10)->count();
+        $lowStockProducts = $products->where('stock', '<=', 10);
 
         return view('admin.dashboard', compact(
             'categories',
@@ -41,7 +41,7 @@ class AdminDashboardController extends Controller
             'activeOrdersCount',
             'bestSellingProducts',
             'highRatedProducts',
-            'outOfStockCount',
+            'lowStockCount',
             'lowStockProducts'
         ));
     }

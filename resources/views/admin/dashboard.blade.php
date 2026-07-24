@@ -388,7 +388,32 @@
             <h2 class="admin-title" id="pageTitle">Dashboard Overview</h2>
             <p class="text-muted m-0" style="font-size:0.88rem;">Manage drinks, stock, categories, add-ons and orders.</p>
          </div>
-         <a href="{{ route('home') }}" class="btn-primary-snug"><i class="fas fa-eye"></i> View Live Store</a>
+         <div class="d-flex gap-3 align-items-center">
+            @if(isset($lowStockCount) && $lowStockCount > 0)
+            <div class="dropdown">
+               <button class="btn btn-light position-relative border-0 rounded-circle shadow-sm" type="button" data-bs-toggle="dropdown" style="width:45px;height:45px;background:#fff;">
+                  <i class="fas fa-bell text-danger fs-5"></i>
+                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                     {{ $lowStockCount }}
+                  </span>
+               </button>
+               <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3 p-0" style="width: 320px; max-height: 400px; overflow-y: auto;">
+                  <li class="p-3 border-bottom bg-light">
+                     <h6 class="m-0 text-danger"><i class="fas fa-exclamation-circle me-2"></i>Low Stock Alerts</h6>
+                  </li>
+                  @foreach($lowStockProducts as $prod)
+                     <li>
+                        <a class="dropdown-item py-3 border-bottom text-wrap" href="#" onclick="switchTab('products', document.querySelectorAll('.admin-nav-item')[1])">
+                           <strong class="d-block text-dark">{{ $prod->name }}</strong>
+                           <small class="text-danger">Alert: Product has only {{ $prod->stock }} left!</small>
+                        </a>
+                     </li>
+                  @endforeach
+               </ul>
+            </div>
+            @endif
+            <a href="{{ route('home') }}" class="btn-primary-snug"><i class="fas fa-eye"></i> View Live Store</a>
+         </div>
       </div>
 
       <!-- Flash Alert -->
@@ -433,8 +458,8 @@
             <div class="col-md-3">
                <div class="card-stat">
                   <div>
-                     <div class="stat-val">{{ $outOfStockCount }}</div>
-                     <div class="stat-lbl">Out of Stock Alerts</div>
+                     <div class="stat-val">{{ $lowStockCount }}</div>
+                     <div class="stat-lbl">Low Stock Alerts</div>
                   </div>
                   <div class="stat-icon red"><i class="fas fa-exclamation-triangle"></i></div>
                </div>
@@ -525,7 +550,7 @@
                         <td>EGP {{ number_format($prod->price, 2) }}</td>
                         <td><strong>{{ $prod->stock }}</strong> units</td>
                         <td>
-                           @if($prod->stock > 5)
+                           @if($prod->stock > 10)
                               <span class="badge bg-success rounded-pill px-3 py-1">In Stock</span>
                            @elseif($prod->stock > 0)
                               <span class="badge bg-warning text-dark rounded-pill px-3 py-1">Low Stock</span>
@@ -561,7 +586,7 @@
                </thead>
                <tbody>
                   @forelse($products as $prod)
-                     <tr>
+                     <tr @if($prod->stock <= 10) style="background-color: #fff5f5; box-shadow: inset 4px 0 0 red;" @endif>
                         <td>
                            <img src="{{ $prod->image ? asset($prod->image) : asset('front/photos/coffee/hot latte.jpg') }}" class="img-thumb" />
                         </td>
@@ -569,9 +594,13 @@
                         <td>{{ $prod->subcategory->name ?? '-' }}</td>
                         <td>EGP {{ number_format($prod->price, 2) }}</td>
                         <td>
-                           <span class="badge {{ $prod->stock > 0 ? 'bg-light text-dark' : 'bg-danger' }} border px-2 py-1">
-                              {{ $prod->stock }} in stock
-                           </span>
+                           @if($prod->stock <= 10)
+                               <span class="badge bg-danger px-2 py-1"><i class="fas fa-exclamation-triangle me-1"></i> {{ $prod->stock }} left - LOW STOCK!</span>
+                           @else
+                               <span class="badge bg-light text-dark border px-2 py-1">
+                                  {{ $prod->stock }} in stock
+                               </span>
+                           @endif
                         </td>
                         <td>
                            @if($prod->is_featured)
@@ -884,7 +913,7 @@
                      </div>
                      <div class="col-6">
                         <label class="form-label fw-bold">Stock Available</label>
-                        <input type="number" name="stock" class="form-control rounded-3" required value="20" />
+                        <input type="number" name="stock" class="form-control rounded-3" min="20" required value="20" />
                      </div>
                   </div>
                   <div class="mb-3">
@@ -999,7 +1028,7 @@
                      </div>
                      <div class="col-6">
                         <label class="form-label fw-bold">Stock Available</label>
-                        <input type="number" name="stock" id="editProductStock" class="form-control rounded-3" required />
+                        <input type="number" name="stock" id="editProductStock" class="form-control rounded-3" min="20" required />
                      </div>
                   </div>
                   <div class="mb-3">
@@ -1210,6 +1239,13 @@
                   panel.innerHTML = newPanel.innerHTML;
                }
             });
+            
+            // Update the header to refresh notification bells
+            const oldHeader = document.querySelector('.admin-header');
+            const newHeader = doc.querySelector('.admin-header');
+            if (oldHeader && newHeader) {
+               oldHeader.innerHTML = newHeader.innerHTML;
+            }
          } catch(e) {
             console.error(e);
          }
@@ -1236,9 +1272,38 @@
             });
 
             if (res.ok) {
+               const resData = await res.json();
+               let successTitle = 'Success!';
+               let successMsg = 'Action completed successfully!';
+               let timerVal = 1500;
+               let showClose = false;
+               
+               // Check if this was a product edit
+               if (url.includes('/admin/products') && method === 'POST') {
+                   // If the product was restocked to > 10
+                   if (resData && resData.data && resData.data.stock > 10) {
+                       successTitle = 'Restocked!';
+                       successMsg = 'Restocked successfully';
+                       timerVal = 4000;
+                       showClose = true;
+                   }
+               }
+
                closeAllModals();
                reloadPageContent();
-               Swal.fire({ title: 'Success!', text: 'Action completed successfully!', icon: 'success', confirmButtonColor: '#9C7A5B', timer: 1500, showConfirmButton: false });
+               
+               Swal.fire({
+                   toast: showClose, // Use toast style for restock
+                   position: showClose ? 'top-end' : 'center',
+                   title: successTitle, 
+                   text: successMsg, 
+                   icon: 'success', 
+                   confirmButtonColor: '#9C7A5B', 
+                   timer: timerVal, 
+                   timerProgressBar: showClose,
+                   showConfirmButton: !showClose,
+                   showCloseButton: showClose
+               });
             } else {
                const err = await res.json();
                Swal.fire({ title: 'Error!', text: err.message || JSON.stringify(err.errors) || 'Validation error', icon: 'error', confirmButtonColor: '#9C7A5B' });

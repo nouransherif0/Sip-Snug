@@ -18,7 +18,16 @@ class ProductService
     public function getFilteredProducts(Request $request, array $filters){
 
         if(isset($filters['search'])){
-            $query = Product::where('name', 'like', "%{$filters['search']}%");
+            $searchTerms = explode(' ', $filters['search']);
+            $query = Product::query();
+            foreach ($searchTerms as $term) {
+                $term = trim($term);
+                if (empty($term)) continue;
+                $query->where(function($q) use ($term) {
+                    $q->where('name', 'like', "%{$term}%")
+                      ->orWhere('description', 'like', "%{$term}%");
+                });
+            }
 
             $products = $query->get();
 

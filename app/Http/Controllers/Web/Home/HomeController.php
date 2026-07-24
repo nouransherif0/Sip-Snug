@@ -23,6 +23,18 @@ class HomeController extends Controller
                 $q->whereRaw('LOWER(name) = ?', [$catName]);
             });
         }
+
+        if ($request->has('search') && !empty($request->search)) {
+            $searchTerms = explode(' ', $request->search);
+            foreach ($searchTerms as $term) {
+                $term = trim($term);
+                if (empty($term)) continue;
+                $query->where(function($q) use ($term) {
+                    $q->where('name', 'like', "%{$term}%")
+                      ->orWhere('description', 'like', "%{$term}%");
+                });
+            }
+        }
         
         $products = $query->simplePaginate(12)->withQueryString();
         

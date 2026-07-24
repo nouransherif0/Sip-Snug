@@ -88,6 +88,35 @@
                   <a href="{{ url('/#menu') }}" class="nav-link nav-cta"><i class="fas fa-shopping-bag me-1"></i>Order Now</a>
 
                   @auth
+                  @if(auth()->user()->isAdmin())
+                     @php
+                        $lowStockProducts = \App\Models\Product::where('stock', '<=', 10)->get();
+                        $lowStockCount = $lowStockProducts->count();
+                     @endphp
+                     @if($lowStockCount > 0)
+                        <div class="dropdown ms-2">
+                           <button class="btn btn-light position-relative border-0 rounded-circle" type="button" data-bs-toggle="dropdown" style="width:40px;height:40px;background:transparent;">
+                              <i class="fas fa-bell text-danger fs-5"></i>
+                              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size:0.6rem;">
+                                 {{ $lowStockCount }}
+                              </span>
+                           </button>
+                           <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3 p-0" style="width: 320px; max-height: 400px; overflow-y: auto;">
+                              <li class="p-3 border-bottom bg-light">
+                                 <h6 class="m-0 text-danger"><i class="fas fa-exclamation-circle me-2"></i>Low Stock Alerts</h6>
+                              </li>
+                              @foreach($lowStockProducts as $prod)
+                                 <li>
+                                    <a class="dropdown-item py-3 border-bottom text-wrap" href="{{ route('admin.dashboard') }}?tab=products">
+                                       <strong class="d-block text-dark">{{ $prod->name }}</strong>
+                                       <small class="text-danger">Alert: Product has only {{ $prod->stock }} left!</small>
+                                    </a>
+                                 </li>
+                              @endforeach
+                           </ul>
+                        </div>
+                     @endif
+                  @endif
                   <!-- Hamburger Side Menu Trigger -->
                   <button id="hamburgerBtn" class="hamburger-btn ms-2" title="Open Menu Side Drawer">
                      <i class="fas fa-bars"></i>

@@ -100,6 +100,122 @@ document.querySelectorAll('.sovtrend .ttag').forEach(function(t) {
     });
 });
 
+// Perform search from the input
+var searchInput = document.getElementById('searchInput');
+if (searchInput) {
+    var searchSubmitBtn = searchInput.nextElementSibling;
+
+    function execSearch() {
+        var query = searchInput.value.trim();
+        closeSearch();
+        
+        setTimeout(function() {
+            var url = new URL(window.location.href);
+            if (query) {
+                url.searchParams.set('search', query);
+            } else {
+                url.searchParams.delete('search');
+            }
+            url.searchParams.set('page', 1);
+
+            var menuSection = document.getElementById('menu');
+            if (!menuSection) {
+                window.location.href = '/?search=' + encodeURIComponent(query) + '#menu';
+                return;
+            }
+
+            var productsGrid = menuSection.querySelector('.row.g-4:not(.mb-5)');
+            if (productsGrid) productsGrid.style.opacity = '0.5';
+
+            fetch(url)
+                .then(response => response.text())
+                .then(html => {
+                    var parser = new DOMParser();
+                    var doc = parser.parseFromString(html, 'text/html');
+                    var newMenuContent = doc.getElementById('menu').innerHTML;
+                    menuSection.innerHTML = newMenuContent;
+
+                    menuSection.querySelectorAll('.filtbtn').forEach(function(btn) {
+                        btn.addEventListener('click', function() {
+                            filterMenu(this.getAttribute('data-f'));
+                        });
+                    });
+
+                    menuSection.querySelectorAll('.mcard').forEach(function(card) {
+                        card.addEventListener('click', function() {
+                            if(typeof openMenuPop === 'function') openMenuPop(this);
+                        });
+                    });
+
+                    menuSection.querySelectorAll('.madd').forEach(function(btn) {
+                        btn.addEventListener('click', function(e) {
+                            e.stopPropagation();
+                            if(typeof openMenuPop === 'function') openMenuPop(this.closest('.mcard'));
+                        });
+                    });
+
+                    menuSection.querySelectorAll('.fav-toggle-btn').forEach(function(btn) {
+                        btn.addEventListener("click", function(e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            const btnEl = this;
+                            const productId = btnEl.getAttribute('data-id');
+                            const icon = btnEl.querySelector('i');
+                            
+                            if (!productId) return;
+
+                            btnEl.style.pointerEvents = 'none';
+                            btnEl.style.opacity = '0.5';
+
+                            fetch(`/favorites/toggle/${productId}`, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                                },
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    if (data.is_favorited) {
+                                        icon.classList.remove('far');
+                                        icon.classList.add('fas');
+                                        icon.style.color = '#dc3545';
+                                    } else {
+                                        icon.classList.remove('fas');
+                                        icon.classList.add('far');
+                                        icon.style.color = '';
+                                    }
+                                }
+                                btnEl.style.pointerEvents = 'auto';
+                                btnEl.style.opacity = '1';
+                            })
+                            .catch(error => {
+                                btnEl.style.pointerEvents = 'auto';
+                                btnEl.style.opacity = '1';
+                            });
+                        });
+                    });
+
+                    if(typeof AOS !== 'undefined') AOS.refresh();
+                });
+
+            document.getElementById('menu').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }, 300);
+    }
+
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') execSearch();
+    });
+
+    if (searchSubmitBtn && searchSubmitBtn.tagName === 'BUTTON') {
+        searchSubmitBtn.addEventListener('click', execSearch);
+    }
+}
+
 
 $(document).ready(function() {
 	$('.magnific_popup').magnificPopup({

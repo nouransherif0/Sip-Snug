@@ -38,6 +38,11 @@ class OrderService
             ]);
 
             foreach ($cart->cartItems as $item) {
+                // Deduct stock
+                $product = $item->product;
+                $product->stock = max(0, $product->stock - $item->quantity);
+                $product->save();
+
                 // Calculate item snapshot price (product price + addons)
                 $productPrice = $item->product->price;
                 $addonsTotal = 0;
