@@ -44,7 +44,7 @@ class OrderService
                 $product->save();
 
                 // Calculate item snapshot price (product price + addons)
-                $productPrice = $item->product->price;
+                $productPrice = $item->product->effective_price;
                 $addonsTotal = 0;
                 
                 if (is_array($item->add_ons)) {

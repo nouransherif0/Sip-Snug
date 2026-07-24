@@ -24,6 +24,10 @@ class StoreProductRequest extends FormRequest
             'image' => 'required|image|mimes:jpeg,png,jpg,webp|max:2048',
             'stock' => 'nullable|integer|min:20',
             'is_featured' => 'nullable|boolean',
+            'calories' => 'nullable|integer|min:0',
+            'prep_time' => 'nullable|integer|min:0',
+            'discount_price' => 'nullable|numeric|min:0',
+            'is_bestseller' => 'nullable|boolean',
         ];
     }
 

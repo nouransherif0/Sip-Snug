@@ -886,7 +886,7 @@
 
    <!-- Create Product Modal -->
    <div class="modal fade" id="createProductModal" tabindex="-1">
-      <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
          <div class="modal-content rounded-4 border-0">
             <div class="modal-header border-0">
                <h5 class="modal-title fw-bold">Add New Product</h5>
@@ -916,6 +916,20 @@
                         <input type="number" name="stock" class="form-control rounded-3" min="20" required value="20" />
                      </div>
                   </div>
+                  <div class="row g-2 mb-3">
+                     <div class="col-4">
+                        <label class="form-label fw-bold">Calories</label>
+                        <input type="number" name="calories" class="form-control rounded-3" value="180" min="0" required />
+                     </div>
+                     <div class="col-4">
+                        <label class="form-label fw-bold">Prep Time (min)</label>
+                        <input type="number" name="prep_time" class="form-control rounded-3" value="5" min="0" required />
+                     </div>
+                     <div class="col-4">
+                        <label class="form-label fw-bold">Discount Amount (EGP)</label>
+                        <input type="number" step="0.01" name="discount_price" class="form-control rounded-3" placeholder="Optional" />
+                     </div>
+                  </div>
                   <div class="mb-3">
                      <label class="form-label fw-bold">Description</label>
                      <textarea name="description" class="form-control rounded-3" rows="2" placeholder="Smooth espresso blended with sweet vanilla..."></textarea>
@@ -924,9 +938,19 @@
                      <label class="form-label fw-bold">Product Image</label>
                      <input type="file" name="image" class="form-control rounded-3" accept="image/*" required />
                   </div>
-                  <div class="form-check mb-2">
-                     <input class="form-check-input" type="checkbox" name="is_featured" value="1" id="isFeaturedCheck">
-                     <label class="form-check-label fw-bold" for="isFeaturedCheck">Feature as Best Seller</label>
+                  <div class="row mt-3">
+                     <div class="col-md-6 mb-2">
+                        <div class="form-check form-switch" style="font-size: 1.1rem;">
+                           <input class="form-check-input" type="checkbox" role="switch" name="is_featured" value="1" id="isFeaturedCheck" style="cursor: pointer;">
+                           <label class="form-check-label fw-bold ms-2" for="isFeaturedCheck" style="cursor: pointer;">Feature as Hot</label>
+                        </div>
+                     </div>
+                     <div class="col-md-6 mb-2">
+                        <div class="form-check form-switch" style="font-size: 1.1rem;">
+                           <input class="form-check-input" type="checkbox" role="switch" name="is_bestseller" value="1" id="isBestsellerCheck" style="cursor: pointer;">
+                           <label class="form-check-label fw-bold ms-2" for="isBestsellerCheck" style="cursor: pointer;">Category Bestseller</label>
+                        </div>
+                     </div>
                   </div>
                </div>
                <div class="modal-footer border-0">
@@ -1001,7 +1025,7 @@
 
    <!-- Edit Product Modal -->
    <div class="modal fade" id="editProductModal" tabindex="-1">
-      <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
          <div class="modal-content rounded-4 border-0">
             <div class="modal-header border-0">
                <h5 class="modal-title fw-bold">Edit Product</h5>
@@ -1028,7 +1052,21 @@
                      </div>
                      <div class="col-6">
                         <label class="form-label fw-bold">Stock Available</label>
-                        <input type="number" name="stock" id="editProductStock" class="form-control rounded-3" min="20" required />
+                        <input type="number" name="stock" id="editProductStock" class="form-control rounded-3" min="0" required />
+                     </div>
+                  </div>
+                  <div class="row g-2 mb-3">
+                     <div class="col-4">
+                        <label class="form-label fw-bold">Calories</label>
+                        <input type="number" name="calories" id="editProductCalories" class="form-control rounded-3" min="0" required />
+                     </div>
+                     <div class="col-4">
+                        <label class="form-label fw-bold">Prep Time (min)</label>
+                        <input type="number" name="prep_time" id="editProductPrepTime" class="form-control rounded-3" min="0" required />
+                     </div>
+                     <div class="col-4">
+                        <label class="form-label fw-bold">Discount Amount (EGP)</label>
+                        <input type="number" step="0.01" name="discount_price" id="editProductDiscountPrice" class="form-control rounded-3" placeholder="Optional" />
                      </div>
                   </div>
                   <div class="mb-3">
@@ -1039,9 +1077,19 @@
                      <label class="form-label fw-bold">Product Image (Leave blank to keep current)</label>
                      <input type="file" name="image" class="form-control rounded-3" accept="image/*" />
                   </div>
-                  <div class="form-check mb-2">
-                     <input class="form-check-input" type="checkbox" name="is_featured" value="1" id="editProductFeatured">
-                     <label class="form-check-label fw-bold" for="editProductFeatured">Feature as Best Seller</label>
+                  <div class="row mt-3">
+                     <div class="col-md-6 mb-2">
+                        <div class="form-check form-switch" style="font-size: 1.1rem;">
+                           <input class="form-check-input" type="checkbox" role="switch" name="is_featured" value="1" id="editProductFeatured" style="cursor: pointer;">
+                           <label class="form-check-label fw-bold ms-2" for="editProductFeatured" style="cursor: pointer;">Feature as Hot</label>
+                        </div>
+                     </div>
+                     <div class="col-md-6 mb-2">
+                        <div class="form-check form-switch" style="font-size: 1.1rem;">
+                           <input class="form-check-input" type="checkbox" role="switch" name="is_bestseller" value="1" id="editProductBestseller" style="cursor: pointer;">
+                           <label class="form-check-label fw-bold ms-2" for="editProductBestseller" style="cursor: pointer;">Category Bestseller</label>
+                        </div>
+                     </div>
                   </div>
                </div>
                <div class="modal-footer border-0">
@@ -1332,7 +1380,11 @@
          document.getElementById('editProductPrice').value = prod.price;
          document.getElementById('editProductStock').value = prod.stock;
          document.getElementById('editProductDesc').value = prod.description || '';
+         document.getElementById('editProductCalories').value = prod.calories !== null ? prod.calories : 180;
+         document.getElementById('editProductPrepTime').value = prod.prep_time !== null ? prod.prep_time : 5;
+         document.getElementById('editProductDiscountPrice').value = prod.discount_price || '';
          document.getElementById('editProductFeatured').checked = prod.is_featured;
+         document.getElementById('editProductBestseller').checked = prod.is_bestseller;
          document.getElementById('editProductForm').action = '/admin/products/' + prod.id;
          new bootstrap.Modal(document.getElementById('editProductModal')).show();
       }

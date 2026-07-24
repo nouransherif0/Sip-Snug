@@ -101,6 +101,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/cart/items', [CartController::class, 'add']);
     Route::put('/cart/items/{id}', [CartController::class, 'update']);
     Route::delete('/cart/items/{id}', [CartController::class, 'remove']);
+    
+    Route::post('/api/v1/products/{product}/reviews', [\App\Http\Controllers\Api\V1\ReviewController::class, 'store']);
 
     Route::apiResource('addresses', AddressController::class);
 });

@@ -22,6 +22,10 @@ class Product extends Model
         'image',
         'stock',
         'is_featured',
+        'calories',
+        'prep_time',
+        'discount_price',
+        'is_bestseller',
     ];
 
     // rs one product to one subcategory 
@@ -53,12 +57,37 @@ class Product extends Model
     }
 
     public function casts(): array{
-        return['is_featured'=>'boolean'];
+        return[
+            'is_featured' => 'boolean',
+            'is_bestseller' => 'boolean',
+            'discount_price' => 'decimal:2',
+            'ingredients' => 'array',
+        ];
     }
 
     public function favoritedBy(): BelongsToMany
     {
-        // Defines a Many-to-Many relationship using a pivot table
-        return $this->belongsToMany(User::class, 'favorites');
+        return $this->belongsToMany(User::class, 'favorites', 'product_id', 'user_id')->withTimestamps();
+    }
+
+    public function getEffectivePriceAttribute()
+    {
+        $discount = $this->discount_price ?? 0;
+        return max(0, $this->price - $discount);
+    }
+
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function getAverageRatingAttribute()
+    {
+        return $this->reviews()->avg('rating') ?: 0;
+    }
+
+    public function getReviewsCountAttribute()
+    {
+        return $this->reviews()->count();
     }
 }

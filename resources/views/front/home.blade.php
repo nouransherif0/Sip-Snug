@@ -181,10 +181,14 @@
                             data-img="{{ $product->image ? asset($product->image) : asset('front/photos/coffee/esspresso.jpg') }}"
                             data-title="{{ $product->name }}"
                             data-cat="{{ $product->subcategory->category->name ?? 'Uncategorized' }}"
-                            data-price="EGP {{ number_format($product->price, 2) }}"
-                            data-old="EGP {{ number_format($product->price + 1, 2) }}" data-rating="4.9"
-                            data-reviews="128" data-cal="180" data-time="5" data-desc="{{ $product->description }}"
-                            data-tags="Bold,Bestseller,{{ $product->is_featured ? 'Hot' : '' }}">
+                            data-price="EGP {{ number_format($product->effective_price, 2) }}"
+                            data-old="{{ $product->discount_price ? 'EGP ' . number_format($product->price, 2) : '' }}" 
+                            data-rating="{{ number_format($product->average_rating, 1) }}"
+                            data-reviews="{{ $product->reviews_count }}" 
+                            data-cal="{{ $product->calories ?? 180 }}" 
+                            data-time="{{ $product->prep_time ?? 5 }}" 
+                            data-desc="{{ $product->description }}"
+                            data-tags="{{ $product->is_bestseller ? 'Bestseller,' : '' }}{{ $product->is_featured ? 'Hot' : '' }}">
                             <div class="mimg">
                                 <img src="{{ $product->image ? asset($product->image) : asset('front/photos/coffee/esspresso.jpg') }}"
                                     alt="{{ $product->name }}" loading="lazy" />
@@ -208,10 +212,13 @@
                                 <div class="mdesc">{{ Str::limit($product->description, 50) }}</div>
                                 <div class="mfoot">
                                     <div>
-                                        <div class="mprice">EGP {{ number_format($product->price, 2) }} <small>EGP
-                                                {{ number_format($product->price + 1, 2) }}</small></div>
+                                        <div class="mprice">EGP {{ number_format($product->effective_price, 2) }} 
+                                            @if($product->discount_price)
+                                                <small>EGP {{ number_format($product->price, 2) }}</small>
+                                            @endif
+                                        </div>
                                         <div class="mstars"><i class="fas fa-star"></i> <span
-                                                style="color:#bbb;font-size:.7rem;">(128)</span></div>
+                                                style="color:#bbb;font-size:.7rem;">({{ $product->reviews_count }})</span></div>
                                     </div>
                                     <button class="madd" title="View Details"><i class="fas fa-plus"></i></button>
                                 </div>
@@ -286,6 +293,24 @@
                     <span style="font-size:.82rem;color:#aaa;margin-left:9px;">portion</span>
                 </div>
                 <div class="mptags" id="mpTags"></div>
+                
+                @auth
+                    @if(Auth::user()->role !== 'admin')
+                        <div id="reviewSection" style="margin-top: 15px; margin-bottom: 15px; background: #f9f9f9; padding: 12px; border-radius: 8px;">
+                            <h6 style="margin-bottom:8px;font-weight:600;font-size:.9rem;">Rate this Product</h6>
+                            <div class="d-flex align-items-center mb-2" id="starRatingSystem">
+                                <i class="far fa-star rating-star" data-val="1" style="cursor:pointer; color:#ffd700; font-size:1.2rem; margin-right:3px;"></i>
+                                <i class="far fa-star rating-star" data-val="2" style="cursor:pointer; color:#ffd700; font-size:1.2rem; margin-right:3px;"></i>
+                                <i class="far fa-star rating-star" data-val="3" style="cursor:pointer; color:#ffd700; font-size:1.2rem; margin-right:3px;"></i>
+                                <i class="far fa-star rating-star" data-val="4" style="cursor:pointer; color:#ffd700; font-size:1.2rem; margin-right:3px;"></i>
+                                <i class="far fa-star rating-star" data-val="5" style="cursor:pointer; color:#ffd700; font-size:1.2rem; margin-right:3px;"></i>
+                                <span id="ratingValue" style="margin-left:8px; font-weight:bold; font-size:0.9rem;">0</span>
+                            </div>
+                            <button id="submitReviewBtn" class="btn btn-sm text-white w-100 mt-1" style="background:var(--primary); font-size:0.8rem;">Submit Rating</button>
+                        </div>
+                    @endif
+                @endauth
+
                 <div class="mpaddons" id="mpAddOns" style="margin-top: 15px; margin-bottom: 15px;">
                     <h6 style="margin-bottom:10px;font-weight:600;font-size:.9rem;">Extras & Add-Ons</h6>
                     @if (isset($addOns) && $addOns->count() > 0)

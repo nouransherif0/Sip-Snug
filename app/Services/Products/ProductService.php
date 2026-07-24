@@ -46,14 +46,34 @@ class ProductService
 
     public function createProduct(array $data)
     {
+        if (!empty($data['is_bestseller'])) {
+            $this->unmarkOtherBestsellers($data['subcategory_id']);
+        }
         return Product::create($data);
     }
 
     public function updateProduct(int $id, array $data)
     {
         $product = Product::findOrFail($id);
+        if (!empty($data['is_bestseller'])) {
+            $subcategoryId = $data['subcategory_id'] ?? $product->subcategory_id;
+            $this->unmarkOtherBestsellers($subcategoryId, $id);
+        }
         $product->update($data);
         return $product;
+    }
+
+    protected function unmarkOtherBestsellers($subcategoryId, $ignoreId = null)
+    {
+        $subcategory = \App\Models\Subcategory::find($subcategoryId);
+        if ($subcategory) {
+            $subIds = \App\Models\Subcategory::where('category_id', $subcategory->category_id)->pluck('id');
+            $query = Product::whereIn('subcategory_id', $subIds);
+            if ($ignoreId) {
+                $query->where('id', '!=', $ignoreId);
+            }
+            $query->update(['is_bestseller' => false]);
+        }
     }
 
     public function deleteProduct(int $id)

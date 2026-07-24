@@ -64,7 +64,7 @@ class CartService
 
         $subtotal = 0;
         foreach ($cart->cartItems as $item) {
-            $productPrice = $item->product->price ?? 0;
+            $productPrice = $item->product->effective_price ?? 0;
             $addonsTotal = 0;
             
             if (is_array($item->add_ons)) {

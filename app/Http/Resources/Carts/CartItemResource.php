@@ -9,7 +9,7 @@ class CartItemResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
-        $productPrice = $this->product->price ?? 0;
+        $productPrice = $this->product->effective_price ?? 0;
         
         // Format add_ons properly
         $formattedAddOns = [];

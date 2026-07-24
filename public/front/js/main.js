@@ -447,6 +447,73 @@ function closeMenuPop() {
     document.body.style.overflow = '';
 }
 
+// Review System
+let selectedRating = 0;
+document.querySelectorAll('.rating-star').forEach(star => {
+    star.addEventListener('click', function() {
+        selectedRating = parseInt(this.getAttribute('data-val'));
+        document.getElementById('ratingValue').textContent = selectedRating;
+        document.querySelectorAll('.rating-star').forEach(s => {
+            if (parseInt(s.getAttribute('data-val')) <= selectedRating) {
+                s.classList.remove('far');
+                s.classList.add('fas');
+            } else {
+                s.classList.remove('fas');
+                s.classList.add('far');
+            }
+        });
+    });
+});
+
+const submitReviewBtn = document.getElementById('submitReviewBtn');
+if (submitReviewBtn) {
+    submitReviewBtn.addEventListener('click', async function() {
+        if (selectedRating === 0) {
+            Swal.fire({ title: 'Error', text: 'Please select a rating first.', icon: 'error', confirmButtonColor: '#9C7A5B' });
+            return;
+        }
+        
+        const productId = menuPop.getAttribute('data-product-id');
+        const token = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+        
+        try {
+            submitReviewBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+            submitReviewBtn.disabled = true;
+            
+            const res = await fetch(`/api/v1/products/${productId}/reviews`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': token,
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({ rating: selectedRating })
+            });
+            
+            if (res.ok) {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    title: 'Success!',
+                    text: 'Thank you for your rating!',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+                closeMenuPop();
+            } else {
+                const err = await res.json();
+                Swal.fire({ title: 'Oops', text: err.message || 'Something went wrong.', icon: 'error', confirmButtonColor: '#9C7A5B' });
+            }
+        } catch (e) {
+            Swal.fire({ title: 'Error', text: 'Network error.', icon: 'error', confirmButtonColor: '#9C7A5B' });
+        } finally {
+            submitReviewBtn.innerHTML = 'Submit Rating';
+            submitReviewBtn.disabled = false;
+        }
+    });
+}
+
 function updateMpPriceDisplay() {
     var addOnTotal = 0;
     document.querySelectorAll('.mp-addon-checkbox:checked').forEach(function(cb) {
