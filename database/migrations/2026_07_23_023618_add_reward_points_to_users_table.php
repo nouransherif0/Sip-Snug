@@ -9,6 +9,7 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
+    // Runs when migrating the database to create or modify tables
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
@@ -19,6 +20,7 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
+    // Runs when rolling back the migration to drop tables
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {

@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\CartItem;
 use App\Models\Product;
 
+// Defines the structure and properties of this class
 class CartService
 {
     public function getOrCreateCart(string $userId): Cart

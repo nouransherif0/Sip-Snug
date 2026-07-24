@@ -4,6 +4,7 @@ namespace App\Services\Subcategories;
 
 use App\Models\Subcategory;
 
+// Defines the structure and properties of this class
 class SubcategoryService
 {
     public function getSubcategoriesByCategory(int $categoryId)

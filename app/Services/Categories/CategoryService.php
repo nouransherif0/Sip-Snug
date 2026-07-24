@@ -3,6 +3,7 @@
 namespace App\Services\Categories;
 use App\Models\Category;
 
+// Defines the structure and properties of this class
 class CategoryService
 {
     public function getAllCategories()

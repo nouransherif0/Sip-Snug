@@ -2,6 +2,7 @@
 
 namespace App\Services\ProductAddons;
 
+// Defines the structure and properties of this class
 class ProductAddonService
 {
     /**

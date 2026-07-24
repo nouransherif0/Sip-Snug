@@ -4,6 +4,7 @@ namespace App\Services\DeliveryZones;
 
 use App\Models\DeliveryZone;
 
+// Defines the structure and properties of this class
 class DeliveryZoneService
 {
     public function getAllZones()

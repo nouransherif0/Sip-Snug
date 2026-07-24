@@ -7,6 +7,7 @@ use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
+// Defines the structure and properties of this class
 class ProfileUpdateRequest extends FormRequest
 {
     /**
@@ -14,6 +15,7 @@ class ProfileUpdateRequest extends FormRequest
      *
      * @return array<string, ValidationRule|array<mixed>|string>
      */
+    // Specifies the validation rules that incoming data must pass
     public function rules(): array
     {
         return [

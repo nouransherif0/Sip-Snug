@@ -4,13 +4,16 @@ namespace App\Http\Requests\Carts;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+// Defines the structure and properties of this class
 class AddToCartRequest extends FormRequest
 {
+    // Checks if the current user has permission to perform this action
     public function authorize(): bool
     {
         return true;
     }
 
+    // Specifies the validation rules that incoming data must pass
     public function rules(): array
     {
         return [

@@ -6,11 +6,13 @@ use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Override;
 
+// Defines the structure and properties of this class
 class ProductFilterRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
+    // Checks if the current user has permission to perform this action
     public function authorize(): bool
     {
         return true;
@@ -21,6 +23,7 @@ class ProductFilterRequest extends FormRequest
      *
      * @return array<string, ValidationRule|array<mixed>|string>
      */
+    // Specifies the validation rules that incoming data must pass
     public function rules(): array
     {
         return [

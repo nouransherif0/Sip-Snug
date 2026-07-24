@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 #[Fillable(['user_id'])]
+// Defines the structure and properties of this class
 class Cart extends Model
 {
     use HasFactory;
@@ -18,11 +19,13 @@ class Cart extends Model
 
     public function user(): BelongsTo
     {
+        // Defines a relationship: this model belongs to a parent model
         return $this->belongsTo(User::class);
     }
 
     public function cartItems(): HasMany
     {
+        // Defines a relationship: this model has many child models
         return $this->hasMany(CartItem::class);
     }
 

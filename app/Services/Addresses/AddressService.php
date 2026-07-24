@@ -5,6 +5,7 @@ namespace App\Services\Addresses;
 use App\Models\Address;
 use Illuminate\Support\Facades\DB;
 
+// Defines the structure and properties of this class
 class AddressService
 {
     public function getUserAddresses(string $userId)

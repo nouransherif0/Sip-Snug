@@ -8,10 +8,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+// Defines the structure and properties of this class
 class Product extends Model
 {
     use HasFactory;
 
+    // Defines which columns can be safely mass-assigned in the database
     protected $fillable = [
         'subcategory_id',
         'name',
@@ -25,24 +27,28 @@ class Product extends Model
     // rs one product to one subcategory 
     public function subcategory(): BelongsTo
     {
+        // Defines a relationship: this model belongs to a parent model
         return $this->belongsTo(Subcategory::class);
     }
 
     // rs product to many add-ons 
     public function addOns(): BelongsToMany
     {
+        // Defines a Many-to-Many relationship using a pivot table
         return $this->belongsToMany(AddOn::class, 'product_addon', 'product_id', 'addon_id');
     }
 
     // rs product to many cart items
     public function cartItems(): HasMany
     {
+        // Defines a relationship: this model has many child models
         return $this->hasMany(CartItem::class);
     }
 
     //rs product to many order items
     public function orderItems(): HasMany
     {
+        // Defines a relationship: this model has many child models
         return $this->hasMany(OrderItem::class);
     }
 
@@ -52,6 +58,7 @@ class Product extends Model
 
     public function favoritedBy(): BelongsToMany
     {
+        // Defines a Many-to-Many relationship using a pivot table
         return $this->belongsToMany(User::class, 'favorites');
     }
 }

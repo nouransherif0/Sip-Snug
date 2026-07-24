@@ -4,6 +4,7 @@ namespace App\Services\Products;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
+// Defines the structure and properties of this class
 class ProductService
 {
     /**

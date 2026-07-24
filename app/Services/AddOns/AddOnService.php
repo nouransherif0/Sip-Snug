@@ -4,6 +4,7 @@ namespace App\Services\AddOns;
 
 use App\Models\AddOn;
 
+// Defines the structure and properties of this class
 class AddOnService
 {
     public function getAllAddOns()

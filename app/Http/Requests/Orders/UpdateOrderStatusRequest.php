@@ -5,13 +5,16 @@ namespace App\Http\Requests\Orders;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
+// Defines the structure and properties of this class
 class UpdateOrderStatusRequest extends FormRequest
 {
+    // Checks if the current user has permission to perform this action
     public function authorize(): bool
     {
         return true;
     }
 
+    // Specifies the validation rules that incoming data must pass
     public function rules(): array
     {
         return [

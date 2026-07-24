@@ -12,9 +12,7 @@ return new class extends Migration
     // Runs when migrating the database to create or modify tables
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            // Creates a standard text string column in the database
-            $table->string('profile_image')->nullable();
+        Schema::table('contact_and_reservations_tables', function (Blueprint $table) {
             //
         });
     }
@@ -25,9 +23,7 @@ return new class extends Migration
     // Runs when rolling back the migration to drop tables
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            // Creates a standard text string column in the database
-            $table->string('profile_image')->nullable();
+        Schema::table('contact_and_reservations_tables', function (Blueprint $table) {
             //
         });
     }

@@ -9,6 +9,7 @@ use App\Services\Carts\CartService;
 use Illuminate\Support\Facades\DB;
 use Exception;
 
+// Defines the structure and properties of this class
 class OrderService
 {
     public function __construct(protected CartService $cartService) {}

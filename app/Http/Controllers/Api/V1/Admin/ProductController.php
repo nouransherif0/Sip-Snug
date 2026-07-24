@@ -45,6 +45,7 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         $data = $request->validated();
+        $data['is_featured'] = $request->boolean('is_featured');
 
         if ($request->hasFile('image')) {
             $file = $request->file('image');
@@ -97,6 +98,7 @@ class ProductController extends Controller
     public function update(UpdateProductRequest $request, $id)
     {
         $data = $request->validated();
+        $data['is_featured'] = $request->boolean('is_featured');
 
         if ($request->hasFile('image')) {
             $file = $request->file('image');

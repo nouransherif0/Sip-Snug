@@ -2,6 +2,7 @@
 
 namespace App\Services\OrderItemAddons;
 
+// Defines the structure and properties of this class
 class OrderItemAddonService
 {
     /**

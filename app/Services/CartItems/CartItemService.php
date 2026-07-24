@@ -2,6 +2,7 @@
 
 namespace App\Services\CartItems;
 
+// Defines the structure and properties of this class
 class CartItemService
 {
     /**

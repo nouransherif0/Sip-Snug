@@ -13,6 +13,7 @@ use Illuminate\Notifications\Notifiable;
 
 #[Fillable(['name', 'email', 'password', 'phone', 'role', 'profile_image', 'reward_points'])]
 #[Hidden(['password', 'remember_token'])]
+// Defines the structure and properties of this class
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
@@ -33,11 +34,13 @@ class User extends Authenticatable
 
     public function addresses()
     {
+        // Defines a relationship: this model has many child models
         return $this->hasMany(Address::class);
     }
 
     public function orders()
     {
+        // Defines a relationship: this model has many child models
         return $this->hasMany(Order::class);
     }
 
@@ -61,6 +64,7 @@ class User extends Authenticatable
 
     public function favorites()
     {
+        // Defines a Many-to-Many relationship using a pivot table
         return $this->belongsToMany(Product::class, 'favorites');
     }
 }
