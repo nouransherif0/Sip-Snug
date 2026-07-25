@@ -5,11 +5,11 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <meta name="csrf-token" content="{{ csrf_token() }}">
    <title>Admin Dashboard — Sip & Snug Cafe</title>
-   
+
    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
    <link href="{{ asset('front/css/bootstrap.min.css') }}" rel="stylesheet" />
    <link rel="stylesheet" href="{{ asset('front/css/all.min.css') }}" />
-   
+
    <style>
       :root {
          --primary: #7a4b2e;
@@ -21,7 +21,7 @@
          --accent-green: #137333;
          --accent-red: #d93025;
       }
-      
+
       html {
          margin: 0;
       }
@@ -816,8 +816,7 @@
                      <th>Subcategory</th>
                      <th>Price</th>
                      <th>Stock</th>
-                     <th>Featured</th>
-                     <th>Actions</th>
+                     <th>Status</th>
                   </tr>
                </thead>
                <tbody>
@@ -860,8 +859,7 @@
                <table class="table-custom">
                <thead>
                   <tr>
-                     <th>Image</th>
-                     <th>Name</th>
+                     <th>Product</th>
                      <th>Subcategory</th>
                      <th>Price</th>
                      <th>Stock</th>
@@ -1532,15 +1530,15 @@
       function switchTab(tabId, btn) {
          document.querySelectorAll('.tab-content-panel').forEach(el => el.classList.remove('active'));
          document.querySelectorAll('.admin-nav-item').forEach(el => el.classList.remove('active'));
-         
+
          const panel = document.getElementById('tab-' + tabId);
          if (panel) panel.classList.add('active');
-         
+
          if(!btn) {
             btn = document.querySelector(`.admin-nav-item[onclick*="'${tabId}'"]`);
          }
          if(btn) btn.classList.add('active');
-         
+
          const titles = {
             overview: 'Dashboard Overview',
             products: 'Products Management',
@@ -1580,14 +1578,14 @@
             const html = await res.text();
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');
-            
+
             document.querySelectorAll('.tab-content-panel').forEach(panel => {
                const newPanel = doc.getElementById(panel.id);
                if (newPanel) {
                   panel.innerHTML = newPanel.innerHTML;
                }
             });
-            
+
             // Update the header to refresh notification bells
             const oldHeader = document.querySelector('.admin-header');
             const newHeader = doc.querySelector('.admin-header');
@@ -1602,7 +1600,7 @@
       async function submitApiForm(e, url, method) {
          e.preventDefault();
          const formData = new FormData(e.target);
-         
+
          // In Laravel, PUT requests with files must use POST with _method=PUT
          if (method.toUpperCase() === 'PUT') {
             formData.append('_method', 'PUT');
@@ -1625,7 +1623,7 @@
                let successMsg = 'Action completed successfully!';
                let timerVal = 1500;
                let showClose = false;
-               
+
                // Check if this was a product edit
                if (url.includes('/admin/products') && method === 'POST') {
                    // If the product was restocked to > 10
@@ -1639,15 +1637,15 @@
 
                closeAllModals();
                reloadPageContent();
-               
+
                Swal.fire({
                    toast: showClose, // Use toast style for restock
                    position: showClose ? 'top-end' : 'center',
-                   title: successTitle, 
-                   text: successMsg, 
-                   icon: 'success', 
-                   confirmButtonColor: '#9C7A5B', 
-                   timer: timerVal, 
+                   title: successTitle,
+                   text: successMsg,
+                   icon: 'success',
+                   confirmButtonColor: '#9C7A5B',
+                   timer: timerVal,
                    timerProgressBar: showClose,
                    showConfirmButton: !showClose,
                    showCloseButton: showClose
