@@ -7,21 +7,20 @@
     <section id="hero">
         <div class="hs hs1"></div>
         <div class="hs hs2"></div>
-        <div class="hbgtxt">FOOD</div>
         <div class="container">
             <div class="row align-items-center g-4 hero-row">
                 <div class="col-lg-6 col-12">
-                    <div class="hbadge">
+                    <div class="hbadge" data-aos="fade-down" data-aos-delay="100">
                         <div class="hbi"><i class="fas fa-mug-hot"></i></div>
                         <span>Cozy coffee house • Freshly brewed every morning</span>
                     </div>
-                    <h1 class="htitle">Freshly Brewed <span class="hl">Coffee</span><br />and Cozy Vibes</h1>
-                    <p class="hdesc">From velvety lattes and bright matcha to refreshing juices and smoothies, every cup is
+                    <h1 class="htitle" data-aos="fade-up" data-aos-delay="200">Freshly Brewed <span class="hl">Coffee</span><br />and Cozy Vibes</h1>
+                    <p class="hdesc" data-aos="fade-up" data-aos-delay="300">From velvety lattes and bright matcha to refreshing juices and smoothies, every cup is
                         made for your slow moments and sweet cravings.</p>
-                    <div class="d-flex flex-wrap gap-3 mb-2">
+                    <div class="d-flex flex-wrap gap-3 mb-2" data-aos="fade-up" data-aos-delay="400">
                         <a href="#menu" class="btn-red"><i class="fas fa-coffee"></i>Explore Menu</a>
                     </div>
-                    <div class="hstats d-flex gap-3 flex-wrap mt-4">
+                    <div class="hstats d-flex gap-3 flex-wrap mt-4" data-aos="fade-up" data-aos-delay="500">
                         <div class="hstat"><span class="snum">850<em>+</em></span><small>Happy Guests</small></div>
                         <div class="sdiv"></div>
                         <div class="hstat"><span class="snum">90<em>+</em></span><small>Drinks</small></div>
@@ -31,20 +30,20 @@
                         <div class="hstat"><span class="snum">8<em>yr</em></span><small>Crafting Coffee</small></div>
                     </div>
                 </div>
-                <div class="col-lg-6 d-none d-lg-block">
+                <div class="col-lg-6 d-none d-lg-block" data-aos="fade-left" data-aos-delay="250">
                     <div style="position:relative;text-align:center; max-width: 100%;">
-                        <div class="hcircle">
+                        <div class="hcircle" data-aos="fade-left" data-aos-delay="350">
                             <img src="{{ asset('front/photos/coffee/hot latte.jpg') }}" alt="Latte" />
                         </div>
-                        <div class="fcard fc1">
+                        <div class="fcard fc1" data-aos="fade-down" data-aos-delay="450">
                             <div class="fcoi r"><i class="fas fa-fire"></i></div>
                             <div><span class="fcnum">Hot Deal</span><span class="fcsm">30% off today</span></div>
                         </div>
-                        <div class="fcard fc2">
+                        <div class="fcard fc2" data-aos="fade-left" data-aos-delay="550">
                             <div class="fcoi y"><i class="fas fa-star"></i></div>
                             <div><span class="fcnum">4.9/5</span><span class="fcsm">2k+ reviews</span></div>
                         </div>
-                        <div class="fcard fc3">
+                        <div class="fcard fc3" data-aos="fade-up" data-aos-delay="650">
                             <div class="fcoi g"><i class="fas fa-clock"></i></div>
                             <div><span class="fcnum">20 min</span><span class="fcsm">Fast delivery</span></div>
                         </div>

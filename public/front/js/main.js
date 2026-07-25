@@ -1,12 +1,36 @@
-// Disable AOS on mobile to prevent content being stuck invisible
-var isMobile = window.innerWidth <= 991;
-AOS.init({
-    duration: isMobile ? 0 : 680,
-    once: true,
-    offset: isMobile ? 0 : 55,
-    disable: function() {
-        return window.innerWidth <= 991;
-    }
+// Universal smooth AOS & Scroll Reveal Initializer
+if (typeof AOS !== 'undefined') {
+    AOS.init({
+        duration: 750,
+        once: true,
+        offset: 35,
+        easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+        disable: false
+    });
+}
+
+// Intersection Observer for smooth cascading Scroll Reveal
+document.addEventListener('DOMContentLoaded', function() {
+    var revealObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-revealed', 'aos-animate');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -30px 0px'
+    });
+
+    var targets = document.querySelectorAll('[data-aos], .snug-reveal, .snug-reveal-left, .snug-reveal-right, .snug-reveal-zoom, .catcard, .mwrap, .fti, .hstat, .gitem, .tli');
+    targets.forEach(function(el, idx) {
+        if (!el.hasAttribute('data-aos-delay') && !el.hasAttribute('data-delay')) {
+            var delay = (idx % 6) * 60;
+            el.style.transitionDelay = delay + 'ms';
+        }
+        revealObserver.observe(el);
+    });
 });
 
 /* NAVBAR SCROLL & ACTIVE LINK  */

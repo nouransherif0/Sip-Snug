@@ -15,14 +15,104 @@
   box-sizing: border-box;
 }
 
-/* Force AOS elements visible on mobile - prevent stuck invisible content */
-@media (max-width: 991px) {
-  [data-aos] {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
+/* ============================================================
+   SNUG ULTRA-SMOOTH SCROLL REVEAL & MICRO-ANIMATIONS
+   ============================================================ */
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(1.5deg); }
 }
+
+@keyframes floatFast {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(-1deg); }
+}
+
+@keyframes auraGlow {
+  0%, 100% { box-shadow: 0 0 35px rgba(216, 169, 107, 0.3), 0 0 70px rgba(122, 75, 46, 0.15); }
+  50% { box-shadow: 0 0 60px rgba(216, 169, 107, 0.55), 0 0 110px rgba(122, 75, 46, 0.35); }
+}
+
+@keyframes pulseBadge {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Floating Elements Keyframe Animations */
+.fcard.fc1 { animation: floatSlow 4s ease-in-out infinite !important; }
+.fcard.fc2 { animation: floatFast 3.5s ease-in-out infinite 0.5s !important; }
+.fcard.fc3 { animation: floatSlow 4.5s ease-in-out infinite 1s !important; }
+.hcircle { animation: auraGlow 5s ease-in-out infinite !important; }
+
+/* Custom Scroll Reveal Classes (Works on Desktop & Mobile) */
+.snug-reveal,
+[data-snug-reveal] {
+  opacity: 0;
+  transform: translateY(35px) scale(0.97);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.snug-reveal-left {
+  opacity: 0;
+  transform: translateX(-45px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.snug-reveal-right {
+  opacity: 0;
+  transform: translateX(45px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.snug-reveal-zoom {
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+/* Revealed Active State */
+.snug-reveal.is-revealed,
+.snug-reveal-left.is-revealed,
+.snug-reveal-right.is-revealed,
+.snug-reveal-zoom.is-revealed,
+[data-snug-reveal].is-revealed,
+.aos-animate {
+  opacity: 1 !important;
+  transform: translate(0, 0) scale(1) !important;
+}
+
+/* Stagger Delay Classes */
+[data-delay="100"] { transition-delay: 0.1s !important; }
+[data-delay="200"] { transition-delay: 0.2s !important; }
+[data-delay="300"] { transition-delay: 0.3s !important; }
+[data-delay="400"] { transition-delay: 0.4s !important; }
+[data-delay="500"] { transition-delay: 0.5s !important; }
+[data-delay="600"] { transition-delay: 0.6s !important; }
+
+/* Enhanced Micro-Interactions on Hover */
+.catcard, .mcard, .fti, .btn-red, .btn-sec, .madd, .gitem {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+.catcard:hover, .mcard:hover {
+  transform: translateY(-8px) scale(1.02) !important;
+  box-shadow: 0 18px 40px rgba(122, 75, 46, 0.16) !important;
+}
+.mcard .mimg img, .gitem img {
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+.mcard:hover .mimg img, .gitem:hover img {
+  transform: scale(1.08) !important;
+}
+
 html {
   scroll-behavior: smooth;
 }
