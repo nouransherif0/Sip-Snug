@@ -1717,6 +1717,7 @@
             });
 
             if (res.ok) {
+               await reloadPageContent();
                Swal.fire({ title: 'Updated!', text: 'Order #' + orderId.substring(0, 8) + ' status updated to ' + status, icon: 'success', confirmButtonColor: '#9C7A5B' });
             } else {
                Swal.fire({ title: 'Error!', text: 'Failed to update status.', icon: 'error', confirmButtonColor: '#9C7A5B' });
@@ -1725,6 +1726,13 @@
             console.error(e);
          }
       }
+
+      // Auto-refresh stats & data every 10 seconds without page refresh
+      setInterval(() => {
+         if (!document.querySelector('.modal.show')) {
+            reloadPageContent();
+         }
+      }, 10000);
 
       function deleteItem(url) {
          Swal.fire({
