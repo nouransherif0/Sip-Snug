@@ -20,6 +20,7 @@ use App\Http\Controllers\Api\V1\DeliveryZones\DeliveryZoneController;
 use App\Http\Controllers\Api\V1\Orders\OrderController;
 use App\Http\Controllers\Api\V1\Carts\CartController;
 use App\Http\Controllers\Api\V1\Addresses\AddressController;
+use App\Http\Controllers\Api\V1\Reviews\ReviewController;
 
 // API Admin Controllers (used in web admin routes)
 use App\Http\Controllers\Api\V1\Admin\OrderController as AdminOrderController;
@@ -101,8 +102,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/cart/items', [CartController::class, 'add']);
     Route::put('/cart/items/{id}', [CartController::class, 'update']);
     Route::delete('/cart/items/{id}', [CartController::class, 'remove']);
-    
-    Route::post('/api/v1/products/{product}/reviews', [\App\Http\Controllers\Api\V1\ReviewController::class, 'store']);
+
+    Route::post('/api/v1/products/{product}/reviews', [ReviewController::class, 'store']);
 
     Route::apiResource('addresses', AddressController::class);
 });

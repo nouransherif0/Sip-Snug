@@ -19,6 +19,7 @@ use App\Http\Controllers\Api\V1\AddOns\AddOnController;
 use App\Http\Controllers\Api\V1\Admin\AddOnController as AdminAddOnController;
 use App\Http\Controllers\Api\V1\DeliveryZones\DeliveryZoneController;
 use App\Http\Controllers\Api\V1\Admin\DeliveryZoneController as AdminDeliveryZoneController;
+use App\Http\Controllers\Api\V1\Reviews\ReviewController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -28,6 +29,7 @@ Route::prefix('v1')->group(function () {
     // Public Routes
     Route::get('/products', [ProductController::class, 'index']);
     Route::get('/products/{id}', [ProductController::class, 'show']);
+    Route::get('/products/{product}/reviews', [ReviewController::class, 'index']);
 
     Route::get('/categories', [CategoryController::class, 'index']);
     Route::get('/categories/{id}', [CategoryController::class, 'show']);
@@ -39,6 +41,8 @@ Route::prefix('v1')->group(function () {
 
     // Protected User Routes (Require Authentication)
     Route::middleware('auth:sanctum,web')->group(function () {
+        // Reviews
+        Route::post('/products/{product}/reviews', [ReviewController::class, 'store']);
         // Orders
         Route::get('/orders', [OrderController::class, 'index']);
         Route::post('/orders', [OrderController::class, 'store']);
