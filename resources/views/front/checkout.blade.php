@@ -3,63 +3,61 @@
 @section('content')
 <style>
     .checkout-container {
-        padding-top: 50px;
+        padding-top: 35px;
         min-height: 80vh;
-        background-color: #f8f9fa;
+        background-color: #fcf7f1;
         color: #333;
         padding-bottom: 50px;
     }
     .checkout-header {
         text-align: center;
-        margin-bottom: 40px;
+        margin-bottom: 30px;
     }
     .checkout-header h1 {
         font-family: 'Playfair Display', serif;
         color: var(--primary);
-        font-size: 2.5rem;
+        font-size: 2.2rem;
+        font-weight: 700;
     }
     .checkout-grid {
         display: grid;
         grid-template-columns: 2fr 1fr;
-        gap: 30px;
-    }
-    @media(max-width: 991px) {
-        .checkout-grid {
-            grid-template-columns: 1fr;
-        }
+        gap: 25px;
     }
     .checkout-section {
         background: #fff;
-        border: 1px solid #eee;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-        border-radius: 15px;
-        padding: 30px;
-        margin-bottom: 30px;
+        border: 1px solid #efe2d3;
+        box-shadow: 0 4px 18px rgba(0,0,0,0.04);
+        border-radius: 16px;
+        padding: 25px;
+        margin-bottom: 25px;
     }
     .checkout-section h3 {
         font-family: 'Playfair Display', serif;
         color: var(--primary);
         margin-bottom: 20px;
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
     }
     .address-card {
         border: 2px solid #eee;
-        border-radius: 10px;
-        padding: 15px;
-        margin-bottom: 15px;
+        border-radius: 12px;
+        padding: 15px 90px 15px 15px;
+        margin-bottom: 12px;
         cursor: pointer;
         transition: 0.3s;
         position: relative;
     }
     .address-card:hover {
-        border-color: #ccc;
+        border-color: #ddd;
     }
     .address-card.selected {
         border-color: var(--primary);
-        background-color: rgba(94, 61, 44, 0.03);
+        background-color: rgba(122, 75, 46, 0.04);
     }
     .address-card input[type="radio"] {
         position: absolute;
@@ -69,48 +67,50 @@
         accent-color: var(--primary);
     }
     .address-label {
-        font-weight: bold;
-        font-size: 1.1rem;
+        font-weight: 700;
+        font-size: 1.05rem;
         color: #222;
-        margin-bottom: 5px;
+        margin-bottom: 4px;
+        word-break: break-word;
     }
     .address-details {
-        font-size: 0.95rem;
-        color: #555;
+        font-size: 0.9rem;
+        color: #666;
         line-height: 1.5;
     }
     .payment-option {
         display: flex;
         align-items: center;
         gap: 15px;
-        padding: 15px;
+        padding: 14px 16px;
         border: 2px solid #eee;
-        border-radius: 10px;
-        margin-bottom: 15px;
+        border-radius: 12px;
+        margin-bottom: 12px;
         cursor: pointer;
+        transition: 0.3s;
     }
     .payment-option:hover {
-        border-color: #ccc;
+        border-color: #ddd;
     }
     .payment-option.selected {
         border-color: var(--primary);
-        background-color: rgba(94, 61, 44, 0.03);
+        background-color: rgba(122, 75, 46, 0.04);
     }
     .payment-option input[type="radio"] {
         accent-color: var(--primary);
         transform: scale(1.2);
     }
     .payment-icon {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         color: var(--primary);
     }
     
     .cart-summary {
         background: #fff;
-        border: 1px solid #eee;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-        border-radius: 15px;
-        padding: 30px;
+        border: 1px solid #efe2d3;
+        box-shadow: 0 4px 18px rgba(0,0,0,0.04);
+        border-radius: 16px;
+        padding: 25px;
         height: fit-content;
         position: sticky;
         top: 100px;
@@ -119,58 +119,64 @@
         font-family: 'Playfair Display', serif;
         color: var(--primary);
         margin-bottom: 20px;
-        font-size: 1.5rem;
+        font-size: 1.4rem;
     }
     .summary-items {
-        margin-bottom: 20px;
+        margin-bottom: 15px;
         border-bottom: 1px solid #eee;
-        padding-bottom: 20px;
+        padding-bottom: 15px;
     }
     .summary-item {
         display: flex;
         justify-content: space-between;
         margin-bottom: 10px;
-        font-size: 0.95rem;
+        font-size: 0.92rem;
+        gap: 10px;
     }
     .summary-item-name {
         color: #333;
         font-weight: 500;
+        word-break: break-word;
     }
     .summary-item-price {
-        color: #666;
+        color: #555;
+        white-space: nowrap;
+        font-weight: 600;
     }
     .summary-row {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 15px;
+        margin-bottom: 12px;
         color: #666;
+        font-size: 0.92rem;
     }
     .summary-total {
         display: flex;
         justify-content: space-between;
-        margin-top: 20px;
-        padding-top: 20px;
-        border-top: 1px solid #eee;
-        font-size: 1.2rem;
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 2px dashed #eee;
+        font-size: 1.15rem;
         font-weight: bold;
         color: #222;
     }
     .place-order-btn {
         width: 100%;
-        padding: 15px;
-        background: linear-gradient(135deg, var(--primary), var(--green));
+        padding: 14px;
+        background: linear-gradient(135deg, var(--primary), #5a3821);
         border: none;
-        border-radius: 8px;
+        border-radius: 10px;
         color: #fff;
         font-weight: bold;
-        font-size: 1.1rem;
-        margin-top: 20px;
+        font-size: 1.05rem;
+        margin-top: 18px;
         cursor: pointer;
         transition: 0.3s;
+        box-shadow: 0 4px 14px rgba(122, 75, 46, 0.25);
     }
     .place-order-btn:hover {
-        opacity: 0.9;
-        transform: translateY(-2px);
+        opacity: 0.93;
+        transform: translateY(-1px);
     }
     .place-order-btn:disabled {
         opacity: 0.6;
@@ -178,11 +184,65 @@
         transform: none;
     }
     
+    /* Mobile Responsiveness Override */
+    @media (max-width: 991px) {
+        .checkout-container {
+            padding-top: 20px;
+            padding-bottom: 30px;
+        }
+        .checkout-header {
+            margin-bottom: 20px;
+        }
+        .checkout-header h1 {
+            font-size: 1.6rem;
+        }
+        .checkout-grid {
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+        .checkout-section, .cart-summary {
+            padding: 18px 15px !important;
+            border-radius: 14px !important;
+            margin-bottom: 16px !important;
+            position: relative !important;
+            top: 0 !important;
+        }
+        .checkout-section h3, .cart-summary h3 {
+            font-size: 1.2rem !important;
+            margin-bottom: 14px !important;
+        }
+        .address-card {
+            padding: 12px 85px 12px 12px !important;
+            margin-bottom: 10px !important;
+            border-radius: 10px !important;
+        }
+        .address-label {
+            font-size: 0.92rem !important;
+        }
+        .address-details {
+            font-size: 0.82rem !important;
+        }
+        .payment-option {
+            padding: 12px !important;
+            gap: 10px !important;
+            margin-bottom: 10px !important;
+            border-radius: 10px !important;
+        }
+        .payment-icon {
+            font-size: 1.2rem !important;
+        }
+        .place-order-btn {
+            padding: 13px !important;
+            font-size: 1rem !important;
+            border-radius: 10px !important;
+        }
+    }
+    
     /* Loading Spinner */
     .loader-overlay {
         position: absolute;
         top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(255,255,255,0.8);
+        background: rgba(255,255,255,0.85);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -191,17 +251,17 @@
     }
     .spinner {
         border: 4px solid #eee;
-        width: 40px;
-        height: 40px;
+        width: 36px;
+        height: 36px;
         border-radius: 50%;
         border-left-color: var(--primary);
         animation: spin 1s linear infinite;
     }
     @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     
-    .form-control:focus {
+    .form-control:focus, .form-select:focus {
         border-color: var(--primary);
-        box-shadow: 0 0 0 0.2rem rgba(94, 61, 44, 0.25);
+        box-shadow: 0 0 0 0.2rem rgba(122, 75, 46, 0.2);
     }
 </style>
 

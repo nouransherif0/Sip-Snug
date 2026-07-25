@@ -28,6 +28,21 @@
             grid-template-columns: 1fr;
         }
     }
+    @media(max-width: 576px) {
+        .cart-item {
+            flex-direction: column;
+            text-align: center;
+        }
+        .cart-item-img {
+            margin-right: 0 !important;
+            margin-bottom: 15px;
+        }
+        .cart-item-actions {
+            margin-top: 15px;
+            justify-content: center;
+            width: 100%;
+        }
+    }
     .cart-items {
         background: #fff;
         border: 1px solid #eee;

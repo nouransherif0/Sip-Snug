@@ -64,9 +64,47 @@
                   </div>
                </div>
             </a>
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
-            <i class="fas fa-bars" style="color:var(--primary);font-size:1.35rem;"></i>
-            </button>
+
+            {{-- Always-visible icons in navbar bar (NOT inside collapse) --}}
+            <div class="d-flex align-items-center gap-2 ms-auto d-lg-none">
+               <button id="navSearchBtn" title="Search" class="btn p-1" style="color:var(--primary);"><i class="fas fa-search"></i></button>
+               @auth
+               @if(auth()->user()->isAdmin())
+                  @php
+                     if (!isset($lowStockProducts)) {
+                        $lowStockProducts = \App\Models\Product::where('stock', '<=', 10)->get();
+                        $lowStockCount = $lowStockProducts->count();
+                     }
+                  @endphp
+                  @if($lowStockCount > 0)
+                     <div class="dropdown">
+                        <button class="btn btn-light position-relative border-0 rounded-circle p-1" type="button" data-bs-toggle="dropdown" style="width:36px;height:36px;background:transparent;">
+                           <i class="fas fa-bell text-danger"></i>
+                           <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size:0.6rem;">{{ $lowStockCount }}</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3 p-0" style="width: 300px; max-height: 380px; overflow-y: auto;">
+                           <li class="p-3 border-bottom bg-light"><h6 class="m-0 text-danger"><i class="fas fa-exclamation-circle me-2"></i>Low Stock Alerts</h6></li>
+                           @foreach($lowStockProducts as $prod)
+                              <li>
+                                 <a class="dropdown-item py-3 border-bottom text-wrap" href="{{ route('admin.dashboard') }}?tab=products">
+                                    <strong class="d-block text-dark">{{ $prod->name }}</strong>
+                                    <small class="text-danger">Alert: Only {{ $prod->stock }} left!</small>
+                                 </a>
+                              </li>
+                           @endforeach
+                        </ul>
+                     </div>
+                  @endif
+               @endif
+               @endauth
+               <button id="hamburgerBtn" class="hamburger-btn" title="Open Account & Profile Menu" onclick="const d = document.getElementById('sideMenuDrawer'); const o = document.getElementById('sideMenuOverlay'); if(d && o) { d.classList.add('active'); o.classList.add('active'); document.body.style.overflow='hidden'; }">
+                  <i class="fas fa-user"></i>
+               </button>
+               <button class="navbar-toggler border-0 p-1" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+                  <i class="fas fa-bars" style="color:var(--primary);font-size:1.25rem;"></i>
+               </button>
+            </div>
+
             <div class="collapse navbar-collapse" id="navmenu">
                <ul class="navbar-nav mx-auto">
                   <li class="nav-item"><a class="nav-link active" href="{{ url('/#hero') }}">Home</a></li>
@@ -77,34 +115,20 @@
                   <li class="nav-item"><a class="nav-link" href="{{ url('/#testimonials') }}">Reviews</a></li>
                   <li class="nav-item"><a class="nav-link" href="{{ url('/#contact-section') }}">Contact</a></li>
                </ul>
-               <div class="d-flex align-items-center gap-2">
-                  <!-- FIX 1: Search button -->
-                  <button id="navSearchBtn" title="Search" class="btn" style="color:var(--primary);"><i class="fas fa-search"></i></button>
-
-                  @guest
-                      <a href="{{ route('login') }}" class="nav-link" style="color:var(--primary); font-weight:600;"><i class="fas fa-user"></i> Login</a>
-                  @endguest
-
+               {{-- Desktop only action icons --}}
+               <div class="d-none d-lg-flex align-items-center gap-2">
+                  <button id="navSearchBtnDesktop" title="Search" class="btn" style="color:var(--primary);"><i class="fas fa-search"></i></button>
                   <a href="{{ url('/#menu') }}" class="nav-link nav-cta"><i class="fas fa-shopping-bag me-1"></i>Order Now</a>
-
                   @auth
                   @if(auth()->user()->isAdmin())
-                     @php
-                        $lowStockProducts = \App\Models\Product::where('stock', '<=', 10)->get();
-                        $lowStockCount = $lowStockProducts->count();
-                     @endphp
                      @if($lowStockCount > 0)
                         <div class="dropdown ms-2">
                            <button class="btn btn-light position-relative border-0 rounded-circle" type="button" data-bs-toggle="dropdown" style="width:40px;height:40px;background:transparent;">
                               <i class="fas fa-bell text-danger fs-5"></i>
-                              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size:0.6rem;">
-                                 {{ $lowStockCount }}
-                              </span>
+                              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size:0.6rem;">{{ $lowStockCount }}</span>
                            </button>
                            <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3 p-0" style="width: 320px; max-height: 400px; overflow-y: auto;">
-                              <li class="p-3 border-bottom bg-light">
-                                 <h6 class="m-0 text-danger"><i class="fas fa-exclamation-circle me-2"></i>Low Stock Alerts</h6>
-                              </li>
+                              <li class="p-3 border-bottom bg-light"><h6 class="m-0 text-danger"><i class="fas fa-exclamation-circle me-2"></i>Low Stock Alerts</h6></li>
                               @foreach($lowStockProducts as $prod)
                                  <li>
                                     <a class="dropdown-item py-3 border-bottom text-wrap" href="{{ route('admin.dashboard') }}?tab=products">
@@ -117,11 +141,11 @@
                         </div>
                      @endif
                   @endif
-                  <!-- Hamburger Side Menu Trigger -->
-                  <button id="hamburgerBtn" class="hamburger-btn ms-2" title="Open Menu Side Drawer">
-                     <i class="fas fa-bars"></i>
-                  </button>
                   @endauth
+                  <!-- Hamburger Side Menu Trigger Desktop -->
+                  <button id="hamburgerBtnDesktop" class="hamburger-btn ms-2" title="Open Account & Profile Menu" onclick="const d = document.getElementById('sideMenuDrawer'); const o = document.getElementById('sideMenuOverlay'); if(d && o) { d.classList.add('active'); o.classList.add('active'); document.body.style.overflow='hidden'; }">
+                     <i class="fas fa-user"></i>
+                  </button>
                </div>
             </div>
          </div>
@@ -304,11 +328,10 @@
         document.addEventListener('DOMContentLoaded', updateGlobalCartCount);
       </script>
       @endauth
-@auth
       <!-- ============================================================
          HAMBURGER SIDE MENU DRAWER
          ============================================================ -->
-      <div id="sideMenuOverlay" class="side-menu-overlay"></div>
+      <div id="sideMenuOverlay" class="side-menu-overlay" onclick="document.getElementById('sideMenuDrawer')?.classList.remove('active'); this.classList.remove('active'); document.body.style.overflow='';"></div>
       <aside id="sideMenuDrawer" class="side-menu-drawer">
          <!-- Drawer Header -->
          <div class="sm-header">
@@ -319,12 +342,13 @@
                   <div class="bsub">Coffee House & Cafe</div>
                </div>
             </div>
-            <button id="sideMenuClose" class="sm-close-btn" title="Close menu"><i class="fas fa-times"></i></button>
+            <button id="sideMenuClose" class="sm-close-btn" title="Close menu" onclick="document.getElementById('sideMenuDrawer')?.classList.remove('active'); document.getElementById('sideMenuOverlay')?.classList.remove('active'); document.body.style.overflow='';"><i class="fas fa-times"></i></button>
          </div>
 
          <!-- Scrollable Content -->
          <div class="sm-content">
             <!-- User Profile Card -->
+            @auth
             <div class="sm-profile-card">
                <div class="sm-profile-avatar">
                   <img src="{{ Auth::user()->profile_image_url }}" style="border-radius: 50%; object-fit: cover;" alt="User Avatar" />
@@ -348,6 +372,19 @@
                   </div>
                </div>
             </div>
+            @else
+            <div class="sm-profile-card text-center p-3">
+               <div class="sm-profile-avatar mx-auto mb-2" style="width:54px;height:54px;background:var(--cream2);display:flex;align-items:center;justify-content:center;border-radius:50%;color:var(--primary);font-size:1.4rem;">
+                  <i class="fas fa-user"></i>
+               </div>
+               <h5 class="mb-1" style="font-size:1.1rem;font-weight:700;">Welcome to Sip & Snug</h5>
+               <p class="text-muted small mb-3">Sign in to manage orders, favorites & rewards</p>
+               <div class="d-flex w-100 gap-2">
+                  <a href="{{ route('login') }}" class="sm-btn sm-btn-primary flex-fill" style="padding:8px 12px;font-size:0.85rem;"><i class="fas fa-sign-in-alt me-1"></i> Log In</a>
+                  <a href="{{ route('register') }}" class="sm-btn sm-btn-outline flex-fill" style="padding:8px 12px;font-size:0.85rem;"><i class="fas fa-user-plus me-1"></i> Register</a>
+               </div>
+            </div>
+            @endauth
 
             <!-- Categories & Subcategories Section -->
             <div class="sm-section">
@@ -453,7 +490,6 @@
             <p class="sm-copy">Sip & Snug Cafe © 2026</p>
          </div>
       </aside>
-@endauth
       <div id="ordersModal" class="cm-overlay">
          <div class="cm-dialog">
             <div class="cm-header">
@@ -553,7 +589,7 @@
                <h6 class="fw-bold mb-3"><i class="fas fa-ticket-alt me-2 text-warning"></i>Redeemable Vouchers</h6>
                <div id="redeemSuccessMsg" class="alert alert-success" style="display:none;"></div>
                <div id="redeemErrorMsg" class="alert alert-danger" style="display:none;"></div>
-               
+
                <div class="voucher-card">
                   <div>
                      <h6 class="mb-1 fw-bold">Free French Croissant</h6>
@@ -700,16 +736,19 @@
                 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
             };
         }
-        
+
         // Orders Logic
-        document.querySelector('[data-cm-target="ordersModal"]').addEventListener('click', function() {
-            fetchMyOrders();
-        });
+        const ordersTargetBtn = document.querySelector('[data-cm-target="ordersModal"]');
+        if (ordersTargetBtn) {
+            ordersTargetBtn.addEventListener('click', function() {
+                fetchMyOrders();
+            });
+        }
 
         function fetchMyOrders() {
             const container = document.getElementById('myOrdersContainer');
             container.innerHTML = '<div class="text-center py-4"><div class="spinner-border text-primary" role="status"></div></div>';
-            
+
             fetch('/api/v1/orders', { headers: getHeaders() })
             .then(res => res.json())
             .then(res => {
@@ -718,17 +757,17 @@
                     container.innerHTML = '<div class="text-center text-muted py-4"><i class="fas fa-box-open fs-1 mb-3"></i><p>No orders yet!</p></div>';
                     return;
                 }
-                
+
                 container.innerHTML = '';
                 orders.forEach(order => {
                     // Create status steps
                     const status = order.status; // pending, brewing, out_for_delivery, delivered
-                    
+
                     let activeStep = 1;
                     if (status === 'processing' || status === 'brewing') activeStep = 2;
                     else if (status === 'out_for_delivery' || status === 'delivery') activeStep = 3;
                     else if (status === 'delivered') activeStep = 4;
-                    
+
                     let html = `
                         <div class="order-tracker" style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
                             <div class="d-flex justify-content-between align-items-center mb-2">
@@ -738,7 +777,7 @@
                                 </div>
                                 <span class="fw-bold" style="color:var(--primary);">${order.total_price}</span>
                             </div>
-                            
+
                             <!-- LIVE TRACKING UI -->
                             ${status !== 'cancelled' ? `
                             <div class="tracker-steps mt-3 mb-3">
@@ -775,11 +814,11 @@
             })
             .catch(err => console.error(err));
         }
-        
+
         function reorder(id, btn) {
             btn.disabled = true;
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Adding to cart...';
-            
+
             fetch(`/api/v1/orders/${id}/reorder`, {
                 method: 'POST',
                 headers: getHeaders()
@@ -801,12 +840,15 @@
                 btn.innerHTML = 'Error. Try again';
             });
         }
-        
+
         // Rewards Logic
-        document.querySelector('[data-cm-target="rewardsModal"]').addEventListener('click', function() {
-            fetchPoints();
-        });
-        
+        const rewardsTargetBtn = document.querySelector('[data-cm-target="rewardsModal"]');
+        if (rewardsTargetBtn) {
+            rewardsTargetBtn.addEventListener('click', function() {
+                fetchPoints();
+            });
+        }
+
         function fetchPoints() {
             fetch('/api/v1/rewards/points', { headers: getHeaders() })
             .then(res => res.json())
@@ -821,10 +863,10 @@
         function redeemReward(points) {
             const successMsg = document.getElementById('redeemSuccessMsg');
             const errorMsg = document.getElementById('redeemErrorMsg');
-            
+
             successMsg.style.display = 'none';
             errorMsg.style.display = 'none';
-            
+
             fetch('/api/v1/rewards/redeem', {
                 method: 'POST',
                 headers: getHeaders(),

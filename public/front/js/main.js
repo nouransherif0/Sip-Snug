@@ -1,7 +1,12 @@
+// Disable AOS on mobile to prevent content being stuck invisible
+var isMobile = window.innerWidth <= 991;
 AOS.init({
-    duration: 680,
+    duration: isMobile ? 0 : 680,
     once: true,
-    offset: 55
+    offset: isMobile ? 0 : 55,
+    disable: function() {
+        return window.innerWidth <= 991;
+    }
 });
 
 /* NAVBAR SCROLL & ACTIVE LINK  */
@@ -372,11 +377,13 @@ function openMenuPop(card) {
     document.getElementById('mpCat').textContent = cat;
     document.getElementById('mpTitle').textContent = title;
 
-    var full = Math.round(rating),
+    var parsedRating = parseFloat(rating) || 0;
+    var full = Math.round(parsedRating),
         empty = 5 - full;
+    if (empty < 0) empty = 0;
     document.getElementById('mpStars').innerHTML =
-        '<i class="fas fa-star"></i>'.repeat(full) + 'â˜†'.repeat(empty) +
-        ' <span style="color:#bbb;font-size:.78rem;">' + rating + ' (' + reviews + ' reviews)</span>';
+        '<i class="fas fa-star" style="color:var(--secondary);"></i>'.repeat(full) + '<i class="far fa-star" style="color:var(--secondary);"></i>'.repeat(empty) +
+        ' <span style="color:#bbb;font-size:.78rem;margin-left:5px;">' + parsedRating + ' (' + (reviews || 0) + ' reviews)</span>';
 
     document.getElementById('mpDesc').textContent = desc;
 
@@ -794,26 +801,40 @@ window.addEventListener('scroll', function() {
    ============================================================ */
 document.addEventListener("DOMContentLoaded", function() {
     const hamburgerBtn = document.getElementById("hamburgerBtn");
+    const hamburgerBtnDesktop = document.getElementById("hamburgerBtnDesktop");
     const sideMenuDrawer = document.getElementById("sideMenuDrawer");
     const sideMenuOverlay = document.getElementById("sideMenuOverlay");
     const sideMenuClose = document.getElementById("sideMenuClose");
 
-    if (hamburgerBtn && sideMenuDrawer && sideMenuOverlay && sideMenuClose) {
+    if (sideMenuDrawer && sideMenuOverlay && sideMenuClose) {
         function openDrawer() {
             sideMenuDrawer.classList.add("active");
             sideMenuOverlay.classList.add("active");
-            document.body.style.overflow = "hidden"; // Prevent background scrolling
+            document.body.style.overflow = "hidden";
         }
 
         function closeDrawer() {
             sideMenuDrawer.classList.remove("active");
             sideMenuOverlay.classList.remove("active");
-            document.body.style.overflow = ""; // Restore scrolling
+            document.body.style.overflow = "";
         }
 
-        hamburgerBtn.addEventListener("click", openDrawer);
+        if (hamburgerBtn) hamburgerBtn.addEventListener("click", openDrawer);
+        if (hamburgerBtnDesktop) hamburgerBtnDesktop.addEventListener("click", openDrawer);
         sideMenuClose.addEventListener("click", closeDrawer);
         sideMenuOverlay.addEventListener("click", closeDrawer);
+    }
+
+    // Handle both search buttons
+    const navSearchBtnDesktop = document.getElementById("navSearchBtnDesktop");
+    if (navSearchBtnDesktop) {
+        navSearchBtnDesktop.addEventListener("click", function() {
+            const searchOv = document.getElementById("searchOv");
+            if (searchOv) {
+                searchOv.classList.add("active");
+                document.getElementById("searchInput").focus();
+            }
+        });
     }
 
     // Accordion Logic for Side Menu
@@ -826,6 +847,16 @@ document.addEventListener("DOMContentLoaded", function() {
             //     if(other !== item) other.classList.remove('active');
             // });
             item.classList.toggle("active");
+        });
+    });
+    // Auto-close Bootstrap navbar on mobile when a link is clicked
+    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+    const menuToggle = document.getElementById('navmenu');
+    navLinks.forEach(l => {
+        l.addEventListener('click', () => {
+            if (menuToggle.classList.contains('show')) {
+                document.querySelector('.navbar-toggler').click();
+            }
         });
     });
 });
@@ -844,35 +875,42 @@ document.addEventListener("DOMContentLoaded", function() {
             const targetId = btn.getAttribute('data-cm-target');
             const modal = document.getElementById(targetId);
             if (modal) {
+                // Auto-close side menu drawer when a modal is opened from it
+                const sideMenuDrawer = document.getElementById("sideMenuDrawer");
+                const sideMenuOverlay = document.getElementById("sideMenuOverlay");
+                if (sideMenuDrawer) sideMenuDrawer.classList.remove("active");
+                if (sideMenuOverlay) sideMenuOverlay.classList.remove("active");
+
                 modal.classList.add('open');
-                document.body.style.overflow = "hidden"; // Prevent background scrolling
+                document.body.style.overflow = "hidden";
             }
         });
     });
 
     modalCloses.forEach(btn => {
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
             const modal = btn.closest('.cm-overlay');
             if (modal) {
                 modal.classList.remove('open');
-                // Only restore scrolling if side menu is also closed
-                const sideMenuOverlay = document.getElementById("sideMenuOverlay");
-                if (!sideMenuOverlay || !sideMenuOverlay.classList.contains("active")) {
-                    document.body.style.overflow = "";
-                }
+                document.body.style.overflow = "";
             }
         });
     });
 
     modals.forEach(modal => {
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
+        let isMouseDownOnBackdrop = false;
+
+        modal.addEventListener('mousedown', (e) => {
+            isMouseDownOnBackdrop = (e.target === modal);
+        });
+
+        modal.addEventListener('mouseup', (e) => {
+            if (isMouseDownOnBackdrop && e.target === modal) {
                 modal.classList.remove('open');
-                const sideMenuOverlay = document.getElementById("sideMenuOverlay");
-                if (!sideMenuOverlay || !sideMenuOverlay.classList.contains("active")) {
-                    document.body.style.overflow = "";
-                }
+                document.body.style.overflow = "";
             }
+            isMouseDownOnBackdrop = false;
         });
     });
 });

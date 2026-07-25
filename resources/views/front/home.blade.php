@@ -9,8 +9,8 @@
         <div class="hs hs2"></div>
         <div class="hbgtxt">FOOD</div>
         <div class="container">
-            <div class="row align-items-center g-5" style="min-height:88vh;">
-                <div class="col-lg-6">
+            <div class="row align-items-center g-4 hero-row">
+                <div class="col-lg-6 col-12">
                     <div class="hbadge">
                         <div class="hbi"><i class="fas fa-mug-hot"></i></div>
                         <span>Cozy coffee house • Freshly brewed every morning</span>
@@ -31,8 +31,8 @@
                         <div class="hstat"><span class="snum">8<em>yr</em></span><small>Crafting Coffee</small></div>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div style="position:relative;text-align:center;">
+                <div class="col-lg-6 d-none d-lg-block">
+                    <div style="position:relative;text-align:center; max-width: 100%;">
                         <div class="hcircle">
                             <img src="{{ asset('front/photos/coffee/hot latte.jpg') }}" alt="Latte" />
                         </div>
@@ -82,8 +82,8 @@
                 <p class="sdesc mx-auto" style="max-width:480px;">From velvety coffee to bright matcha and fresh juices,
                     find your favorite sip in our cafe menu.</p>
             </div>
-            <div class="row g-3 justify-content-center">
-                <div class="col-6 col-sm-4 col-md-3 col-lg-2" data-aos="zoom-in" data-aos-delay="0">
+            <div class="row g-2 g-sm-3 justify-content-center">
+                <div class="col-4 col-sm-4 col-md-3 col-lg-2" data-aos="zoom-in" data-aos-delay="0">
                     <div class="catcard active" data-filter="all">
                         <img class="catimg" src="{{ asset('front/photos/coffee/coffee cate.jpg') }}" alt="" />
                         <div class="catnm">All Drinks</div>
@@ -91,7 +91,7 @@
                     </div>
                 </div>
                 @foreach ($categories as $category)
-                    <div class="col-6 col-sm-4 col-md-3 col-lg-2" data-aos="zoom-in" data-aos-delay="70">
+                    <div class="col-4 col-sm-4 col-md-3 col-lg-2" data-aos="zoom-in" data-aos-delay="70">
                         <div class="catcard" data-filter="{{ strtolower($category->name) }}">
                             <img class="catimg"
                                 src="{{ $category->image ? asset($category->image) : asset('front/photos/coffee/esspresso.jpg') }}"
@@ -108,7 +108,7 @@
     <section id="about">
         <div class="container">
             <div class="row align-items-center g-5">
-                <div class="col-lg-5" data-aos="fade-right">
+                <div class="col-lg-5 col-12" data-aos="fade-right">
                     <div class="astack">
                         <div class="aexp"><span class="anum">12+</span><small>Years of<br />Coffee Craft</small></div>
                         <div class="amain"><img src="{{ asset('front/photos/coffee/hot coffee category .jpg') }}"
@@ -117,7 +117,7 @@
                                 alt="Coffee drinks" /></div>
                     </div>
                 </div>
-                <div class="col-lg-7" data-aos="fade-left">
+                <div class="col-lg-7 col-12" data-aos="fade-left">
                     <span class="slbl">Our Story</span>
                     <h2 class="stitle text-start">We Invite You to Visit<br />Our <span>Cozy Cafe</span></h2>
                     <div class="sline lft"></div>
@@ -172,9 +172,9 @@
                         data-f="{{ strtolower($category->name) }}">{{ $category->name }}</button>
                 @endforeach
             </div>
-            <div class="row g-4" id="mgrid">
+            <div class="row g-2 g-sm-4" id="mgrid">
                 @foreach ($products as $product)
-                    <div class="col-sm-6 col-lg-4 mwrap"
+                    <div class="col-6 col-md-6 col-lg-4 mwrap"
                         data-c="{{ strtolower($product->subcategory->category->name ?? 'uncategorized') }}"
                         data-aos="fade-up">
                         <div class="mcard" data-id="{{ $product->id }}"
@@ -340,13 +340,13 @@
     <section id="special">
         <div class="spbg"></div>
         <div class="container" style="position:relative;z-index:2;">
-            <div class="row align-items-center g-5">
-                <div class="col-lg-6" data-aos="fade-right">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-6 col-12 text-lg-start text-center" data-aos="fade-right">
                     <div class="sptag"><i class="fas fa-bolt me-1"></i>Limited Time Offer</div>
                     <h2 class="sptitle">Get 20% Off<br />Our Seasonal<br /><span>Latte</span> Special</h2>
                     <p class="spdesc">Don't miss our weekend treat - enjoy a creamy honey latte, a fresh pastry and a cozy
                         corner table at a sweet price.</p>
-                    <div class="cdwrap">
+                    <div class="cdwrap justify-content-center justify-content-lg-start">
                         <div class="cditem"><span class="cdnum" id="cdH">08</span><span
                                 class="cdlbl">Hours</span></div>
                         <div class="cditem"><span class="cdnum" id="cdM">45</span><span
@@ -356,7 +356,7 @@
                     </div>
                     <a href="#menu" class="btn-red"><i class="fas fa-shopping-cart"></i>Grab the Deal</a>
                 </div>
-                <div class="col-lg-6" data-aos="fade-left">
+                <div class="col-lg-6 col-10 offset-1 offset-lg-0 mx-auto mx-lg-0" data-aos="fade-left">
                     <div class="spimgw">
                         <div class="spglow"></div>
                         <div class="sppbdg"><span class="old">$6.20</span><span class="np">$4.95</span></div>
@@ -604,7 +604,7 @@
                 <div class="sline"></div>
             </div>
             <div class="row g-4 align-items-start">
-                <div class="col-lg-5" data-aos="fade-right">
+                <div class="col-lg-5 col-12" data-aos="fade-right">
                     <div class="hrscard">
                         <div class="hrsrow">
                             <span class="hrsday"><i class="fas fa-calendar-day me-2"
@@ -648,7 +648,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3" data-aos="zoom-in">
+                <div class="col-lg-3 col-12 col-sm-6" data-aos="zoom-in">
                     <div class="hrscta">
                         <i class="fas fa-truck-fast fa-2x mb-3" style="color:rgba(255,255,255,.8);"></i>
                         <h4>Order Online</h4>
@@ -656,7 +656,7 @@
                         <a href="#menu" class="btnw">Order Now ?</a>
                     </div>
                 </div>
-                <div class="col-lg-4" data-aos="fade-left">
+                <div class="col-lg-4 col-12" data-aos="fade-left">
                     <div class="hrscard">
                         <h5
                             style="color:#fff;margin-bottom:18px;font-family:'Poppins',sans-serif;font-size:.95rem;font-weight:700;">
@@ -768,72 +768,38 @@
                     recommend booking 24 hours in advance for weekend evenings.</p>
             </div>
             <div class="row g-4 align-items-start">
-                <div class="col-lg-4" data-aos="fade-right">
-                    <div style="background:var(--dark);border-radius:18px;padding:36px;">
-                        <h4 style="color:#fff;font-size:1.3rem;margin-bottom:8px;">Contact Info</h4>
-                        <p style="color:rgba(255,255,255,.55);font-size:.85rem;margin-bottom:26px;">We're happy to help you
-                            plan the perfect dining experience.</p>
-                        <div class="d-flex flex-column gap-3">
-                            <div class="d-flex align-items-center gap-3">
-                                <div
-                                    style="width:46px;height:46px;border-radius:11px;background:rgba(232,40,26,.2);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1.1rem;flex-shrink:0;">
-                                    <i class="fas fa-clock"></i></div>
-                                <div><strong
-                                        style="display:block;color:#ccc;font-size:.78rem;text-transform:uppercase;letter-spacing:.8px;">Opening
-                                        Hours</strong><span style="color:#fff;font-size:.87rem;">Wed - Sun, 9 AM - 11
-                                        PM</span></div>
-                            </div>
-                            <div class="d-flex align-items-center gap-3">
-                                <div
-                                    style="width:46px;height:46px;border-radius:11px;background:rgba(232,40,26,.2);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1.1rem;flex-shrink:0;">
-                                    <i class="fas fa-phone-alt"></i></div>
-                                <div><strong
-                                        style="display:block;color:#ccc;font-size:.78rem;text-transform:uppercase;letter-spacing:.8px;">Call
-                                        for Booking</strong><span style="color:#fff;font-size:.87rem;">19696</span></div>
-                            </div>
-                            <div class="d-flex align-items-center gap-3">
-                                <div
-                                    style="width:46px;height:46px;border-radius:11px;background:rgba(232,40,26,.2);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1.1rem;flex-shrink:0;">
-                                    <i class="fas fa-users"></i></div>
-                                <div><strong
-                                        style="display:block;color:#ccc;font-size:.78rem;text-transform:uppercase;letter-spacing:.8px;">Group
-                                        Dining</strong><span style="color:#fff;font-size:.87rem;">Special menus for 10+
-                                        guests</span></div>
-                            </div>
-                            <div class="d-flex align-items-center gap-3">
-                                <div
-                                    style="width:46px;height:46px;border-radius:11px;background:rgba(232,40,26,.2);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1.1rem;flex-shrink:0;">
-                                    <i class="fas fa-map-marker-alt"></i></div>
-                                <div><strong
-                                        style="display:block;color:#ccc;font-size:.78rem;text-transform:uppercase;letter-spacing:.8px;">Location</strong><span
-                                        style="color:#fff;font-size:.87rem;">Nasrcity, EG</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-8" data-aos="fade-left">
+                <!-- Reservation Form (First on Mobile, Second on Desktop) -->
+                <div class="col-lg-8 col-12 order-1 order-lg-2" data-aos="fade-left">
                     <div class="fcard">
                         <div class="row g-3">
-                            <div class="col-sm-6"><label class="flbl">Full Name *</label><input type="text"
-                                    class="fctrl" placeholder=" john" /></div>
-                            <div class="col-sm-6"><label class="flbl">Phone Number *</label><input type="tel"
-                                    class="fctrl" placeholder="+20 1 000-0000" /></div>
-                            <div class="col-sm-6"><label class="flbl">Email Address *</label><input type="email"
-                                    class="fctrl" placeholder="xxxx@gmail.com" /></div>
-                            <div class="col-sm-6">
-                                <label class="flbl">Number of Guests *</label>
+                            <div class="col-12">
+                                <label class="flbl">Full Name *</label>
+                                <input type="text" class="fctrl" placeholder="John Doe" />
+                            </div>
+                            <div class="col-6">
+                                <label class="flbl">Phone *</label>
+                                <input type="tel" class="fctrl" placeholder="+20 100 000 0000" />
+                            </div>
+                            <div class="col-6">
+                                <label class="flbl">Email *</label>
+                                <input type="email" class="fctrl" placeholder="john@gmail.com" />
+                            </div>
+                            <div class="col-6">
+                                <label class="flbl">Guests *</label>
                                 <select class="fctrl">
                                     <option>1 Person</option>
                                     <option>2 People</option>
                                     <option>3 - 4 People</option>
                                     <option>5 - 6 People</option>
-                                    <option>7 -10 People</option>
+                                    <option>7 - 10 People</option>
                                     <option>10+ People</option>
                                 </select>
                             </div>
-                            <div class="col-sm-6"><label class="flbl">Date *</label><input type="date"
-                                    class="fctrl" /></div>
-                            <div class="col-sm-6">
+                            <div class="col-6">
+                                <label class="flbl">Date *</label>
+                                <input type="date" class="fctrl" />
+                            </div>
+                            <div class="col-12">
                                 <label class="flbl">Time *</label>
                                 <select class="fctrl">
                                     <option>09:00 AM</option>
@@ -849,15 +815,73 @@
                                     <option>10:00 PM</option>
                                 </select>
                             </div>
-                            <div class="col-12"><label class="flbl">Special Requests</label>
-                                <textarea class="fctrl" rows="3" placeholder="Allergies, dietary needs, special occasions..."></textarea>
+                            <div class="col-12">
+                                <label class="flbl">Special Requests</label>
+                                <textarea class="fctrl" rows="2" placeholder="Allergies, dietary needs, special occasions..."></textarea>
                             </div>
-                            <div class="col-12"><button class="btn-red w-100 justify-content-center" id="resBtn"><i
-                                        class="fas fa-calendar-check"></i>Confirm Reservation</button></div>
+                            <div class="col-12">
+                                <button class="btn-red w-100 justify-content-center" id="resBtn">
+                                    <i class="fas fa-calendar-check me-2"></i>Confirm Reservation
+                                </button>
+                            </div>
                         </div>
                         <div class="sucmsg" id="resOk">
                             <i class="fas fa-check-circle"></i>
                             <p>Table reserved! We'll confirm via email shortly.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Info Card (Second on Mobile, First on Desktop) -->
+                <div class="col-lg-4 col-12 order-2 order-lg-1" data-aos="fade-right">
+                    <div style="background:var(--dark);border-radius:18px;padding:28px 24px;">
+                        <h4 style="color:#fff;font-size:1.2rem;margin-bottom:6px;">Contact Info</h4>
+                        <p style="color:rgba(255,255,255,.55);font-size:.82rem;margin-bottom:20px;">We're happy to help you plan the perfect dining experience.</p>
+                        <div class="row g-3">
+                            <div class="col-6 col-lg-12">
+                                <div class="d-flex align-items-center gap-2">
+                                    <div style="width:38px;height:38px;border-radius:10px;background:rgba(232,40,26,.2);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1rem;flex-shrink:0;">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <div>
+                                        <strong style="display:block;color:#ccc;font-size:.72rem;text-transform:uppercase;letter-spacing:.5px;">Opening Hours</strong>
+                                        <span style="color:#fff;font-size:.8rem;">Wed - Sun: 9AM - 11PM</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-12">
+                                <div class="d-flex align-items-center gap-2">
+                                    <div style="width:38px;height:38px;border-radius:10px;background:rgba(232,40,26,.2);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1rem;flex-shrink:0;">
+                                        <i class="fas fa-phone-alt"></i>
+                                    </div>
+                                    <div>
+                                        <strong style="display:block;color:#ccc;font-size:.72rem;text-transform:uppercase;letter-spacing:.5px;">Call for Booking</strong>
+                                        <span style="color:#fff;font-size:.8rem;">19696</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-12">
+                                <div class="d-flex align-items-center gap-2">
+                                    <div style="width:38px;height:38px;border-radius:10px;background:rgba(232,40,26,.2);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1rem;flex-shrink:0;">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <div>
+                                        <strong style="display:block;color:#ccc;font-size:.72rem;text-transform:uppercase;letter-spacing:.5px;">Group Dining</strong>
+                                        <span style="color:#fff;font-size:.8rem;">Special menus 10+</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-12">
+                                <div class="d-flex align-items-center gap-2">
+                                    <div style="width:38px;height:38px;border-radius:10px;background:rgba(232,40,26,.2);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1rem;flex-shrink:0;">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                    <div>
+                                        <strong style="display:block;color:#ccc;font-size:.72rem;text-transform:uppercase;letter-spacing:.5px;">Location</strong>
+                                        <span style="color:#fff;font-size:.8rem;">Nasrcity, EG</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -959,44 +983,23 @@
                     event? We'd love to hear from you.</p>
             </div>
             <div class="row g-4">
-                <div class="col-lg-4" data-aos="fade-right">
-                    <div class="ctdark">
-                        <h4>Let's Talk</h4>
-                        <p class="ctsub">We typically respond within 2 hours during business hours.</p>
-                        <div class="ctitem">
-                            <div class="cticon"><i class="fas fa-map-marker-alt"></i></div>
-                            <div class="ctinfo"><strong>Address</strong><span>Nasr city, Ciro,<br />Egypt, EG</span></div>
-                        </div>
-                        <div class="ctitem">
-                            <div class="cticon"><i class="fas fa-phone-alt"></i></div>
-                            <div class="ctinfo"><strong>Phone</strong><span>19696</span></div>
-                        </div>
-                        <div class="ctitem">
-                            <div class="cticon"><i class="fas fa-envelope"></i></div>
-                            <div class="ctinfo"><strong>Email</strong><span>SipnSnug@gmail.com</span></div>
-                        </div>
-                        <div class="ctitem">
-                            <div class="cticon"><i class="fas fa-clock"></i></div>
-                            <div class="ctinfo"><strong>Working Hours</strong><span>Wed - Sun: 9 AM - 11 PM</span></div>
-                        </div>
-                        <div class="ctsocrow">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-youtube"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-8" data-aos="fade-left">
+                <!-- Contact Form (First on Mobile, Second on Desktop) -->
+                <div class="col-lg-8 col-12 order-1 order-lg-2" data-aos="fade-left">
                     <div class="fcard">
                         <div class="row g-3">
-                            <div class="col-sm-6"><label class="flbl">Your Name *</label><input type="text"
-                                    class="fctrl" placeholder="John " /></div>
-                            <div class="col-sm-6"><label class="flbl">Email Address *</label><input type="email"
-                                    class="fctrl" placeholder="xxxx@gmail.com" /></div>
-                            <div class="col-sm-6"><label class="flbl">Phone Number</label><input type="tel"
-                                    class="fctrl" placeholder="+20 1 000-0000" /></div>
-                            <div class="col-sm-6">
+                            <div class="col-6">
+                                <label class="flbl">Your Name *</label>
+                                <input type="text" class="fctrl" placeholder="John Doe" />
+                            </div>
+                            <div class="col-6">
+                                <label class="flbl">Email *</label>
+                                <input type="email" class="fctrl" placeholder="john@gmail.com" />
+                            </div>
+                            <div class="col-6">
+                                <label class="flbl">Phone Number</label>
+                                <input type="tel" class="fctrl" placeholder="+20 100 000 0000" />
+                            </div>
+                            <div class="col-6">
                                 <label class="flbl">Subject *</label>
                                 <select class="fctrl">
                                     <option>General Inquiry</option>
@@ -1006,15 +1009,59 @@
                                     <option>Media &amp; Press</option>
                                 </select>
                             </div>
-                            <div class="col-12"><label class="flbl">Message *</label>
-                                <textarea class="fctrl" rows="5" placeholder="Write your message here..."></textarea>
+                            <div class="col-12">
+                                <label class="flbl">Message *</label>
+                                <textarea class="fctrl" rows="3" placeholder="Write your message here..."></textarea>
                             </div>
-                            <div class="col-12"><button class="btn-red" id="ctcBtn"><i
-                                        class="fas fa-paper-plane"></i>Send Message</button></div>
+                            <div class="col-12">
+                                <button class="btn-red w-100 justify-content-center" id="ctcBtn">
+                                    <i class="fas fa-paper-plane me-2"></i>Send Message
+                                </button>
+                            </div>
                         </div>
                         <div class="sucmsg" id="ctcOk">
                             <i class="fas fa-check-circle"></i>
                             <p>Message sent! We'll reply within 2 hours.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Info (Second on Mobile, First on Desktop) -->
+                <div class="col-lg-4 col-12 order-2 order-lg-1" data-aos="fade-right">
+                    <div class="ctdark">
+                        <h4>Let's Talk</h4>
+                        <p class="ctsub">We typically respond within 2 hours during business hours.</p>
+                        <div class="row g-3 mb-3">
+                            <div class="col-6 col-lg-12">
+                                <div class="ctitem mb-0">
+                                    <div class="cticon"><i class="fas fa-map-marker-alt"></i></div>
+                                    <div class="ctinfo"><strong>Address</strong><span>Nasr city, Cairo, EG</span></div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-12">
+                                <div class="ctitem mb-0">
+                                    <div class="cticon"><i class="fas fa-phone-alt"></i></div>
+                                    <div class="ctinfo"><strong>Phone</strong><span>19696</span></div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-12">
+                                <div class="ctitem mb-0">
+                                    <div class="cticon"><i class="fas fa-envelope"></i></div>
+                                    <div class="ctinfo"><strong>Email</strong><span>SipnSnug@gmail.com</span></div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-12">
+                                <div class="ctitem mb-0">
+                                    <div class="cticon"><i class="fas fa-clock"></i></div>
+                                    <div class="ctinfo"><strong>Hours</strong><span>Wed-Sun: 9AM-11PM</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ctsocrow mt-2">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
                         </div>
                     </div>
                 </div>
