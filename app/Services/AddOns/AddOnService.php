@@ -9,55 +9,33 @@ class AddOnService
 {
     public function getAllAddOns()
     {
-<<<<<<< HEAD
-   return AddOn::all();
-=======
         return AddOn::with(['category', 'subcategory', 'product', 'categories', 'subcategories', 'products'])->orderBy('id', 'asc')->get();
->>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
     }
 
     public function getAddOnById(int $id)
     {
-<<<<<<< HEAD
-  return AddOn::findOrFail($id);
-=======
         return AddOn::with(['category', 'subcategory', 'product', 'categories', 'subcategories', 'products'])->findOrFail($id);
->>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
     }
 
     public function createAddOn(array $data)
     {
-<<<<<<< HEAD
-   return AddOn::create($data);
-=======
         $sanitized = $this->sanitizeScopeData($data);
         $addOn = AddOn::create($sanitized);
         $this->syncPivots($addOn, $data);
         return $addOn->load(['category', 'subcategory', 'product', 'categories', 'subcategories', 'products']);
->>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
     }
 
     public function updateAddOn(int $id, array $data)
     {
-<<<<<<< HEAD
-    $addOn = AddOn::findOrFail($id);
-    $addOn->update($data);
-   return $addOn;
-=======
         $addOn = AddOn::findOrFail($id);
         $sanitized = $this->sanitizeScopeData($data, $addOn);
         $addOn->update($sanitized);
         $this->syncPivots($addOn, $data);
         return $addOn->load(['category', 'subcategory', 'product', 'categories', 'subcategories', 'products']);
->>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
     }
 
     public function deleteAddOn(int $id)
     {
-<<<<<<< HEAD
-   $addOn = AddOn::findOrFail($id);
-  $addOn->delete();
-=======
         $addOn = AddOn::findOrFail($id);
         $addOn->delete();
     }
@@ -134,6 +112,5 @@ class AddOnService
             $addOn->subcategories()->sync([]);
             $addOn->products()->sync([]);
         }
->>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
     }
 }

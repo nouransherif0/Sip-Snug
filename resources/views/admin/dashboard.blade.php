@@ -1817,7 +1817,7 @@
                         <div class="mb-3">
                             <label class="form-label fw-bold">New Stock Quantity (Units)</label>
                             <input type="number" name="stock" id="stockProductQuantity"
-                                class="form-control rounded-3" min="0" required
+                                class="form-control rounded-3" min="20" required
                                 placeholder="Enter new stock quantity..." />
                         </div>
                     </div>
