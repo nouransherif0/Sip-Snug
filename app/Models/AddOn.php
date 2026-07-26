@@ -53,7 +53,7 @@ class AddOn extends Model
         return $this->belongsToMany(Product::class, 'product_addon', 'addon_id', 'product_id');
     }
 
-    //rs add-on to many products 
+    //rs add-on to many products
     public function products_item_addon(): BelongsToMany
     {
         // Defines a Many-to-Many relationship using a pivot table
@@ -75,7 +75,7 @@ class AddOn extends Model
         $subcategoryId = $product->subcategory_id;
         $categoryId = $product->subcategory ? $product->subcategory->category_id : null;
 
-        return static::where(function ($query) use ($product, $subcategoryId, $categoryId) {
+        return static::query()->where(function ($query) use ($product, $subcategoryId, $categoryId) {
             $query->where('scope', 'global')
                 ->orWhereNull('scope');
 
