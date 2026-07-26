@@ -6,10 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Admin Dashboard — Sip & Snug Cafe</title>
+<<<<<<< HEAD
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}" />
     <link rel="shortcut icon" href="{{ asset('favicon.svg') }}" type="image/x-icon" />
     <link rel="apple-touch-icon" href="{{ asset('favicon.svg') }}" />
+=======
+>>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
 
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Poppins:wght@300;400;500;600;700&display=swap"
@@ -700,6 +703,12 @@
             <button class="admin-nav-item" onclick="switchTab('addons', this)">
                 <i class="fas fa-cookie-bite"></i> Add-Ons
             </button>
+<<<<<<< HEAD
+=======
+            <button class="admin-nav-item" onclick="switchTab('store-locations', this)">
+                <i class="fas fa-map-marked-alt"></i> Store Locations
+            </button>
+>>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
             <button class="admin-nav-item" onclick="switchTab('delivery', this)">
                 <i class="fas fa-truck"></i> Delivery Zones
             </button>
@@ -960,10 +969,23 @@
         <!-- ================= 2. TAB: PRODUCTS ================= -->
         <div id="tab-products" class="tab-content-panel">
             <div class="panel-card">
+<<<<<<< HEAD
                 <div class="panel-head">
                     <h5 class="panel-title"><i class="fas fa-coffee me-2"></i>Products Management</h5>
                     <button class="btn-primary-snug" data-bs-toggle="modal" data-bs-target="#createProductModal"><i
                             class="fas fa-plus"></i> Add New Product</button>
+=======
+                <div class="panel-head d-flex flex-wrap align-items-center justify-content-between gap-2">
+                    <h5 class="panel-title mb-0"><i class="fas fa-coffee me-2"></i>Products Management</h5>
+                    <div class="d-flex align-items-center gap-2">
+                        <div class="input-group input-group-sm" style="max-width: 250px;">
+                            <span class="input-group-text bg-white border-end-0 rounded-start-3"><i class="fas fa-search text-muted"></i></span>
+                            <input type="text" id="productTableSearch" class="form-control border-start-0 rounded-end-3" placeholder="Search products..." oninput="filterProductTable(this)">
+                        </div>
+                        <button class="btn-primary-snug" data-bs-toggle="modal" data-bs-target="#createProductModal"><i
+                                class="fas fa-plus"></i> Add New Product</button>
+                    </div>
+>>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
                 </div>
                 <div class="table-responsive" style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
                     <table class="table-custom">
@@ -1033,10 +1055,23 @@
         <!-- ================= 3. TAB: CATEGORIES ================= -->
         <div id="tab-categories" class="tab-content-panel">
             <div class="panel-card">
+<<<<<<< HEAD
                 <div class="panel-head">
                     <h5 class="panel-title"><i class="fas fa-layer-group me-2"></i>Categories Management</h5>
                     <button class="btn-primary-snug" data-bs-toggle="modal" data-bs-target="#createCategoryModal"><i
                             class="fas fa-plus"></i> Add Category</button>
+=======
+                <div class="panel-head d-flex flex-wrap align-items-center justify-content-between gap-2">
+                    <h5 class="panel-title mb-0"><i class="fas fa-layer-group me-2"></i>Categories Management</h5>
+                    <div class="d-flex align-items-center gap-2">
+                        <div class="input-group input-group-sm" style="max-width: 250px;">
+                            <span class="input-group-text bg-white border-end-0 rounded-start-3"><i class="fas fa-search text-muted"></i></span>
+                            <input type="text" id="categoryTableSearch" class="form-control border-start-0 rounded-end-3" placeholder="Search categories..." oninput="filterCategoryTable(this)">
+                        </div>
+                        <button class="btn-primary-snug" data-bs-toggle="modal" data-bs-target="#createCategoryModal"><i
+                                class="fas fa-plus"></i> Add Category</button>
+                    </div>
+>>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
                 </div>
                 <div class="table-responsive" style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
                     <table class="table-custom">
@@ -1088,10 +1123,23 @@
         <!-- ================= 4. TAB: SUBCATEGORIES ================= -->
         <div id="tab-subcategories" class="tab-content-panel">
             <div class="panel-card">
+<<<<<<< HEAD
                 <div class="panel-head">
                     <h5 class="panel-title"><i class="fas fa-tags me-2"></i>Subcategories Management</h5>
                     <button class="btn-primary-snug" data-bs-toggle="modal"
                         data-bs-target="#createSubcategoryModal"><i class="fas fa-plus"></i> Add Subcategory</button>
+=======
+                <div class="panel-head d-flex flex-wrap align-items-center justify-content-between gap-2">
+                    <h5 class="panel-title mb-0"><i class="fas fa-tags me-2"></i>Subcategories Management</h5>
+                    <div class="d-flex align-items-center gap-2">
+                        <div class="input-group input-group-sm" style="max-width: 250px;">
+                            <span class="input-group-text bg-white border-end-0 rounded-start-3"><i class="fas fa-search text-muted"></i></span>
+                            <input type="text" id="subcategoryTableSearch" class="form-control border-start-0 rounded-end-3" placeholder="Search subcategories..." oninput="filterSubcategoryTable(this)">
+                        </div>
+                        <button class="btn-primary-snug" data-bs-toggle="modal"
+                            data-bs-target="#createSubcategoryModal"><i class="fas fa-plus"></i> Add Subcategory</button>
+                    </div>
+>>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
                 </div>
                 <div class="table-responsive" style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
                     <table class="table-custom">
@@ -1144,10 +1192,23 @@
         <!-- ================= 5. TAB: ADDONS ================= -->
         <div id="tab-addons" class="tab-content-panel">
             <div class="panel-card">
+<<<<<<< HEAD
                 <div class="panel-head">
                     <h5 class="panel-title"><i class="fas fa-cookie-bite me-2"></i>Add-Ons Management</h5>
                     <button class="btn-primary-snug" data-bs-toggle="modal" data-bs-target="#createAddonModal"><i
                             class="fas fa-plus"></i> Add Add-On</button>
+=======
+                <div class="panel-head d-flex flex-wrap align-items-center justify-content-between gap-2">
+                    <h5 class="panel-title mb-0"><i class="fas fa-cookie-bite me-2"></i>Add-Ons Management</h5>
+                    <div class="d-flex align-items-center gap-2">
+                        <div class="input-group input-group-sm" style="max-width: 250px;">
+                            <span class="input-group-text bg-white border-end-0 rounded-start-3"><i class="fas fa-search text-muted"></i></span>
+                            <input type="text" id="addonTableSearch" class="form-control border-start-0 rounded-end-3" placeholder="Search add-ons..." oninput="filterAddonTable(this)">
+                        </div>
+                        <button class="btn-primary-snug" data-bs-toggle="modal" data-bs-target="#createAddonModal"><i
+                                class="fas fa-plus"></i> Add Add-On</button>
+                    </div>
+>>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
                 </div>
                 <div class="table-responsive" style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
                     <table class="table-custom">
@@ -1155,6 +1216,10 @@
                             <tr>
                                 <th>Add-On Name</th>
                                 <th>ID</th>
+<<<<<<< HEAD
+=======
+                                <th>Applicability / Scope</th>
+>>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
                                 <th>Price Adjustment</th>
                                 <th>Actions</th>
                             </tr>
@@ -1164,6 +1229,38 @@
                                 <tr>
                                     <td><strong>{{ $addon->name }}</strong></td>
                                     <td data-label="Add-On ID">#{{ $addon->id }}</td>
+<<<<<<< HEAD
+=======
+                                    <td data-label="Scope">
+                                        @if(($addon->scope ?? 'global') === 'global')
+                                            <span class="badge bg-primary px-2 py-1"><i class="fas fa-globe me-1"></i>Global (All Products)</span>
+                                        @elseif($addon->scope === 'category')
+                                            @php
+                                                $cats = $addon->categories->pluck('name')->toArray();
+                                                if (empty($cats) && $addon->category) { $cats = [$addon->category->name]; }
+                                            @endphp
+                                            <span class="badge bg-info text-dark px-2 py-1" title="{{ implode(', ', $cats) }}">
+                                                <i class="fas fa-folder me-1"></i>Categories ({{ count($cats) }}): {{ \Illuminate\Support\Str::limit(implode(', ', $cats), 28) }}
+                                            </span>
+                                        @elseif($addon->scope === 'subcategory')
+                                            @php
+                                                $subcats = $addon->subcategories->pluck('name')->toArray();
+                                                if (empty($subcats) && $addon->subcategory) { $subcats = [$addon->subcategory->name]; }
+                                            @endphp
+                                            <span class="badge bg-warning text-dark px-2 py-1" title="{{ implode(', ', $subcats) }}">
+                                                <i class="fas fa-tags me-1"></i>Subcategories ({{ count($subcats) }}): {{ \Illuminate\Support\Str::limit(implode(', ', $subcats), 28) }}
+                                            </span>
+                                        @elseif($addon->scope === 'product')
+                                            @php
+                                                $prods = $addon->products->pluck('name')->toArray();
+                                                if (empty($prods) && $addon->product) { $prods = [$addon->product->name]; }
+                                            @endphp
+                                            <span class="badge bg-secondary px-2 py-1" title="{{ implode(', ', $prods) }}">
+                                                <i class="fas fa-mug-hot me-1"></i>Products ({{ count($prods) }}): {{ \Illuminate\Support\Str::limit(implode(', ', $prods), 28) }}
+                                            </span>
+                                        @endif
+                                    </td>
+>>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
                                     <td data-label="Price Adjustment"><span class="fw-bold text-success">+EGP
                                             {{ number_format($addon->price_adjustment, 2) }}</span></td>
                                     <td>
@@ -1177,7 +1274,76 @@
                                 </tr>
                             @empty
                                 <tr>
+<<<<<<< HEAD
                                     <td colspan="4" class="text-center text-muted">No add-ons created yet.</td>
+=======
+                                    <td colspan="5" class="text-center text-muted">No add-ons created yet.</td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= TAB: STORE LOCATIONS ================= -->
+        <div id="tab-store-locations" class="tab-content-panel">
+            <div class="panel-card">
+                <div class="panel-head d-flex flex-wrap align-items-center justify-content-between gap-2">
+                    <h5 class="panel-title mb-0"><i class="fas fa-map-marked-alt me-2"></i>Store Locations Management</h5>
+                    <div class="d-flex align-items-center gap-2">
+                        <div class="input-group input-group-sm" style="max-width: 250px;">
+                            <span class="input-group-text bg-white border-end-0 rounded-start-3"><i class="fas fa-search text-muted"></i></span>
+                            <input type="text" id="storeLocationTableSearch" class="form-control border-start-0 rounded-end-3" placeholder="Search locations..." oninput="filterStoreLocationTable(this)">
+                        </div>
+                        <button class="btn-primary-snug" data-bs-toggle="modal" data-bs-target="#createStoreLocationModal"><i class="fas fa-plus"></i> Add Location</button>
+                    </div>
+                </div>
+                <div class="table-responsive" style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
+                    <table class="table-custom">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Branch / Outlet Name</th>
+                                <th>Badge / Tag</th>
+                                <th>Address</th>
+                                <th>Working Hours</th>
+                                <th>Phone</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse($storeLocations as $loc)
+                                <tr>
+                                    <td data-label="ID">#{{ $loc->id }}</td>
+                                    <td><strong>{{ $loc->name }}</strong></td>
+                                    <td data-label="Badge">
+                                        @if($loc->badge)
+                                            <span class="badge bg-secondary px-2 py-1"><i class="fas fa-tag me-1"></i>{{ $loc->badge }}</span>
+                                        @else
+                                            <span class="text-muted small">-</span>
+                                        @endif
+                                    </td>
+                                    <td data-label="Address"><small class="text-muted"><i class="fas fa-map-marker-alt text-danger me-1"></i>{{ $loc->address }}</small></td>
+                                    <td data-label="Working Hours"><small><i class="fas fa-clock text-primary me-1"></i>{{ $loc->formatted_working_hours }}</small></td>
+                                    <td data-label="Phone"><small><i class="fas fa-phone text-success me-1"></i>{{ $loc->phone }}</small></td>
+                                    <td data-label="Status">
+                                        @if(($loc->status ?? 'open') === 'open')
+                                            <span class="badge bg-success px-2 py-1"><i class="fas fa-door-open me-1"></i>Open</span>
+                                        @else
+                                            <span class="badge bg-danger px-2 py-1"><i class="fas fa-door-closed me-1"></i>Closed</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <button class="btn-action" title="Edit" onclick="openEditStoreLocationModal({{ json_encode($loc) }})"><i class="fas fa-edit me-1"></i>Edit</button>
+                                        <button class="btn-action delete" title="Delete" onclick="deleteItem('/admin/store-locations/{{ $loc->id }}')"><i class="fas fa-trash-alt me-1"></i>Delete</button>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="8" class="text-center p-4 text-muted">No store locations created yet. Click "Add Location" to create one.</td>
+>>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
                                 </tr>
                             @endforelse
                         </tbody>
@@ -1189,11 +1355,25 @@
         <!-- ================= 6. TAB: DELIVERY ZONES ================= -->
         <div id="tab-delivery" class="tab-content-panel">
             <div class="panel-card">
+<<<<<<< HEAD
                 <div class="panel-head">
                     <h5 class="panel-title"><i class="fas fa-truck me-2"></i>Delivery Zones Management</h5>
                     <button class="btn-primary-snug" data-bs-toggle="modal"
                         data-bs-target="#createDeliveryZoneModal"><i class="fas fa-plus"></i> Add Delivery
                         Zone</button>
+=======
+                <div class="panel-head d-flex flex-wrap align-items-center justify-content-between gap-2">
+                    <h5 class="panel-title mb-0"><i class="fas fa-truck me-2"></i>Delivery Zones Management</h5>
+                    <div class="d-flex align-items-center gap-2">
+                        <div class="input-group input-group-sm" style="max-width: 250px;">
+                            <span class="input-group-text bg-white border-end-0 rounded-start-3"><i class="fas fa-search text-muted"></i></span>
+                            <input type="text" id="deliveryZoneTableSearch" class="form-control border-start-0 rounded-end-3" placeholder="Search delivery zones..." oninput="filterDeliveryZoneTable(this)">
+                        </div>
+                        <button class="btn-primary-snug" data-bs-toggle="modal"
+                            data-bs-target="#createDeliveryZoneModal"><i class="fas fa-plus"></i> Add Delivery
+                            Zone</button>
+                    </div>
+>>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
                 </div>
                 <div class="table-responsive" style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
                     <table class="table-custom">
@@ -1240,8 +1420,17 @@
         <!-- ================= 7. TAB: ORDERS ================= -->
         <div id="tab-orders" class="tab-content-panel">
             <div class="panel-card">
+<<<<<<< HEAD
                 <div class="panel-head">
                     <h5 class="panel-title"><i class="fas fa-shopping-bag me-2"></i>Customer Orders Management</h5>
+=======
+                <div class="panel-head d-flex flex-wrap align-items-center justify-content-between gap-2">
+                    <h5 class="panel-title mb-0"><i class="fas fa-shopping-bag me-2"></i>Customer Orders Management</h5>
+                    <div class="input-group input-group-sm" style="max-width: 250px;">
+                        <span class="input-group-text bg-white border-end-0 rounded-start-3"><i class="fas fa-search text-muted"></i></span>
+                        <input type="text" id="orderTableSearch" class="form-control border-start-0 rounded-end-3" placeholder="Search orders..." oninput="filterOrderTable(this)">
+                    </div>
+>>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
                 </div>
                 <div class="table-responsive" style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
                     <table class="table-custom">
@@ -1619,14 +1808,22 @@
     </div>
     <!-- Create Addon Modal -->
     <div class="modal fade" id="createAddonModal" tabindex="-1">
+<<<<<<< HEAD
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content rounded-4 border-0">
                 <div class="modal-header border-0">
                     <h5 class="modal-title fw-bold">Add New Add-On</h5>
+=======
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content rounded-4 border-0">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold"><i class="fas fa-cookie-bite text-primary me-2"></i>Add New Add-On</h5>
+>>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <form onsubmit="submitApiForm(event, '/admin/add-ons', 'POST')">
                     <div class="modal-body">
+<<<<<<< HEAD
                         <div class="mb-3">
                             <label class="form-label fw-bold">Add-On Name</label>
                             <input type="text" name="name" class="form-control rounded-3" required
@@ -1636,6 +1833,91 @@
                             <label class="form-label fw-bold">Price Adjustment (EGP)</label>
                             <input type="number" step="0.01" name="price_adjustment"
                                 class="form-control rounded-3" required placeholder="1.00" />
+=======
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-7">
+                                <label class="form-label fw-bold">Add-On Name</label>
+                                <input type="text" name="name" class="form-control rounded-3" required
+                                    placeholder="e.g. Extra Espresso Shot" />
+                            </div>
+                            <div class="col-md-5">
+                                <label class="form-label fw-bold">Price Adjustment (EGP)</label>
+                                <input type="number" step="0.01" name="price_adjustment"
+                                    class="form-control rounded-3" required placeholder="1.00" />
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Applicability / Scope</label>
+                            <select name="scope" id="createAddonScope" class="form-select rounded-3" onchange="toggleAddonScopeFields('createAddonScope', 'createAddonCategoryDiv', 'createAddonSubcategoryDiv', 'createAddonProductDiv')">
+                                <option value="global" selected>Global (Applies to all products)</option>
+                                <option value="category">Category Specific</option>
+                                <option value="subcategory">Subcategory Specific</option>
+                                <option value="product">Product Specific</option>
+                            </select>
+                        </div>
+                        <!-- Multi Select Container: Categories -->
+                        <div class="mb-3 d-none" id="createAddonCategoryDiv">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <label class="form-label fw-bold mb-0">Select Target Categories <span class="badge bg-secondary ms-1" id="createCatBadge">0 selected</span></label>
+                                <div>
+                                    <button type="button" class="btn btn-link btn-sm text-decoration-none p-0 me-2" onclick="selectAllMulti('createAddonCategoryList', 'createCatBadge')">Select All</button>
+                                    <button type="button" class="btn btn-link btn-sm text-muted text-decoration-none p-0" onclick="clearAllMulti('createAddonCategoryList', 'createCatBadge')">Clear</button>
+                                </div>
+                            </div>
+                            <div class="mb-2">
+                                <input type="text" class="form-control form-control-sm rounded-3" placeholder="🔍 Search categories..." oninput="filterMultiSelect(this, 'createAddonCategoryList')">
+                            </div>
+                            <div class="multi-select-card-container border rounded-3 p-2 bg-light" id="createAddonCategoryList" style="max-height: 200px; overflow-y: auto;">
+                                @foreach($categories as $cat)
+                                    <label class="multi-select-card-item d-flex align-items-center p-2 rounded-2 mb-1 cursor-pointer" style="background:#fff; border:1px solid #e6ded6; transition:all 0.2s;" data-search="{{ strtolower($cat->name) }}">
+                                        <input type="checkbox" name="category_ids[]" value="{{ $cat->id }}" class="form-check-input me-2 multi-cb" onchange="updateMultiBadge('createAddonCategoryList', 'createCatBadge')">
+                                        <span class="fw-semibold text-dark">{{ $cat->name }}</span>
+                                    </label>
+                                @endforeach
+                            </div>
+                        </div>
+                        <!-- Multi Select Container: Subcategories -->
+                        <div class="mb-3 d-none" id="createAddonSubcategoryDiv">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <label class="form-label fw-bold mb-0">Select Target Subcategories <span class="badge bg-secondary ms-1" id="createSubcatBadge">0 selected</span></label>
+                                <div>
+                                    <button type="button" class="btn btn-link btn-sm text-decoration-none p-0 me-2" onclick="selectAllMulti('createAddonSubcategoryList', 'createSubcatBadge')">Select All</button>
+                                    <button type="button" class="btn btn-link btn-sm text-muted text-decoration-none p-0" onclick="clearAllMulti('createAddonSubcategoryList', 'createSubcatBadge')">Clear</button>
+                                </div>
+                            </div>
+                            <div class="mb-2">
+                                <input type="text" class="form-control form-control-sm rounded-3" placeholder="🔍 Search subcategories..." oninput="filterMultiSelect(this, 'createAddonSubcategoryList')">
+                            </div>
+                            <div class="multi-select-card-container border rounded-3 p-2 bg-light" id="createAddonSubcategoryList" style="max-height: 200px; overflow-y: auto;">
+                                @foreach($subcategories as $subcat)
+                                    <label class="multi-select-card-item d-flex align-items-center p-2 rounded-2 mb-1 cursor-pointer" style="background:#fff; border:1px solid #e6ded6; transition:all 0.2s;" data-search="{{ strtolower($subcat->name . ' ' . ($subcat->category->name ?? '')) }}">
+                                        <input type="checkbox" name="subcategory_ids[]" value="{{ $subcat->id }}" class="form-check-input me-2 multi-cb" onchange="updateMultiBadge('createAddonSubcategoryList', 'createSubcatBadge')">
+                                        <span class="fw-semibold text-dark">{{ $subcat->name }} <small class="text-muted">({{ $subcat->category->name ?? '' }})</small></span>
+                                    </label>
+                                @endforeach
+                            </div>
+                        </div>
+                        <!-- Multi Select Container: Products -->
+                        <div class="mb-3 d-none" id="createAddonProductDiv">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <label class="form-label fw-bold mb-0">Select Target Products <span class="badge bg-secondary ms-1" id="createProdBadge">0 selected</span></label>
+                                <div>
+                                    <button type="button" class="btn btn-link btn-sm text-decoration-none p-0 me-2" onclick="selectAllMulti('createAddonProductList', 'createProdBadge')">Select All</button>
+                                    <button type="button" class="btn btn-link btn-sm text-muted text-decoration-none p-0" onclick="clearAllMulti('createAddonProductList', 'createProdBadge')">Clear</button>
+                                </div>
+                            </div>
+                            <div class="mb-2">
+                                <input type="text" class="form-control form-control-sm rounded-3" placeholder="🔍 Search products..." oninput="filterMultiSelect(this, 'createAddonProductList')">
+                            </div>
+                            <div class="multi-select-card-container border rounded-3 p-2 bg-light" id="createAddonProductList" style="max-height: 200px; overflow-y: auto;">
+                                @foreach($products as $prod)
+                                    <label class="multi-select-card-item d-flex align-items-center p-2 rounded-2 mb-1 cursor-pointer" style="background:#fff; border:1px solid #e6ded6; transition:all 0.2s;" data-search="{{ strtolower($prod->name) }}">
+                                        <input type="checkbox" name="product_ids[]" value="{{ $prod->id }}" class="form-check-input me-2 multi-cb" onchange="updateMultiBadge('createAddonProductList', 'createProdBadge')">
+                                        <span class="fw-semibold text-dark">{{ $prod->name }}</span>
+                                    </label>
+                                @endforeach
+                            </div>
+>>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
                         </div>
                     </div>
                     <div class="modal-footer border-0">
@@ -1689,14 +1971,22 @@
 
     <!-- Edit Addon Modal -->
     <div class="modal fade" id="editAddonModal" tabindex="-1">
+<<<<<<< HEAD
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content rounded-4 border-0">
                 <div class="modal-header border-0">
                     <h5 class="modal-title fw-bold">Edit Add-On</h5>
+=======
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content rounded-4 border-0">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold"><i class="fas fa-edit text-primary me-2"></i>Edit Add-On</h5>
+>>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <form id="editAddonForm" onsubmit="submitApiForm(event, this.action, 'PUT')">
                     <div class="modal-body">
+<<<<<<< HEAD
                         <div class="mb-3">
                             <label class="form-label fw-bold">Add-On Name</label>
                             <input type="text" name="name" id="editAddonName" class="form-control rounded-3"
@@ -1706,6 +1996,89 @@
                             <label class="form-label fw-bold">Price Adjustment (EGP)</label>
                             <input type="number" step="0.01" name="price_adjustment" id="editAddonPrice"
                                 class="form-control rounded-3" required />
+=======
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-7">
+                                <label class="form-label fw-bold">Add-On Name</label>
+                                <input type="text" name="name" id="editAddonName" class="form-control rounded-3" required />
+                            </div>
+                            <div class="col-md-5">
+                                <label class="form-label fw-bold">Price Adjustment (EGP)</label>
+                                <input type="number" step="0.01" name="price_adjustment" id="editAddonPrice" class="form-control rounded-3" required />
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Applicability / Scope</label>
+                            <select name="scope" id="editAddonScope" class="form-select rounded-3" onchange="toggleAddonScopeFields('editAddonScope', 'editAddonCategoryDiv', 'editAddonSubcategoryDiv', 'editAddonProductDiv')">
+                                <option value="global">Global (Applies to all products)</option>
+                                <option value="category">Category Specific</option>
+                                <option value="subcategory">Subcategory Specific</option>
+                                <option value="product">Product Specific</option>
+                            </select>
+                        </div>
+                        <!-- Multi Select Container: Categories -->
+                        <div class="mb-3 d-none" id="editAddonCategoryDiv">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <label class="form-label fw-bold mb-0">Select Target Categories <span class="badge bg-secondary ms-1" id="editCatBadge">0 selected</span></label>
+                                <div>
+                                    <button type="button" class="btn btn-link btn-sm text-decoration-none p-0 me-2" onclick="selectAllMulti('editAddonCategoryList', 'editCatBadge')">Select All</button>
+                                    <button type="button" class="btn btn-link btn-sm text-muted text-decoration-none p-0" onclick="clearAllMulti('editAddonCategoryList', 'editCatBadge')">Clear</button>
+                                </div>
+                            </div>
+                            <div class="mb-2">
+                                <input type="text" class="form-control form-control-sm rounded-3" placeholder="🔍 Search categories..." oninput="filterMultiSelect(this, 'editAddonCategoryList')">
+                            </div>
+                            <div class="multi-select-card-container border rounded-3 p-2 bg-light" id="editAddonCategoryList" style="max-height: 200px; overflow-y: auto;">
+                                @foreach($categories as $cat)
+                                    <label class="multi-select-card-item d-flex align-items-center p-2 rounded-2 mb-1 cursor-pointer" style="background:#fff; border:1px solid #e6ded6; transition:all 0.2s;" data-search="{{ strtolower($cat->name) }}">
+                                        <input type="checkbox" name="category_ids[]" value="{{ $cat->id }}" id="edit_cat_{{ $cat->id }}" class="form-check-input me-2 multi-cb" onchange="updateMultiBadge('editAddonCategoryList', 'editCatBadge')">
+                                        <span class="fw-semibold text-dark">{{ $cat->name }}</span>
+                                    </label>
+                                @endforeach
+                            </div>
+                        </div>
+                        <!-- Multi Select Container: Subcategories -->
+                        <div class="mb-3 d-none" id="editAddonSubcategoryDiv">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <label class="form-label fw-bold mb-0">Select Target Subcategories <span class="badge bg-secondary ms-1" id="editSubcatBadge">0 selected</span></label>
+                                <div>
+                                    <button type="button" class="btn btn-link btn-sm text-decoration-none p-0 me-2" onclick="selectAllMulti('editAddonSubcategoryList', 'editSubcatBadge')">Select All</button>
+                                    <button type="button" class="btn btn-link btn-sm text-muted text-decoration-none p-0" onclick="clearAllMulti('editAddonSubcategoryList', 'editSubcatBadge')">Clear</button>
+                                </div>
+                            </div>
+                            <div class="mb-2">
+                                <input type="text" class="form-control form-control-sm rounded-3" placeholder="🔍 Search subcategories..." oninput="filterMultiSelect(this, 'editAddonSubcategoryList')">
+                            </div>
+                            <div class="multi-select-card-container border rounded-3 p-2 bg-light" id="editAddonSubcategoryList" style="max-height: 200px; overflow-y: auto;">
+                                @foreach($subcategories as $subcat)
+                                    <label class="multi-select-card-item d-flex align-items-center p-2 rounded-2 mb-1 cursor-pointer" style="background:#fff; border:1px solid #e6ded6; transition:all 0.2s;" data-search="{{ strtolower($subcat->name . ' ' . ($subcat->category->name ?? '')) }}">
+                                        <input type="checkbox" name="subcategory_ids[]" value="{{ $subcat->id }}" id="edit_subcat_{{ $subcat->id }}" class="form-check-input me-2 multi-cb" onchange="updateMultiBadge('editAddonSubcategoryList', 'editSubcatBadge')">
+                                        <span class="fw-semibold text-dark">{{ $subcat->name }} <small class="text-muted">({{ $subcat->category->name ?? '' }})</small></span>
+                                    </label>
+                                @endforeach
+                            </div>
+                        </div>
+                        <!-- Multi Select Container: Products -->
+                        <div class="mb-3 d-none" id="editAddonProductDiv">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <label class="form-label fw-bold mb-0">Select Target Products <span class="badge bg-secondary ms-1" id="editProdBadge">0 selected</span></label>
+                                <div>
+                                    <button type="button" class="btn btn-link btn-sm text-decoration-none p-0 me-2" onclick="selectAllMulti('editAddonProductList', 'editProdBadge')">Select All</button>
+                                    <button type="button" class="btn btn-link btn-sm text-muted text-decoration-none p-0" onclick="clearAllMulti('editAddonProductList', 'editProdBadge')">Clear</button>
+                                </div>
+                            </div>
+                            <div class="mb-2">
+                                <input type="text" class="form-control form-control-sm rounded-3" placeholder="🔍 Search products..." oninput="filterMultiSelect(this, 'editAddonProductList')">
+                            </div>
+                            <div class="multi-select-card-container border rounded-3 p-2 bg-light" id="editAddonProductList" style="max-height: 200px; overflow-y: auto;">
+                                @foreach($products as $prod)
+                                    <label class="multi-select-card-item d-flex align-items-center p-2 rounded-2 mb-1 cursor-pointer" style="background:#fff; border:1px solid #e6ded6; transition:all 0.2s;" data-search="{{ strtolower($prod->name) }}">
+                                        <input type="checkbox" name="product_ids[]" value="{{ $prod->id }}" id="edit_prod_{{ $prod->id }}" class="form-check-input me-2 multi-cb" onchange="updateMultiBadge('editAddonProductList', 'editProdBadge')">
+                                        <span class="fw-semibold text-dark">{{ $prod->name }}</span>
+                                    </label>
+                                @endforeach
+                            </div>
+>>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
                         </div>
                     </div>
                     <div class="modal-footer border-0">
@@ -1756,6 +2129,167 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
+=======
+
+    <!-- Create Store Location Modal -->
+    <div class="modal fade" id="createStoreLocationModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content rounded-4 border-0">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold"><i class="fas fa-map-marked-alt text-primary me-2"></i>Add Store Location</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form onsubmit="submitApiForm(event, '/admin/store-locations', 'POST')">
+                    <div class="modal-body">
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-7">
+                                <label class="form-label fw-bold">Branch / Outlet Name</label>
+                                <input type="text" name="name" class="form-control rounded-3" required placeholder="e.g. Nasr City Branch" />
+                            </div>
+                            <div class="col-md-5">
+                                <label class="form-label fw-bold">Store Status</label>
+                                <select name="status" class="form-select rounded-3" required>
+                                    <option value="open" selected>🟢 Open</option>
+                                    <option value="closed">🔴 Closed</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-7">
+                                <label class="form-label fw-bold">Full Address</label>
+                                <input type="text" name="address" class="form-control rounded-3" required placeholder="e.g. Abbas El Akkad St, Nasr City, Cairo" />
+                            </div>
+                            <div class="col-md-5">
+                                <label class="form-label fw-bold">Badge / Tag (Optional)</label>
+                                <input type="text" name="badge" class="form-control rounded-3" placeholder="e.g. Flagship Store, Co-Working Friendly" />
+                            </div>
+                        </div>
+
+                        <!-- Professional Time Picker Component -->
+                        <div class="card p-3 border-0 bg-light rounded-3 mb-3">
+                            <label class="form-label fw-bold text-dark mb-2"><i class="fas fa-clock text-primary me-1"></i>Working Hours Picker</label>
+                            <div class="row g-2">
+                                <div class="col-md-4">
+                                    <label class="form-label small text-muted mb-1">Days Schedule</label>
+                                    <select name="days_label" class="form-select form-select-sm rounded-3">
+                                        <option value="Daily" selected>Daily</option>
+                                        <option value="Mon - Fri">Mon - Fri</option>
+                                        <option value="Sat - Sun">Sat - Sun</option>
+                                        <option value="Weekdays">Weekdays</option>
+                                        <option value="Weekends">Weekends</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label small text-muted mb-1">Opening Time</label>
+                                    <input type="time" name="opening_time" class="form-control form-control-sm rounded-3" required value="07:00" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label small text-muted mb-1">Closing Time</label>
+                                    <input type="time" name="closing_time" class="form-control form-control-sm rounded-3" required value="23:30" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Phone / Extension</label>
+                                <input type="text" name="phone" class="form-control rounded-3" required placeholder="+20 19696 (Ext. 1)" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Google Maps Directions Link <span class="text-danger">*</span></label>
+                                <input type="url" name="google_maps_url" class="form-control rounded-3" required placeholder="https://maps.google.com/?q=..." />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0">
+                        <button type="submit" class="btn-primary-snug w-100">Save Location</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Store Location Modal -->
+    <div class="modal fade" id="editStoreLocationModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content rounded-4 border-0">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold"><i class="fas fa-edit text-primary me-2"></i>Edit Store Location</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form id="editStoreLocationForm" onsubmit="submitApiForm(event, this.action, 'PUT')">
+                    <div class="modal-body">
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-7">
+                                <label class="form-label fw-bold">Branch / Outlet Name</label>
+                                <input type="text" name="name" id="editLocName" class="form-control rounded-3" required />
+                            </div>
+                            <div class="col-md-5">
+                                <label class="form-label fw-bold">Store Status</label>
+                                <select name="status" id="editLocStatus" class="form-select rounded-3" required>
+                                    <option value="open">🟢 Open</option>
+                                    <option value="closed">🔴 Closed</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-7">
+                                <label class="form-label fw-bold">Full Address</label>
+                                <input type="text" name="address" id="editLocAddress" class="form-control rounded-3" required />
+                            </div>
+                            <div class="col-md-5">
+                                <label class="form-label fw-bold">Badge / Tag (Optional)</label>
+                                <input type="text" name="badge" id="editLocBadge" class="form-control rounded-3" />
+                            </div>
+                        </div>
+
+                        <!-- Professional Time Picker Component -->
+                        <div class="card p-3 border-0 bg-light rounded-3 mb-3">
+                            <label class="form-label fw-bold text-dark mb-2"><i class="fas fa-clock text-primary me-1"></i>Working Hours Picker</label>
+                            <div class="row g-2">
+                                <div class="col-md-4">
+                                    <label class="form-label small text-muted mb-1">Days Schedule</label>
+                                    <select name="days_label" id="editLocDaysLabel" class="form-select form-select-sm rounded-3">
+                                        <option value="Daily">Daily</option>
+                                        <option value="Mon - Fri">Mon - Fri</option>
+                                        <option value="Sat - Sun">Sat - Sun</option>
+                                        <option value="Weekdays">Weekdays</option>
+                                        <option value="Weekends">Weekends</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label small text-muted mb-1">Opening Time</label>
+                                    <input type="time" name="opening_time" id="editLocOpeningTime" class="form-control form-control-sm rounded-3" required />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label small text-muted mb-1">Closing Time</label>
+                                    <input type="time" name="closing_time" id="editLocClosingTime" class="form-control form-control-sm rounded-3" required />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Phone / Extension</label>
+                                <input type="text" name="phone" id="editLocPhone" class="form-control rounded-3" required />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Google Maps Directions Link <span class="text-danger">*</span></label>
+                                <input type="url" name="google_maps_url" id="editLocMapsUrl" class="form-control rounded-3" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0">
+                        <button type="submit" class="btn-primary-snug w-100">Update Location</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+>>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
     <script src="{{ asset('front/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('front/js/sweetalert2.all.min.js') }}"></script>
     <script>
@@ -1777,6 +2311,10 @@
                 categories: 'Categories Management',
                 subcategories: 'Subcategories Management',
                 addons: 'Add-Ons Management',
+<<<<<<< HEAD
+=======
+                'store-locations': 'Store Locations Management',
+>>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
                 delivery: 'Delivery Zones Management',
                 orders: 'Orders Management'
             };
@@ -1929,9 +2467,192 @@
             new bootstrap.Modal(document.getElementById('editProductModal')).show();
         }
 
+<<<<<<< HEAD
         function openEditAddonModal(addon) {
             document.getElementById('editAddonName').value = addon.name;
             document.getElementById('editAddonPrice').value = addon.price_adjustment;
+=======
+        function filterAddonTable(input) {
+            const term = input.value.toLowerCase().trim();
+            const rows = document.querySelectorAll('#tab-addons tbody tr');
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                if (!term || text.includes(term)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        function filterProductTable(input) {
+            const term = input.value.toLowerCase().trim();
+            const rows = document.querySelectorAll('#tab-products tbody tr');
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = (!term || text.includes(term)) ? '' : 'none';
+            });
+        }
+
+        function filterCategoryTable(input) {
+            const term = input.value.toLowerCase().trim();
+            const rows = document.querySelectorAll('#tab-categories tbody tr');
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = (!term || text.includes(term)) ? '' : 'none';
+            });
+        }
+
+        function filterSubcategoryTable(input) {
+            const term = input.value.toLowerCase().trim();
+            const rows = document.querySelectorAll('#tab-subcategories tbody tr');
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = (!term || text.includes(term)) ? '' : 'none';
+            });
+        }
+
+        function filterDeliveryZoneTable(input) {
+            const term = input.value.toLowerCase().trim();
+            const rows = document.querySelectorAll('#tab-delivery tbody tr');
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = (!term || text.includes(term)) ? '' : 'none';
+            });
+        }
+
+        function filterOrderTable(input) {
+            const term = input.value.toLowerCase().trim();
+            const rows = document.querySelectorAll('#tab-orders tbody tr');
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = (!term || text.includes(term)) ? '' : 'none';
+            });
+        }
+
+        function filterMultiSelect(input, containerId) {
+            const term = input.value.toLowerCase().trim();
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            const items = container.querySelectorAll('.multi-select-card-item');
+            items.forEach(item => {
+                const text = item.getAttribute('data-search') || '';
+                if (!term || text.includes(term)) {
+                    item.classList.remove('d-none');
+                } else {
+                    item.classList.add('d-none');
+                }
+            });
+        }
+
+        function selectAllMulti(containerId, badgeId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            const cbs = container.querySelectorAll('.multi-cb');
+            cbs.forEach(cb => {
+                const parent = cb.closest('.multi-select-card-item');
+                if (!parent || !parent.classList.contains('d-none')) {
+                    cb.checked = true;
+                }
+            });
+            updateMultiBadge(containerId, badgeId);
+        }
+
+        function clearAllMulti(containerId, badgeId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            const cbs = container.querySelectorAll('.multi-cb');
+            cbs.forEach(cb => cb.checked = false);
+            updateMultiBadge(containerId, badgeId);
+        }
+
+        function updateMultiBadge(containerId, badgeId) {
+            const container = document.getElementById(containerId);
+            const badge = document.getElementById(badgeId);
+            if (!container || !badge) return;
+            const count = container.querySelectorAll('.multi-cb:checked').length;
+            badge.textContent = count + ' selected';
+            if (count > 0) {
+                badge.classList.remove('bg-secondary');
+                badge.classList.add('bg-primary');
+            } else {
+                badge.classList.remove('bg-primary');
+                badge.classList.add('bg-secondary');
+            }
+        }
+
+        function toggleAddonScopeFields(scopeSelectId, catDivId, subcatDivId, prodDivId) {
+            const scope = document.getElementById(scopeSelectId).value;
+            const catDiv = document.getElementById(catDivId);
+            const subcatDiv = document.getElementById(subcatDivId);
+            const prodDiv = document.getElementById(prodDivId);
+
+            catDiv.classList.add('d-none');
+            subcatDiv.classList.add('d-none');
+            prodDiv.classList.add('d-none');
+
+            if (scope === 'category') {
+                catDiv.classList.remove('d-none');
+            } else if (scope === 'subcategory') {
+                subcatDiv.classList.remove('d-none');
+            } else if (scope === 'product') {
+                prodDiv.classList.remove('d-none');
+            }
+        }
+
+        function openEditAddonModal(addon) {
+            document.getElementById('editAddonName').value = addon.name;
+            document.getElementById('editAddonPrice').value = addon.price_adjustment;
+            const scope = addon.scope || 'global';
+            document.getElementById('editAddonScope').value = scope;
+
+            // Clear checkboxes
+            clearAllMulti('editAddonCategoryList', 'editCatBadge');
+            clearAllMulti('editAddonSubcategoryList', 'editSubcatBadge');
+            clearAllMulti('editAddonProductList', 'editProdBadge');
+
+            // Populate category IDs
+            let catIds = [];
+            if (addon.categories && addon.categories.length > 0) {
+                catIds = addon.categories.map(c => c.id);
+            } else if (addon.category_id) {
+                catIds = [addon.category_id];
+            }
+            catIds.forEach(id => {
+                const cb = document.getElementById('edit_cat_' + id);
+                if (cb) cb.checked = true;
+            });
+            updateMultiBadge('editAddonCategoryList', 'editCatBadge');
+
+            // Populate subcategory IDs
+            let subcatIds = [];
+            if (addon.subcategories && addon.subcategories.length > 0) {
+                subcatIds = addon.subcategories.map(s => s.id);
+            } else if (addon.subcategory_id) {
+                subcatIds = [addon.subcategory_id];
+            }
+            subcatIds.forEach(id => {
+                const cb = document.getElementById('edit_subcat_' + id);
+                if (cb) cb.checked = true;
+            });
+            updateMultiBadge('editAddonSubcategoryList', 'editSubcatBadge');
+
+            // Populate product IDs
+            let prodIds = [];
+            if (addon.products && addon.products.length > 0) {
+                prodIds = addon.products.map(p => p.id);
+            } else if (addon.product_id) {
+                prodIds = [addon.product_id];
+            }
+            prodIds.forEach(id => {
+                const cb = document.getElementById('edit_prod_' + id);
+                if (cb) cb.checked = true;
+            });
+            updateMultiBadge('editAddonProductList', 'editProdBadge');
+
+            toggleAddonScopeFields('editAddonScope', 'editAddonCategoryDiv', 'editAddonSubcategoryDiv', 'editAddonProductDiv');
+
+>>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
             document.getElementById('editAddonForm').action = '/admin/add-ons/' + addon.id;
             new bootstrap.Modal(document.getElementById('editAddonModal')).show();
         }
@@ -1945,6 +2666,36 @@
             new bootstrap.Modal(document.getElementById('editDeliveryZoneModal')).show();
         }
 
+<<<<<<< HEAD
+=======
+        function filterStoreLocationTable(input) {
+            const term = input.value.toLowerCase().trim();
+            const rows = document.querySelectorAll('#tab-store-locations tbody tr');
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                if (!term || text.includes(term)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        function openEditStoreLocationModal(loc) {
+            document.getElementById('editLocName').value = loc.name;
+            document.getElementById('editLocStatus').value = loc.status || 'open';
+            document.getElementById('editLocAddress').value = loc.address;
+            document.getElementById('editLocBadge').value = loc.badge || '';
+            document.getElementById('editLocDaysLabel').value = loc.days_label || 'Daily';
+            document.getElementById('editLocOpeningTime').value = loc.opening_time || '07:00';
+            document.getElementById('editLocClosingTime').value = loc.closing_time || '23:30';
+            document.getElementById('editLocPhone').value = loc.phone;
+            document.getElementById('editLocMapsUrl').value = loc.google_maps_url || '';
+            document.getElementById('editStoreLocationForm').action = '/admin/store-locations/' + loc.id;
+            new bootstrap.Modal(document.getElementById('editStoreLocationModal')).show();
+        }
+
+>>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
 
         async function updateOrderStatus(orderId, status) {
             try {

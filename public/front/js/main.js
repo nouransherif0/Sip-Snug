@@ -432,10 +432,45 @@ function openMenuPop(card) {
     document.getElementById('mpAddCart').innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
     document.getElementById('mpAddCart').style.background = '';
     
+<<<<<<< HEAD
     // Reset Add-ons
     document.querySelectorAll('.mp-addon-checkbox').forEach(function(cb) {
         cb.checked = false;
     });
+=======
+    // Render Add-ons dynamically for this product
+    var addonsContainer = document.getElementById('mpAddOns');
+    if (addonsContainer) {
+        var rawAddons = card.getAttribute('data-addons');
+        var addons = [];
+        try {
+            addons = JSON.parse(rawAddons) || [];
+        } catch(e) {
+            addons = [];
+        }
+
+        var addonsHtml = '<h6 style="margin-bottom:10px;font-weight:600;font-size:.9rem;">Extras & Add-Ons</h6>';
+        if (Array.isArray(addons) && addons.length > 0) {
+            addons.forEach(function(addon) {
+                var price = parseFloat(addon.price_adjustment) || 0;
+                addonsHtml += '<div class="form-check" style="font-size: 0.85rem; margin-bottom: 5px;">' +
+                    '<input class="form-check-input mp-addon-checkbox" type="checkbox" value="' + addon.id + '" id="addon-' + addon.id + '" data-addon-id="' + addon.id + '" data-addon-name="' + addon.name + '" data-addon-price="' + price + '">' +
+                    '<label class="form-check-label d-flex justify-content-between w-100" for="addon-' + addon.id + '" style="cursor: pointer;">' +
+                        '<span style="text-transform: capitalize;">' + addon.name + '</span>' +
+                        '<span style="color: var(--secondary); font-weight: 600;">+EGP ' + price.toFixed(2) + '</span>' +
+                    '</label>' +
+                '</div>';
+            });
+        } else {
+            addonsHtml += '<p style="font-size: 0.8rem; color: #888;">No extras available for this product.</p>';
+        }
+        addonsContainer.innerHTML = addonsHtml;
+
+        document.querySelectorAll('.mp-addon-checkbox').forEach(function(cb) {
+            cb.addEventListener('change', updateMpPriceDisplay);
+        });
+    }
+>>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
 
     menuPop.classList.add('open');
     document.body.style.overflow = 'hidden';

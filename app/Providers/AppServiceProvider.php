@@ -36,5 +36,19 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Paginator::useBootstrapFive();
+<<<<<<< HEAD
+=======
+
+        try {
+            if (\Illuminate\Support\Facades\Schema::hasTable('store_locations')) {
+                \Illuminate\Support\Facades\View::share(
+                    'storeLocations',
+                    \App\Models\StoreLocation::where('is_active', true)->orderBy('id', 'asc')->get()
+                );
+            }
+        } catch (\Exception $e) {
+            // Ignore schema exception before migration runs
+        }
+>>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
     }
 }

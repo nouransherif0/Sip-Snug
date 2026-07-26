@@ -12,10 +12,13 @@
       <meta name="description" content="Sip & Snug - Coffee House, Fresh Drinks & Cozy Vibes">
       <meta name="csrf-token" content="{{ csrf_token() }}">
       <title>Sip & Snug Cafe - Coffee House</title>
+<<<<<<< HEAD
       <!-- Favicon -->
       <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}" />
       <link rel="shortcut icon" href="{{ asset('favicon.svg') }}" type="image/x-icon" />
       <link rel="apple-touch-icon" href="{{ asset('favicon.svg') }}" />
+=======
+>>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
       <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet"/>
       <!-- Bootstrap 5.3 -->
       <link href="{{ asset('front/css/bootstrap.min.css') }}" rel="stylesheet"/>
@@ -623,6 +626,7 @@
             </div>
             <div class="cm-body">
                <div class="locations-grid">
+<<<<<<< HEAD
                   <div class="loc-card">
                      <span class="loc-badge"><i class="fas fa-star me-1"></i>Flagship Store</span>
                      <h5 class="fw-bold mb-2">Nasr City Branch</h5>
@@ -647,6 +651,34 @@
                      <p class="text-muted small mb-3"><i class="fas fa-phone text-success me-2"></i>+20 19696 (Ext. 3)</p>
                      <a href="https://maps.google.com" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill w-100"><i class="fas fa-directions me-1"></i>Get Directions</a>
                   </div>
+=======
+                  @forelse($storeLocations ?? [] as $loc)
+                     <div class="loc-card">
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                           @if(!empty($loc->badge))
+                              <span class="loc-badge"><i class="fas fa-store me-1"></i>{{ $loc->badge }}</span>
+                           @else
+                              <div></div>
+                           @endif
+                           @if(($loc->status ?? 'open') === 'open')
+                              <span class="badge bg-success text-white px-2 py-1"><i class="fas fa-door-open me-1"></i>Open Now</span>
+                           @else
+                              <span class="badge bg-danger text-white px-2 py-1"><i class="fas fa-door-closed me-1"></i>Closed</span>
+                           @endif
+                        </div>
+                        <h5 class="fw-bold mb-2">{{ $loc->name }}</h5>
+                        <p class="text-muted small mb-2"><i class="fas fa-map-marker-alt text-danger me-2"></i>{{ $loc->address }}</p>
+                        <p class="text-muted small mb-2"><i class="fas fa-clock text-primary me-2"></i>{{ $loc->formatted_working_hours }}</p>
+                        <p class="text-muted small mb-3"><i class="fas fa-phone text-success me-2"></i>{{ $loc->phone }}</p>
+                        <a href="{{ $loc->google_maps_url }}" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill w-100"><i class="fas fa-directions me-1"></i>Get Directions</a>
+                     </div>
+                  @empty
+                     <div class="text-center p-4 text-muted col-12">
+                        <i class="fas fa-map-marker-alt fs-2 mb-2"></i>
+                        <p>No store locations available at the moment.</p>
+                     </div>
+                  @endforelse
+>>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
                </div>
             </div>
          </div>

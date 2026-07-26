@@ -42,6 +42,19 @@ class Product extends Model
         return $this->belongsToMany(AddOn::class, 'product_addon', 'product_id', 'addon_id');
     }
 
+<<<<<<< HEAD
+=======
+    public function applicableAddOns()
+    {
+        return AddOn::forProduct($this);
+    }
+
+    public function getApplicableAddOnsAttribute()
+    {
+        return $this->applicableAddOns();
+    }
+
+>>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
     // rs product to many cart items
     public function cartItems(): HasMany
     {

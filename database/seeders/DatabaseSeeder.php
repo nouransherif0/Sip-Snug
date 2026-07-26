@@ -26,6 +26,10 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             RealDataSeeder::class,
+<<<<<<< HEAD
+=======
+            StoreLocationSeeder::class,
+>>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
         ]);
     }
 }

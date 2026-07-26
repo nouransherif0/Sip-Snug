@@ -187,7 +187,12 @@
                             data-cal="{{ $product->calories ?? 180 }}" 
                             data-time="{{ $product->prep_time ?? 5 }}" 
                             data-desc="{{ $product->description }}"
+<<<<<<< HEAD
                             data-tags="{{ $product->is_bestseller ? 'Bestseller,' : '' }}{{ $product->is_featured ? 'Hot' : '' }}">
+=======
+                            data-tags="{{ $product->is_bestseller ? 'Bestseller,' : '' }}{{ $product->is_featured ? 'Hot' : '' }}"
+                            data-addons="{{ json_encode($product->applicableAddOns()) }}">
+>>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
                             <div class="mimg">
                                 <img src="{{ $product->image ? asset($product->image) : asset('front/photos/coffee/esspresso.jpg') }}"
                                     alt="{{ $product->name }}" loading="lazy" />

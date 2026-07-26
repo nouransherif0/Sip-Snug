@@ -30,6 +30,11 @@ use App\Http\Controllers\Api\V1\Admin\SubcategoryController as AdminSubcategoryC
 use App\Http\Controllers\Api\V1\Admin\AddOnController as AdminAddOnController;
 use App\Http\Controllers\Api\V1\Admin\DeliveryZoneController as AdminDeliveryZoneController;
 
+<<<<<<< HEAD
+=======
+use App\Http\Controllers\Web\Admin\AdminStoreLocationController;
+
+>>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
 /*
 |--------------------------------------------------------------------------
 | Public Web Routes
@@ -124,6 +129,10 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::apiResource('subcategories', AdminSubcategoryController::class);
     Route::apiResource('add-ons', AdminAddOnController::class)->only(['index', 'store', 'update', 'destroy']);
     Route::apiResource('delivery-zones', AdminDeliveryZoneController::class)->only(['index', 'store', 'update', 'destroy']);
+<<<<<<< HEAD
+=======
+    Route::apiResource('store-locations', AdminStoreLocationController::class);
+>>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
 });
 
 /*
