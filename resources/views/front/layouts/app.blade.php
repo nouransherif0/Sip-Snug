@@ -12,6 +12,10 @@
       <meta name="description" content="Sip & Snug - Coffee House, Fresh Drinks & Cozy Vibes">
       <meta name="csrf-token" content="{{ csrf_token() }}">
       <title>Sip & Snug Cafe - Coffee House</title>
+      <!-- Favicon -->
+      <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}" />
+      <link rel="shortcut icon" href="{{ asset('favicon.svg') }}" type="image/x-icon" />
+      <link rel="apple-touch-icon" href="{{ asset('favicon.svg') }}" />
       <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet"/>
       <!-- Bootstrap 5.3 -->
       <link href="{{ asset('front/css/bootstrap.min.css') }}" rel="stylesheet"/>

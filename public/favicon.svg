@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="sipSnugGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7a4b2e"/>
+      <stop offset="100%" stop-color="#d8a96b"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background rounded tile matching admin sidebar brand icon -->
+  <rect width="512" height="512" rx="130" fill="url(#sipSnugGrad)"/>
+  
+  <!-- Steam Wiggles -->
+  <path d="M190 105c-10 18 10 34 0 52s-20 34 0 52" fill="none" stroke="#ffffff" stroke-width="26" stroke-linecap="round" opacity="0.9"/>
+  <path d="M256 75c-12 22 12 42 0 64s-24 42 0 64" fill="none" stroke="#ffffff" stroke-width="26" stroke-linecap="round"/>
+  <path d="M322 105c-10 18 10 34 0 52s-20 34 0 52" fill="none" stroke="#ffffff" stroke-width="26" stroke-linecap="round" opacity="0.9"/>
+  
+  <!-- Mug Body -->
+  <path d="M115 240c0 90 60 160 141 172 8 1 16 1 24 0 81-12 141-82 141-172h-306z" fill="#ffffff"/>
+  
+  <!-- Handle -->
+  <path d="M421 250c28 0 51 23 51 51s-23 51-51 51v-30c12 0 21-9 21-21s-9-21-21-21v-30z" fill="#ffffff"/>
+
+  <!-- Coaster Base -->
+  <rect x="96" y="432" width="320" height="30" rx="15" fill="#ffffff" opacity="0.92"/>
+</svg>
