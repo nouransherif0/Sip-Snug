@@ -4,15 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-<<<<<<< HEAD
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\hasmany;
-
-=======
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
->>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
 
 // Defines the structure and properties of this class
 class AddOn extends Model
@@ -23,10 +17,6 @@ class AddOn extends Model
     protected $fillable = [
         'name',
         'price_adjustment',
-<<<<<<< HEAD
-    ];
-
-=======
         'scope',
         'category_id',
         'subcategory_id',
@@ -63,16 +53,11 @@ class AddOn extends Model
         return $this->belongsToMany(Product::class, 'product_addon', 'addon_id', 'product_id');
     }
 
->>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
-    //rs add-on to many products 
+    //rs add-on to many products
     public function products_item_addon(): BelongsToMany
     {
         // Defines a Many-to-Many relationship using a pivot table
-<<<<<<< HEAD
-        return $this->belongsToMany(Product::class, 'product_addon');
-=======
         return $this->belongsToMany(Product::class, 'product_addon', 'addon_id', 'product_id');
->>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
     }
 
     public function orderItemAddons(): HasMany
@@ -80,8 +65,6 @@ class AddOn extends Model
         // Defines a relationship: this model has many child models
         return $this->hasMany(OrderItemAddon::class);
     }
-<<<<<<< HEAD
-=======
 
     public static function forProduct($product)
     {
@@ -99,40 +82,39 @@ class AddOn extends Model
             if ($categoryId) {
                 $query->orWhere(function ($q) use ($categoryId) {
                     $q->where('scope', 'category')
-                      ->where(function ($q2) use ($categoryId) {
-                          $q2->where('category_id', $categoryId)
-                             ->orWhereHas('categories', function ($q3) use ($categoryId) {
-                                 $q3->where('categories.id', $categoryId);
-                             });
-                      });
+                        ->where(function ($q2) use ($categoryId) {
+                            $q2->where('category_id', $categoryId)
+                                ->orWhereHas('categories', function ($q3) use ($categoryId) {
+                                    $q3->where('categories.id', $categoryId);
+                                });
+                        });
                 });
             }
 
             if ($subcategoryId) {
                 $query->orWhere(function ($q) use ($subcategoryId) {
                     $q->where('scope', 'subcategory')
-                      ->where(function ($q2) use ($subcategoryId) {
-                          $q2->where('subcategory_id', $subcategoryId)
-                             ->orWhereHas('subcategories', function ($q3) use ($subcategoryId) {
-                                 $q3->where('subcategories.id', $subcategoryId);
-                             });
-                      });
+                        ->where(function ($q2) use ($subcategoryId) {
+                            $q2->where('subcategory_id', $subcategoryId)
+                                ->orWhereHas('subcategories', function ($q3) use ($subcategoryId) {
+                                    $q3->where('subcategories.id', $subcategoryId);
+                                });
+                        });
                 });
             }
 
             $query->orWhere(function ($q) use ($product) {
                 $q->where('scope', 'product')
-                  ->where(function ($q2) use ($product) {
-                      $q2->where('product_id', $product->id)
-                         ->orWhereHas('products', function ($q3) use ($product) {
-                             $q3->where('products.id', $product->id);
-                         });
-                  });
+                    ->where(function ($q2) use ($product) {
+                        $q2->where('product_id', $product->id)
+                            ->orWhereHas('products', function ($q3) use ($product) {
+                                $q3->where('products.id', $product->id);
+                            });
+                    });
             })
-            ->orWhereHas('products_item_addon', function ($q) use ($product) {
-                $q->where('products.id', $product->id);
-            });
+                ->orWhereHas('products_item_addon', function ($q) use ($product) {
+                    $q->where('products.id', $product->id);
+                });
         })->get();
     }
->>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
 }

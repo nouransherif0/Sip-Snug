@@ -28,22 +28,20 @@ class Product extends Model
         'is_bestseller',
     ];
 
-    // rs one product to one subcategory 
+    // rs one product to one subcategory
     public function subcategory(): BelongsTo
     {
         // Defines a relationship: this model belongs to a parent model
         return $this->belongsTo(Subcategory::class);
     }
 
-    // rs product to many add-ons 
+    // rs product to many add-ons
     public function addOns(): BelongsToMany
     {
         // Defines a Many-to-Many relationship using a pivot table
         return $this->belongsToMany(AddOn::class, 'product_addon', 'product_id', 'addon_id');
     }
 
-<<<<<<< HEAD
-=======
     public function applicableAddOns()
     {
         return AddOn::forProduct($this);
@@ -54,7 +52,6 @@ class Product extends Model
         return $this->applicableAddOns();
     }
 
->>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
     // rs product to many cart items
     public function cartItems(): HasMany
     {

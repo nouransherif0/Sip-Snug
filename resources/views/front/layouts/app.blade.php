@@ -12,13 +12,6 @@
       <meta name="description" content="Sip & Snug - Coffee House, Fresh Drinks & Cozy Vibes">
       <meta name="csrf-token" content="{{ csrf_token() }}">
       <title>Sip & Snug Cafe - Coffee House</title>
-<<<<<<< HEAD
-      <!-- Favicon -->
-      <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}" />
-      <link rel="shortcut icon" href="{{ asset('favicon.svg') }}" type="image/x-icon" />
-      <link rel="apple-touch-icon" href="{{ asset('favicon.svg') }}" />
-=======
->>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
       <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet"/>
       <!-- Bootstrap 5.3 -->
       <link href="{{ asset('front/css/bootstrap.min.css') }}" rel="stylesheet"/>
@@ -384,8 +377,8 @@
                <div class="sm-profile-avatar mx-auto mb-2" style="width:54px;height:54px;background:var(--cream2);display:flex;align-items:center;justify-content:center;border-radius:50%;color:var(--primary);font-size:1.4rem;">
                   <i class="fas fa-user"></i>
                </div>
-               <h5 class="mb-1" style="font-size:1.1rem;font-weight:700;">Welcome to Sip & Snug</h5>
-               <p class="text-muted small mb-3">Sign in to manage orders, favorites & rewards</p>
+               <h5 class="mb-1 text-white" style="font-size:1.1rem;font-weight:700;color:#ffffff !important;">Welcome to Sip & Snug</h5>
+               <p class="small mb-3" style="color:rgba(255, 255, 255, 0.85) !important;">Sign in to manage orders, favorites & rewards</p>
                <div class="d-flex w-100 gap-2">
                   <a href="{{ route('login') }}" class="sm-btn sm-btn-primary flex-fill" style="padding:8px 12px;font-size:0.85rem;"><i class="fas fa-sign-in-alt me-1"></i> Log In</a>
                   <a href="{{ route('register') }}" class="sm-btn sm-btn-outline flex-fill" style="padding:8px 12px;font-size:0.85rem;"><i class="fas fa-user-plus me-1"></i> Register</a>

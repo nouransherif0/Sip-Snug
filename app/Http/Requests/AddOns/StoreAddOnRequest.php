@@ -19,9 +19,6 @@ class StoreAddOnRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'price_adjustment' => 'required|numeric|min:0',
-<<<<<<< HEAD
-
-=======
             'scope' => 'nullable|string|in:global,category,subcategory,product',
             'category_id' => 'nullable|exists:categories,id',
             'subcategory_id' => 'nullable|exists:subcategories,id',
@@ -32,7 +29,6 @@ class StoreAddOnRequest extends FormRequest
             'subcategory_ids.*' => 'integer|exists:subcategories,id',
             'product_ids' => 'nullable|array',
             'product_ids.*' => 'integer|exists:products,id',
->>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
         ];
     }
     public function messages(): array

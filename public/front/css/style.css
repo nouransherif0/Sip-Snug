@@ -2839,6 +2839,14 @@ footer {
   overflow: hidden;
 }
 
+.sm-profile-card h5 {
+  color: #ffffff !important;
+}
+
+.sm-profile-card p {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
 .sm-profile-card::before {
   content: "";
   position: absolute;

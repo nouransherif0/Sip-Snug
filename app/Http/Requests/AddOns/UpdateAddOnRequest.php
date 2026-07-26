@@ -16,12 +16,6 @@ class UpdateAddOnRequest extends FormRequest
     // Specifies the validation rules that incoming data must pass
     public function rules(): array
     {
-<<<<<<< HEAD
-   return [
-    'name' => 'sometimes|required|string|max:255',
-    'price_adjustment' => 'sometimes|required|numeric|min:0',
-   ];
-=======
         return [
             'name' => 'sometimes|required|string|max:255',
             'price_adjustment' => 'sometimes|required|numeric|min:0',
@@ -36,7 +30,6 @@ class UpdateAddOnRequest extends FormRequest
             'product_ids' => 'nullable|array',
             'product_ids.*' => 'integer|exists:products,id',
         ];
->>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
     }
   public function messages(): array{
     return[
@@ -48,5 +41,5 @@ class UpdateAddOnRequest extends FormRequest
       'price_adjustment.required' => 'The price_adjustment must not be empty!',
 
     ];
-   } 
+   }
 }

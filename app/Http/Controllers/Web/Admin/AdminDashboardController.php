@@ -10,23 +10,12 @@ use App\Models\Product;
 use App\Models\AddOn;
 use App\Models\DeliveryZone;
 use App\Models\Order;
-<<<<<<< HEAD
-=======
 use App\Models\StoreLocation;
->>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
 
 class AdminDashboardController extends Controller
 {
     public function index()
     {
-<<<<<<< HEAD
-        $categories = Category::withCount('subcategories')->latest()->get();
-        $subcategories = Subcategory::with('category')->withCount('products')->latest()->get();
-        $products = Product::with('subcategory.category')->latest()->get();
-        $addOns = AddOn::latest()->get();
-        $deliveryZones = DeliveryZone::latest()->get();
-        $orders = Order::with(['user', 'address'])->latest()->get();
-=======
         $categories = Category::withCount('subcategories')->orderBy('id', 'asc')->get();
         $subcategories = Subcategory::with('category')->withCount('products')->orderBy('id', 'asc')->get();
         $products = Product::with('subcategory.category')->orderBy('id', 'asc')->get();
@@ -34,7 +23,6 @@ class AdminDashboardController extends Controller
         $deliveryZones = DeliveryZone::latest()->get();
         $orders = Order::with(['user', 'address'])->latest()->get();
         $storeLocations = StoreLocation::orderBy('id', 'asc')->get();
->>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
 
         // Analytics
         $totalSales = $orders->where('status', 'delivered')->sum('total_price');
@@ -51,10 +39,7 @@ class AdminDashboardController extends Controller
             'addOns',
             'deliveryZones',
             'orders',
-<<<<<<< HEAD
-=======
             'storeLocations',
->>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
             'totalSales',
             'activeOrdersCount',
             'bestSellingProducts',
