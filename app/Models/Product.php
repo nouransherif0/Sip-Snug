@@ -44,7 +44,7 @@ class Product extends Model
 
     public function applicableAddOns()
     {
-        return AddOn::forProduct($this);
+        return app(\App\Services\AddOns\AddOnService::class)->getAddOnsForProduct($this);
     }
 
     public function getApplicableAddOnsAttribute()

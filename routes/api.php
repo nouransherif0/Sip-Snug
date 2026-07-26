@@ -25,7 +25,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::prefix('v1')->group(function () {
+Route::prefix('v1')->as('api.v1.')->group(function () {
     // Public Routes
     Route::get('/products', [ProductController::class, 'index']);
     Route::get('/products/{id}', [ProductController::class, 'show']);
@@ -68,7 +68,7 @@ Route::prefix('v1')->group(function () {
     });
 
     // Admin Routes
-    Route::prefix('admin')->middleware(['auth:sanctum', 'admin'])->group(function () {
+    Route::prefix('admin')->middleware(['auth:sanctum', 'admin'])->as('api.v1.admin.')->group(function () {
         Route::get('/orders', [AdminOrderController::class, 'index']);
         Route::put('/orders/{id}/status', [AdminOrderController::class, 'update']);
 
@@ -81,7 +81,7 @@ Route::prefix('v1')->group(function () {
 });
 
 // Admin fallback routes without v1 prefix for test compatibility
-Route::prefix('admin')->middleware(['auth:sanctum', 'admin'])->group(function () {
+Route::prefix('admin')->middleware(['auth:sanctum', 'admin'])->as('api.admin.')->group(function () {
     Route::get('/orders', [AdminOrderController::class, 'index']);
     Route::put('/orders/{id}/status', [AdminOrderController::class, 'update']);
 

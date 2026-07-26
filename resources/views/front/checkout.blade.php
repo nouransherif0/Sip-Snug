@@ -507,7 +507,12 @@
             </div>
             <h2 style="font-family: 'Playfair Display', serif; color: var(--primary);">Order Placed Successfully!</h2>
             <p class="text-muted mt-3 mb-4">Your order has been received and is being prepared. Thank you for choosing Sip & Snug.</p>
-            <a href="{{ route('home') }}" class="btn btn-dark" style="background-color: var(--primary); border: none; padding: 10px 30px; border-radius: 25px;">Back to Home</a>
+            <div class="d-flex flex-column gap-2" style="max-width: 280px; margin: 0 auto;">
+                <button type="button" id="downloadInvoiceBtn" onclick="triggerInPageInvoiceDownload()" class="btn btn-outline-dark" style="border-color: var(--primary); color: var(--primary); font-weight: 600; padding: 10px 25px; border-radius: 25px; display: none;">
+                    <i class="fas fa-file-invoice me-2"></i>Download Invoice
+                </button>
+                <a href="{{ route('home') }}" class="btn btn-dark" style="background-color: var(--primary); border: none; padding: 10px 25px; border-radius: 25px;">Back to Home</a>
+            </div>
         </div>
     </div>
 </div>
@@ -882,6 +887,36 @@ function confirmDeleteAddress() {
     });
 }
 
+let currentPlacedOrderId = null;
+
+function triggerInPageInvoiceDownload() {
+    if (!currentPlacedOrderId) return;
+    
+    const btn = document.getElementById('downloadInvoiceBtn');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Downloading PDF...';
+
+    let iframe = document.getElementById('pdfDownloadIframe');
+    if (!iframe) {
+        iframe = document.createElement('iframe');
+        iframe.id = 'pdfDownloadIframe';
+        iframe.style.position = 'fixed';
+        iframe.style.right = '0';
+        iframe.style.bottom = '0';
+        iframe.style.width = '0';
+        iframe.style.height = '0';
+        iframe.style.border = '0';
+        document.body.appendChild(iframe);
+    }
+
+    iframe.src = '/orders/' + currentPlacedOrderId + '/invoice?download=pdf';
+
+    setTimeout(() => {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-file-invoice me-2"></i>Download Invoice';
+    }, 4500);
+}
+
 document.getElementById('placeOrderBtn').addEventListener('click', function() {
     if(!selectedAddressId) {
         const err = document.getElementById('orderError');
@@ -923,6 +958,11 @@ document.getElementById('placeOrderBtn').addEventListener('click', function() {
             // Success
             if(typeof updateGlobalCartCount === 'function') {
                 document.getElementById('cartCount').textContent = '0'; // Optimistic reset
+            }
+            currentPlacedOrderId = (res.body && res.body.data) ? res.body.data.id : null;
+            const invoiceBtn = document.getElementById('downloadInvoiceBtn');
+            if (currentPlacedOrderId && invoiceBtn) {
+                invoiceBtn.style.display = 'inline-block';
             }
             var modal = new bootstrap.Modal(document.getElementById('orderSuccessModal'));
             modal.show();

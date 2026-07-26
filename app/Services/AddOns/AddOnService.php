@@ -3,69 +3,129 @@
 namespace App\Services\AddOns;
 
 use App\Models\AddOn;
+use App\Models\Product;
+use Illuminate\Database\Eloquent\Collection;
 
-// Defines the structure and properties of this class
 class AddOnService
 {
+    /**
+     * Get all add-ons with their relationships.
+     */
     public function getAllAddOns()
     {
-<<<<<<< HEAD
-   return AddOn::all();
-=======
-        return AddOn::with(['category', 'subcategory', 'product', 'categories', 'subcategories', 'products'])->orderBy('id', 'asc')->get();
->>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
+        return AddOn::with(['category', 'subcategory', 'product', 'categories', 'subcategories', 'products'])
+            ->orderBy('id', 'asc')
+            ->get();
     }
 
+    /**
+     * Get a single add-on by ID with relationships.
+     */
     public function getAddOnById(int $id)
     {
-<<<<<<< HEAD
-  return AddOn::findOrFail($id);
-=======
-        return AddOn::with(['category', 'subcategory', 'product', 'categories', 'subcategories', 'products'])->findOrFail($id);
->>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
+        return AddOn::with(['category', 'subcategory', 'product', 'categories', 'subcategories', 'products'])
+            ->findOrFail($id);
     }
 
+    /**
+     * Get all applicable add-ons for a given product based on scope rules (Global, Category, Subcategory, Product).
+     */
+    public function getAddOnsForProduct(?Product $product): Collection
+    {
+        if (!$product) {
+            return new Collection();
+        }
+
+        $subcategoryId = $product->subcategory_id;
+        $categoryId = $product->subcategory ? $product->subcategory->category_id : null;
+
+        return AddOn::query()->where(function ($query) use ($product, $subcategoryId, $categoryId) {
+            // Global scope add-ons
+            $query->where('scope', 'global')
+                ->orWhereNull('scope');
+
+            // Category scope add-ons
+            if ($categoryId) {
+                $query->orWhere(function ($q) use ($categoryId) {
+                    $q->where('scope', 'category')
+                        ->where(function ($q2) use ($categoryId) {
+                            $q2->where('category_id', $categoryId)
+                                ->orWhereHas('categories', function ($q3) use ($categoryId) {
+                                    $q3->where('categories.id', $categoryId);
+                                });
+                        });
+                });
+            }
+
+            // Subcategory scope add-ons
+            if ($subcategoryId) {
+                $query->orWhere(function ($q) use ($subcategoryId) {
+                    $q->where('scope', 'subcategory')
+                        ->where(function ($q2) use ($subcategoryId) {
+                            $q2->where('subcategory_id', $subcategoryId)
+                                ->orWhereHas('subcategories', function ($q3) use ($subcategoryId) {
+                                    $q3->where('subcategories.id', $subcategoryId);
+                                });
+                        });
+                });
+            }
+
+            // Product scope add-ons
+            $query->orWhere(function ($q) use ($product) {
+                $q->where('scope', 'product')
+                    ->where(function ($q2) use ($product) {
+                        $q2->where('product_id', $product->id)
+                            ->orWhereHas('products', function ($q3) use ($product) {
+                                $q3->where('products.id', $product->id);
+                            });
+                    });
+            })
+            ->orWhereHas('products_item_addon', function ($q) use ($product) {
+                $q->where('products.id', $product->id);
+            });
+        })->get();
+    }
+
+    /**
+     * Create a new add-on and sync pivot tables.
+     */
     public function createAddOn(array $data)
     {
-<<<<<<< HEAD
-   return AddOn::create($data);
-=======
         $sanitized = $this->sanitizeScopeData($data);
         $addOn = AddOn::create($sanitized);
         $this->syncPivots($addOn, $data);
         return $addOn->load(['category', 'subcategory', 'product', 'categories', 'subcategories', 'products']);
->>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
     }
 
+    /**
+     * Update an existing add-on and sync pivot tables.
+     */
     public function updateAddOn(int $id, array $data)
     {
-<<<<<<< HEAD
-    $addOn = AddOn::findOrFail($id);
-    $addOn->update($data);
-   return $addOn;
-=======
         $addOn = AddOn::findOrFail($id);
         $sanitized = $this->sanitizeScopeData($data, $addOn);
         $addOn->update($sanitized);
         $this->syncPivots($addOn, $data);
         return $addOn->load(['category', 'subcategory', 'product', 'categories', 'subcategories', 'products']);
->>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
     }
 
+    /**
+     * Delete an add-on.
+     */
     public function deleteAddOn(int $id)
     {
-<<<<<<< HEAD
-   $addOn = AddOn::findOrFail($id);
-  $addOn->delete();
-=======
         $addOn = AddOn::findOrFail($id);
         $addOn->delete();
     }
 
+    /**
+     * Sanitize scope fields based on selected scope type.
+     */
     protected function sanitizeScopeData(array $data, ?AddOn $existing = null): array
     {
         $scope = $data['scope'] ?? ($existing->scope ?? 'global');
         $data['scope'] = $scope;
+
         if ($scope === 'global') {
             $data['category_id'] = null;
             $data['subcategory_id'] = null;
@@ -89,9 +149,13 @@ class AddOnService
                 $data['product_id'] = $data['product_ids'][0] ?? null;
             }
         }
+
         return $data;
     }
 
+    /**
+     * Sync relationship pivot tables based on scope type.
+     */
     protected function syncPivots(AddOn $addOn, array $data): void
     {
         $scope = $addOn->scope;
@@ -134,6 +198,5 @@ class AddOnService
             $addOn->subcategories()->sync([]);
             $addOn->products()->sync([]);
         }
->>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
     }
 }

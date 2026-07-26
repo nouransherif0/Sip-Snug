@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\Profile\ProfileController;
 use App\Http\Controllers\Web\Home\HomeController;
 use App\Http\Controllers\Web\Auth\AuthController;
+use App\Http\Controllers\Web\OrderInvoiceController;
+use App\Http\Controllers\Web\PaymentController;
 use App\Http\Controllers\Web\Auth\PasswordResetController;
 use App\Http\Controllers\Web\Favorites\FavoriteController;
 use App\Http\Controllers\Web\Admin\AdminDashboardController;
@@ -99,6 +101,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/orders', [OrderController::class, 'index']);
     Route::post('/orders', [OrderController::class, 'store']);
     Route::get('/orders/{id}', [OrderController::class, 'show']);
+    Route::get('/orders/{id}/invoice', [OrderInvoiceController::class, 'show'])->name('orders.invoice');
+    Route::get('/orders/{id}/invoice/download', [OrderInvoiceController::class, 'download'])->name('orders.invoice.download');
 
     Route::get('/api/cart', [CartController::class, 'show']);
     Route::post('/cart/items', [CartController::class, 'add']);
@@ -115,8 +119,8 @@ Route::middleware(['auth'])->group(function () {
 | Admin Dashboard & Management Routes
 |--------------------------------------------------------------------------
 */
-Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
-    Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+Route::prefix('admin')->middleware(['auth', 'admin'])->as('web.admin.')->group(function () {
+    Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/orders', [AdminOrderController::class, 'index']);
     Route::put('/orders/{id}/status', [AdminOrderController::class, 'update']);

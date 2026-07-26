@@ -496,10 +496,15 @@ document.querySelectorAll('.mhrt').forEach(function(btn) {
 });
 
 // Close popup
-document.getElementById('mpClose').addEventListener('click', closeMenuPop);
-menuPop.addEventListener('click', function(e) {
-    if (e.target === this) closeMenuPop();
-});
+const mpCloseBtn = document.getElementById('mpClose');
+if (mpCloseBtn) {
+    mpCloseBtn.addEventListener('click', closeMenuPop);
+}
+if (typeof menuPop !== 'undefined' && menuPop) {
+    menuPop.addEventListener('click', function(e) {
+        if (e.target === this) closeMenuPop();
+    });
+}
 
 function closeMenuPop() {
     menuPop.classList.remove('open');
@@ -592,21 +597,31 @@ document.querySelectorAll('.mp-addon-checkbox').forEach(function(cb) {
 });
 
 // Qty +/-
-document.getElementById('mpPlus').addEventListener('click', function() {
-    document.getElementById('mpQnum').textContent = ++mpQty;
-    updateMpPriceDisplay();
-});
-document.getElementById('mpMinus').addEventListener('click', function() {
-    if (mpQty > 1) {
-        document.getElementById('mpQnum').textContent = --mpQty;
+const mpPlusBtn = document.getElementById('mpPlus');
+if (mpPlusBtn) {
+    mpPlusBtn.addEventListener('click', function() {
+        const qnum = document.getElementById('mpQnum');
+        if (qnum) qnum.textContent = ++mpQty;
         updateMpPriceDisplay();
-    }
-});
+    });
+}
+const mpMinusBtn = document.getElementById('mpMinus');
+if (mpMinusBtn) {
+    mpMinusBtn.addEventListener('click', function() {
+        if (mpQty > 1) {
+            const qnum = document.getElementById('mpQnum');
+            if (qnum) qnum.textContent = --mpQty;
+            updateMpPriceDisplay();
+        }
+    });
+}
 
 // Add to cart button
-document.getElementById('mpAddCart').addEventListener('click', function() {
-    var productId = menuPop.getAttribute('data-product-id');
-    if (!productId) return;
+const mpAddCartBtn = document.getElementById('mpAddCart');
+if (mpAddCartBtn) {
+    mpAddCartBtn.addEventListener('click', function() {
+        var productId = (typeof menuPop !== 'undefined' && menuPop) ? menuPop.getAttribute('data-product-id') : null;
+        if (!productId) return;
 
     var btn = this;
     btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Adding...';
@@ -671,41 +686,51 @@ document.getElementById('mpAddCart').addEventListener('click', function() {
             }, 2000);
         }
     });
-});
+    });
+}
 
 
-document.getElementById('resBtn').addEventListener('click', function() {
-    var btn = this;
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Booking...';
-    btn.disabled = true;
-    setTimeout(function() {
-        btn.innerHTML = '<i class="fas fa-calendar-check"></i> Confirm Reservation';
-        btn.disabled = false;
-        var ok = document.getElementById('resOk');
-        ok.style.display = 'block';
-        ok.scrollIntoView({
-            behavior: 'smooth',
-            block: 'nearest'
-        });
-    }, 1500);
-});
+const resBtn = document.getElementById('resBtn');
+if (resBtn) {
+    resBtn.addEventListener('click', function() {
+        var btn = this;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Booking...';
+        btn.disabled = true;
+        setTimeout(function() {
+            btn.innerHTML = '<i class="fas fa-calendar-check"></i> Confirm Reservation';
+            btn.disabled = false;
+            var ok = document.getElementById('resOk');
+            if (ok) {
+                ok.style.display = 'block';
+                ok.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'nearest'
+                });
+            }
+        }, 1500);
+    });
+}
 
-
-document.getElementById('ctcBtn').addEventListener('click', function() {
-    var btn = this;
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-    btn.disabled = true;
-    setTimeout(function() {
-        btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
-        btn.disabled = false;
-        var ok = document.getElementById('ctcOk');
-        ok.style.display = 'block';
-        ok.scrollIntoView({
-            behavior: 'smooth',
-            block: 'nearest'
-        });
-    }, 1500);
-});
+const ctcBtn = document.getElementById('ctcBtn');
+if (ctcBtn) {
+    ctcBtn.addEventListener('click', function() {
+        var btn = this;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        btn.disabled = true;
+        setTimeout(function() {
+            btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+            btn.disabled = false;
+            var ok = document.getElementById('ctcOk');
+            if (ok) {
+                ok.style.display = 'block';
+                ok.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'nearest'
+                });
+            }
+        }, 1500);
+    });
+}
 
 
 var galPop = document.getElementById('galPop');
@@ -733,22 +758,25 @@ function openGal(i) {
     document.body.style.overflow = 'hidden';
 }
 
-document.getElementById('gpClose').addEventListener('click', closeGal);
-galPop.addEventListener('click', function(e) {
-    if (e.target === this) closeGal();
-});
+if (galPop) {
+    document.getElementById('gpClose').addEventListener('click', closeGal);
+    galPop.addEventListener('click', function(e) {
+        if (e.target === this) closeGal();
+    });
 
-function closeGal() {
-    galPop.classList.remove('open');
-    document.body.style.overflow = '';
+    function closeGal() {
+        galPop.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    document.getElementById('gpPrev').addEventListener('click', function() {
+        openGal((galIdx - 1 + galData.length) % galData.length);
+    });
+    document.getElementById('gpNext').addEventListener('click', function() {
+        openGal((galIdx + 1) % galData.length);
+    });
 }
 
-document.getElementById('gpPrev').addEventListener('click', function() {
-    openGal((galIdx - 1 + galData.length) % galData.length);
-});
-document.getElementById('gpNext').addEventListener('click', function() {
-    openGal((galIdx + 1) % galData.length);
-});
 
 /*  ESC key closes everything */
 document.addEventListener('keydown', function(e) {

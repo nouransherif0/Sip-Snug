@@ -20,14 +20,14 @@ class AdminDashboardController extends Controller
         $subcategories = Subcategory::with('category')->withCount('products')->orderBy('id', 'asc')->get();
         $products = Product::with('subcategory.category')->orderBy('id', 'asc')->get();
         $addOns = AddOn::with(['category', 'subcategory', 'product', 'categories', 'subcategories', 'products'])->orderBy('id', 'asc')->get();
-        $deliveryZones = DeliveryZone::latest()->get();
+        $deliveryZones = DeliveryZone::query()->latest()->get();
         $orders = Order::with(['user', 'address'])->latest()->get();
         $storeLocations = StoreLocation::orderBy('id', 'asc')->get();
 
         // Analytics
         $totalSales = $orders->where('status', 'delivered')->sum('total_price');
         $activeOrdersCount = $orders->whereIn('status', ['pending', 'confirmed', 'preparing', 'out_for_delivery'])->count();
-        $bestSellingProducts = Product::where('is_featured', true)->take(6)->get();
+        $bestSellingProducts = Product::query()->where('is_featured', true)->take(6)->get();
         $highRatedProducts = Product::with('subcategory')->latest()->take(6)->get();
         $lowStockCount = $products->where('stock', '<=', 10)->count();
         $lowStockProducts = $products->where('stock', '<=', 10);

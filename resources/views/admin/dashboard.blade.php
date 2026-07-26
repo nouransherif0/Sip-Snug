@@ -1438,6 +1438,7 @@
                                 <th>Total</th>
                                 <th>Date</th>
                                 <th>Status</th>
+                                <th>Invoice</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -1471,10 +1472,15 @@
                                                 {{ $ord->status == 'cancelled' ? 'selected' : '' }}>Cancelled</option>
                                         </select>
                                     </td>
+                                    <td>
+                                        <a href="/orders/{{ $ord->id }}/invoice" target="_blank" class="btn-action" style="background:#f4ebe1; color:var(--primary); border-color:#e6ded6;" title="View Invoice">
+                                            <i class="fas fa-file-invoice me-1"></i>Invoice
+                                        </a>
+                                    </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="6" class="text-center text-muted">No orders found.</td>
+                                    <td colspan="7" class="text-center text-muted">No orders found.</td>
                                 </tr>
                             @endforelse
                         </tbody>
