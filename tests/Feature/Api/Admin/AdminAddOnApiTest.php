@@ -78,8 +78,6 @@ class AdminAddOnApiTest extends TestCase
         $response->assertStatus(200);
         $this->assertDatabaseMissing('add_ons', ['id' => $addOn->id]);
     }
-<<<<<<< HEAD
-=======
 
     public function test_admin_can_create_scoped_add_on()
     {
@@ -145,5 +143,4 @@ class AdminAddOnApiTest extends TestCase
         $this->assertDatabaseHas('addon_category', ['category_id' => $cat1->id]);
         $this->assertDatabaseHas('addon_category', ['category_id' => $cat2->id]);
     }
->>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
 }

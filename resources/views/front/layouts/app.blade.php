@@ -619,32 +619,6 @@
             </div>
             <div class="cm-body">
                <div class="locations-grid">
-<<<<<<< HEAD
-                  <div class="loc-card">
-                     <span class="loc-badge"><i class="fas fa-star me-1"></i>Flagship Store</span>
-                     <h5 class="fw-bold mb-2">Nasr City Branch</h5>
-                     <p class="text-muted small mb-2"><i class="fas fa-map-marker-alt text-danger me-2"></i>Abbas El Akkad St, Nasr City, Cairo</p>
-                     <p class="text-muted small mb-2"><i class="fas fa-clock text-primary me-2"></i>Daily: 07:00 AM - 12:00 AM</p>
-                     <p class="text-muted small mb-3"><i class="fas fa-phone text-success me-2"></i>+20 19696 (Ext. 1)</p>
-                     <a href="https://maps.google.com" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill w-100"><i class="fas fa-directions me-1"></i>Get Directions</a>
-                  </div>
-                  <div class="loc-card">
-                     <span class="loc-badge"><i class="fas fa-wifi me-1"></i>Co-Working Friendly</span>
-                     <h5 class="fw-bold mb-2">Zamalek Outlet</h5>
-                     <p class="text-muted small mb-2"><i class="fas fa-map-marker-alt text-danger me-2"></i>26th of July St, Zamalek, Cairo</p>
-                     <p class="text-muted small mb-2"><i class="fas fa-clock text-primary me-2"></i>Daily: 08:00 AM - 11:30 PM</p>
-                     <p class="text-muted small mb-3"><i class="fas fa-phone text-success me-2"></i>+20 19696 (Ext. 2)</p>
-                     <a href="https://maps.google.com" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill w-100"><i class="fas fa-directions me-1"></i>Get Directions</a>
-                  </div>
-                  <div class="loc-card">
-                     <span class="loc-badge"><i class="fas fa-leaf me-1"></i>Garden Seating</span>
-                     <h5 class="fw-bold mb-2">New Cairo - Waterway</h5>
-                     <p class="text-muted small mb-2"><i class="fas fa-map-marker-alt text-danger me-2"></i>Waterway Compound, 5th Settlement</p>
-                     <p class="text-muted small mb-2"><i class="fas fa-clock text-primary me-2"></i>Daily: 07:30 AM - 01:00 AM</p>
-                     <p class="text-muted small mb-3"><i class="fas fa-phone text-success me-2"></i>+20 19696 (Ext. 3)</p>
-                     <a href="https://maps.google.com" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill w-100"><i class="fas fa-directions me-1"></i>Get Directions</a>
-                  </div>
-=======
                   @forelse($storeLocations ?? [] as $loc)
                      <div class="loc-card">
                         <div class="d-flex align-items-center justify-content-between mb-2">
@@ -671,7 +645,6 @@
                         <p>No store locations available at the moment.</p>
                      </div>
                   @endforelse
->>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
                </div>
             </div>
          </div>
