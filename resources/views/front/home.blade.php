@@ -181,11 +181,11 @@
                             data-title="{{ $product->name }}"
                             data-cat="{{ $product->subcategory->category->name ?? 'Uncategorized' }}"
                             data-price="EGP {{ number_format($product->effective_price, 2) }}"
-                            data-old="{{ $product->discount_price ? 'EGP ' . number_format($product->price, 2) : '' }}" 
+                            data-old="{{ $product->discount_price ? 'EGP ' . number_format($product->price, 2) : '' }}"
                             data-rating="{{ number_format($product->average_rating, 1) }}"
-                            data-reviews="{{ $product->reviews_count }}" 
-                            data-cal="{{ $product->calories ?? 180 }}" 
-                            data-time="{{ $product->prep_time ?? 5 }}" 
+                            data-reviews="{{ $product->reviews_count }}"
+                            data-cal="{{ $product->calories ?? 180 }}"
+                            data-time="{{ $product->prep_time ?? 5 }}"
                             data-desc="{{ $product->description }}"
                             data-tags="{{ $product->is_bestseller ? 'Bestseller,' : '' }}{{ $product->is_featured ? 'Hot' : '' }}"
                             data-addons="{{ json_encode($product->applicableAddOns()) }}">
@@ -212,7 +212,7 @@
                                 <div class="mdesc">{{ Str::limit($product->description, 50) }}</div>
                                 <div class="mfoot">
                                     <div>
-                                        <div class="mprice">EGP {{ number_format($product->effective_price, 2) }} 
+                                        <div class="mprice">EGP {{ number_format($product->effective_price, 2) }}
                                             @if($product->discount_price)
                                                 <small>EGP {{ number_format($product->price, 2) }}</small>
                                             @endif
@@ -293,7 +293,7 @@
                     <span style="font-size:.82rem;color:#aaa;margin-left:9px;">portion</span>
                 </div>
                 <div class="mptags" id="mpTags"></div>
-                
+
                 @auth
                     @if(Auth::user()->role !== 'admin')
                         <div id="reviewSection" style="margin-top: 15px; margin-bottom: 15px; background: #f9f9f9; padding: 12px; border-radius: 8px;">

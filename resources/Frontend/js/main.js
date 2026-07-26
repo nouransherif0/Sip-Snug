@@ -204,6 +204,12 @@ function openMenuPop(card) {
             return '<span class="mptag">' + t.trim() + '</span>';
         }).join('');
 
+<<<<<<< HEAD
+    mpQty = 1;
+    document.getElementById('mpQnum').textContent = 1;
+    document.getElementById('mpAddCart').innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
+    document.getElementById('mpAddCart').style.background = '';
+=======
     // Render Add-ons dynamically for this product
     var addonsContainer = document.getElementById('mpAddOns');
     if (addonsContainer) {
@@ -236,6 +242,7 @@ function openMenuPop(card) {
             cb.addEventListener('change', updateMpPriceDisplay);
         });
     }
+>>>>>>> 243a993cfb520c2a7a67eb35395e0e8a4216dc64
 
     menuPop.classList.add('open');
     document.body.style.overflow = 'hidden';

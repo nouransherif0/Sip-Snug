@@ -28,14 +28,14 @@ class Product extends Model
         'is_bestseller',
     ];
 
-    // rs one product to one subcategory 
+    // rs one product to one subcategory
     public function subcategory(): BelongsTo
     {
         // Defines a relationship: this model belongs to a parent model
         return $this->belongsTo(Subcategory::class);
     }
 
-    // rs product to many add-ons 
+    // rs product to many add-ons
     public function addOns(): BelongsToMany
     {
         // Defines a Many-to-Many relationship using a pivot table

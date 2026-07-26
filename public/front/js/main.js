@@ -137,7 +137,7 @@ if (searchInput) {
     function execSearch() {
         var query = searchInput.value.trim();
         closeSearch();
-        
+
         setTimeout(function() {
             var url = new URL(window.location.href);
             if (query) {
@@ -190,7 +190,7 @@ if (searchInput) {
                             const btnEl = this;
                             const productId = btnEl.getAttribute('data-id');
                             const icon = btnEl.querySelector('i');
-                            
+
                             if (!productId) return;
 
                             btnEl.style.pointerEvents = 'none';
@@ -255,7 +255,7 @@ $(document).ready(function() {
 	  preloader: false,
 	  fixedContentPos: false,
 	  disableOn: 300
-	});	
+	});
 });
 
 
@@ -315,7 +315,7 @@ function filterMenu(cat) {
                     const btnEl = this;
                     const productId = btnEl.getAttribute('data-id');
                     const icon = btnEl.querySelector('i');
-                    
+
                     if (!productId) return;
 
                     btnEl.style.pointerEvents = 'none';
@@ -394,7 +394,7 @@ function openMenuPop(card) {
     var desc = card.getAttribute('data-desc');
     var tags = card.getAttribute('data-tags') || '';
     var productId = card.getAttribute('data-id');
-    
+
     menuPop.setAttribute('data-product-id', productId);
 
     document.getElementById('mpImg').setAttribute('src', img);
@@ -431,7 +431,7 @@ function openMenuPop(card) {
     document.getElementById('mpQnum').textContent = 1;
     document.getElementById('mpAddCart').innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
     document.getElementById('mpAddCart').style.background = '';
-    
+
     // Render Add-ons dynamically for this product
     var addonsContainer = document.getElementById('mpAddOns');
     if (addonsContainer) {
@@ -531,14 +531,14 @@ if (submitReviewBtn) {
             Swal.fire({ title: 'Error', text: 'Please select a rating first.', icon: 'error', confirmButtonColor: '#9C7A5B' });
             return;
         }
-        
+
         const productId = menuPop.getAttribute('data-product-id');
         const token = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
-        
+
         try {
             submitReviewBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
             submitReviewBtn.disabled = true;
-            
+
             const res = await fetch(`/api/v1/products/${productId}/reviews`, {
                 method: 'POST',
                 headers: {
@@ -548,7 +548,7 @@ if (submitReviewBtn) {
                 },
                 body: JSON.stringify({ rating: selectedRating })
             });
-            
+
             if (res.ok) {
                 Swal.fire({
                     toast: true,
@@ -579,10 +579,10 @@ function updateMpPriceDisplay() {
         addOnTotal += parseFloat(cb.getAttribute('data-addon-price')) || 0;
     });
     var total = (mpBasePrice + addOnTotal) * mpQty;
-    
+
     var oldStr = menuPop.getAttribute('data-old-price');
     var oldHTML = oldStr ? '<small style="color:#ccc;text-decoration:line-through;margin-left:8px;font-size:1rem;">' + oldStr + '</small>' : '';
-    
+
     document.getElementById('mpPrice').innerHTML = 'EGP ' + total.toFixed(2) + oldHTML;
 }
 
@@ -610,7 +610,7 @@ document.getElementById('mpAddCart').addEventListener('click', function() {
 
     var btn = this;
     btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Adding...';
-    
+
     // Check if user is authenticated (CSRF token exists)
     var csrfToken = document.querySelector('meta[name="csrf-token"]');
     if(!csrfToken) {
@@ -652,7 +652,7 @@ document.getElementById('mpAddCart').addEventListener('click', function() {
     .then(data => {
         btn.innerHTML = '<i class="fas fa-check"></i> Added to Cart!';
         btn.style.background = 'linear-gradient(135deg,var(--green),#1a4a35)';
-        
+
         if(typeof updateGlobalCartCount === 'function') {
             updateGlobalCartCount();
         }
@@ -976,7 +976,7 @@ document.addEventListener("DOMContentLoaded", function() {
     faqQuestions.forEach(btn => {
         btn.addEventListener("click", function() {
             const item = this.parentElement;
-            
+
             // Close others if desired
             // document.querySelectorAll('.faq-item').forEach(other => {
             //    if(other !== item) other.classList.remove('active');
@@ -1029,7 +1029,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (text) {
             addMessage(text, true);
             chatInput.value = "";
-            
+
             // Show typing indicator
             const typingId = 'typing-' + Date.now();
             const typingDiv = document.createElement("div");
@@ -1038,7 +1038,7 @@ document.addEventListener("DOMContentLoaded", function() {
             typingDiv.innerHTML = '<i class="fas fa-ellipsis-h fa-fade"></i>';
             chatMessages.appendChild(typingDiv);
             chatMessages.scrollTop = chatMessages.scrollHeight;
-            
+
             fetch('/api/v1/chat', {
                 method: 'POST',
                 headers: {
@@ -1087,7 +1087,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const btn = this;
             const productId = btn.getAttribute('data-id');
             const card = btn.closest(".fav-card");
-            
+
             if (!productId) return;
 
             // Optional: disable button while loading
@@ -1141,7 +1141,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const btn = this;
             const productId = btn.getAttribute('data-id');
             const icon = btn.querySelector('i');
-            
+
             if (!productId) return;
 
             btn.style.pointerEvents = 'none';
@@ -1161,7 +1161,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         icon.classList.remove('far');
                         icon.classList.add('fas');
                         icon.style.color = '#dc3545';
-                        
+
                         // Append to modal
                         if (data.product) {
                             appendToFavoritesModal(data.product);
@@ -1170,7 +1170,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         icon.classList.remove('fas');
                         icon.classList.add('far');
                         icon.style.color = '';
-                        
+
                         // Remove from modal
                         const modalFavCard = document.querySelector(`#fav-card-${productId}`);
                         if (modalFavCard) {
@@ -1207,10 +1207,10 @@ document.addEventListener("DOMContentLoaded", function() {
     function appendToFavoritesModal(product) {
         const grid = document.querySelector('.fav-grid');
         if (!grid) return;
-        
+
         const emptyState = grid.querySelector('.text-center.py-4');
         if (emptyState) emptyState.remove();
-        
+
         const cardHtml = `
         <div class="fav-card" id="fav-card-${product.id}">
             <div class="fav-img">
@@ -1223,9 +1223,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 <button class="btn btn-sm btn-danger w-100 rounded-pill fav-order-btn"><i class="fas fa-shopping-bag me-1"></i>Order Now</button>
             </div>
         </div>`;
-        
+
         grid.insertAdjacentHTML('beforeend', cardHtml);
-        
+
         // Re-attach event listener to new remove button
         const newBtn = grid.querySelector(`#fav-card-${product.id} .fav-remove`);
         if (newBtn) {
@@ -1233,7 +1233,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 const btn = this;
                 const pId = btn.getAttribute('data-id');
                 const card = btn.closest(".fav-card");
-                
+
                 if (!pId) return;
 
                 btn.style.opacity = '0.5';

@@ -963,11 +963,14 @@
                     <h5 class="panel-title mb-0"><i class="fas fa-coffee me-2"></i>Products Management</h5>
                     <div class="d-flex align-items-center gap-2">
                         <div class="input-group input-group-sm" style="max-width: 250px;">
-                            <span class="input-group-text bg-white border-end-0 rounded-start-3"><i class="fas fa-search text-muted"></i></span>
-                            <input type="text" id="productTableSearch" class="form-control border-start-0 rounded-end-3" placeholder="Search products..." oninput="filterProductTable(this)">
+                            <span class="input-group-text bg-white border-end-0 rounded-start-3"><i
+                                    class="fas fa-search text-muted"></i></span>
+                            <input type="text" id="productTableSearch"
+                                class="form-control border-start-0 rounded-end-3" placeholder="Search products..."
+                                oninput="filterProductTable(this)">
                         </div>
-                        <button class="btn-primary-snug" data-bs-toggle="modal" data-bs-target="#createProductModal"><i
-                                class="fas fa-plus"></i> Add New Product</button>
+                        <button class="btn-primary-snug" data-bs-toggle="modal"
+                            data-bs-target="#createProductModal"><i class="fas fa-plus"></i> Add New Product</button>
                     </div>
                 </div>
                 <div class="table-responsive" style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
@@ -1016,6 +1019,11 @@
                                         @endif
                                     </td>
                                     <td>
+                                        <button class="btn-action stock me-1"
+                                            style="background:#eef2ff; color:#4f46e5; border-color:#c7d2fe;"
+                                            title="Update Stock"
+                                            onclick="openStockModal({{ json_encode($prod) }})"><i
+                                                class="fas fa-boxes me-1"></i>Stock</button>
                                         <button class="btn-action" title="Edit"
                                             onclick="openEditProductModal({{ json_encode($prod) }})"><i
                                                 class="fas fa-edit me-1"></i>Edit</button>
@@ -1042,11 +1050,14 @@
                     <h5 class="panel-title mb-0"><i class="fas fa-layer-group me-2"></i>Categories Management</h5>
                     <div class="d-flex align-items-center gap-2">
                         <div class="input-group input-group-sm" style="max-width: 250px;">
-                            <span class="input-group-text bg-white border-end-0 rounded-start-3"><i class="fas fa-search text-muted"></i></span>
-                            <input type="text" id="categoryTableSearch" class="form-control border-start-0 rounded-end-3" placeholder="Search categories..." oninput="filterCategoryTable(this)">
+                            <span class="input-group-text bg-white border-end-0 rounded-start-3"><i
+                                    class="fas fa-search text-muted"></i></span>
+                            <input type="text" id="categoryTableSearch"
+                                class="form-control border-start-0 rounded-end-3" placeholder="Search categories..."
+                                oninput="filterCategoryTable(this)">
                         </div>
-                        <button class="btn-primary-snug" data-bs-toggle="modal" data-bs-target="#createCategoryModal"><i
-                                class="fas fa-plus"></i> Add Category</button>
+                        <button class="btn-primary-snug" data-bs-toggle="modal"
+                            data-bs-target="#createCategoryModal"><i class="fas fa-plus"></i> Add Category</button>
                     </div>
                 </div>
                 <div class="table-responsive" style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
@@ -1103,11 +1114,15 @@
                     <h5 class="panel-title mb-0"><i class="fas fa-tags me-2"></i>Subcategories Management</h5>
                     <div class="d-flex align-items-center gap-2">
                         <div class="input-group input-group-sm" style="max-width: 250px;">
-                            <span class="input-group-text bg-white border-end-0 rounded-start-3"><i class="fas fa-search text-muted"></i></span>
-                            <input type="text" id="subcategoryTableSearch" class="form-control border-start-0 rounded-end-3" placeholder="Search subcategories..." oninput="filterSubcategoryTable(this)">
+                            <span class="input-group-text bg-white border-end-0 rounded-start-3"><i
+                                    class="fas fa-search text-muted"></i></span>
+                            <input type="text" id="subcategoryTableSearch"
+                                class="form-control border-start-0 rounded-end-3"
+                                placeholder="Search subcategories..." oninput="filterSubcategoryTable(this)">
                         </div>
                         <button class="btn-primary-snug" data-bs-toggle="modal"
-                            data-bs-target="#createSubcategoryModal"><i class="fas fa-plus"></i> Add Subcategory</button>
+                            data-bs-target="#createSubcategoryModal"><i class="fas fa-plus"></i> Add
+                            Subcategory</button>
                     </div>
                 </div>
                 <div class="table-responsive" style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
@@ -1165,8 +1180,11 @@
                     <h5 class="panel-title mb-0"><i class="fas fa-cookie-bite me-2"></i>Add-Ons Management</h5>
                     <div class="d-flex align-items-center gap-2">
                         <div class="input-group input-group-sm" style="max-width: 250px;">
-                            <span class="input-group-text bg-white border-end-0 rounded-start-3"><i class="fas fa-search text-muted"></i></span>
-                            <input type="text" id="addonTableSearch" class="form-control border-start-0 rounded-end-3" placeholder="Search add-ons..." oninput="filterAddonTable(this)">
+                            <span class="input-group-text bg-white border-end-0 rounded-start-3"><i
+                                    class="fas fa-search text-muted"></i></span>
+                            <input type="text" id="addonTableSearch"
+                                class="form-control border-start-0 rounded-end-3" placeholder="Search add-ons..."
+                                oninput="filterAddonTable(this)">
                         </div>
                         <button class="btn-primary-snug" data-bs-toggle="modal" data-bs-target="#createAddonModal"><i
                                 class="fas fa-plus"></i> Add Add-On</button>
@@ -1189,31 +1207,44 @@
                                     <td><strong>{{ $addon->name }}</strong></td>
                                     <td data-label="Add-On ID">#{{ $addon->id }}</td>
                                     <td data-label="Scope">
-                                        @if(($addon->scope ?? 'global') === 'global')
-                                            <span class="badge bg-primary px-2 py-1"><i class="fas fa-globe me-1"></i>Global (All Products)</span>
+                                        @if (($addon->scope ?? 'global') === 'global')
+                                            <span class="badge bg-primary px-2 py-1"><i
+                                                    class="fas fa-globe me-1"></i>Global (All Products)</span>
                                         @elseif($addon->scope === 'category')
                                             @php
                                                 $cats = $addon->categories->pluck('name')->toArray();
-                                                if (empty($cats) && $addon->category) { $cats = [$addon->category->name]; }
+                                                if (empty($cats) && $addon->category) {
+                                                    $cats = [$addon->category->name];
+                                                }
                                             @endphp
-                                            <span class="badge bg-info text-dark px-2 py-1" title="{{ implode(', ', $cats) }}">
-                                                <i class="fas fa-folder me-1"></i>Categories ({{ count($cats) }}): {{ \Illuminate\Support\Str::limit(implode(', ', $cats), 28) }}
+                                            <span class="badge bg-info text-dark px-2 py-1"
+                                                title="{{ implode(', ', $cats) }}">
+                                                <i class="fas fa-folder me-1"></i>Categories ({{ count($cats) }}):
+                                                {{ \Illuminate\Support\Str::limit(implode(', ', $cats), 28) }}
                                             </span>
                                         @elseif($addon->scope === 'subcategory')
                                             @php
                                                 $subcats = $addon->subcategories->pluck('name')->toArray();
-                                                if (empty($subcats) && $addon->subcategory) { $subcats = [$addon->subcategory->name]; }
+                                                if (empty($subcats) && $addon->subcategory) {
+                                                    $subcats = [$addon->subcategory->name];
+                                                }
                                             @endphp
-                                            <span class="badge bg-warning text-dark px-2 py-1" title="{{ implode(', ', $subcats) }}">
-                                                <i class="fas fa-tags me-1"></i>Subcategories ({{ count($subcats) }}): {{ \Illuminate\Support\Str::limit(implode(', ', $subcats), 28) }}
+                                            <span class="badge bg-warning text-dark px-2 py-1"
+                                                title="{{ implode(', ', $subcats) }}">
+                                                <i class="fas fa-tags me-1"></i>Subcategories ({{ count($subcats) }}):
+                                                {{ \Illuminate\Support\Str::limit(implode(', ', $subcats), 28) }}
                                             </span>
                                         @elseif($addon->scope === 'product')
                                             @php
                                                 $prods = $addon->products->pluck('name')->toArray();
-                                                if (empty($prods) && $addon->product) { $prods = [$addon->product->name]; }
+                                                if (empty($prods) && $addon->product) {
+                                                    $prods = [$addon->product->name];
+                                                }
                                             @endphp
-                                            <span class="badge bg-secondary px-2 py-1" title="{{ implode(', ', $prods) }}">
-                                                <i class="fas fa-mug-hot me-1"></i>Products ({{ count($prods) }}): {{ \Illuminate\Support\Str::limit(implode(', ', $prods), 28) }}
+                                            <span class="badge bg-secondary px-2 py-1"
+                                                title="{{ implode(', ', $prods) }}">
+                                                <i class="fas fa-mug-hot me-1"></i>Products ({{ count($prods) }}):
+                                                {{ \Illuminate\Support\Str::limit(implode(', ', $prods), 28) }}
                                             </span>
                                         @endif
                                     </td>
@@ -1243,13 +1274,19 @@
         <div id="tab-store-locations" class="tab-content-panel">
             <div class="panel-card">
                 <div class="panel-head d-flex flex-wrap align-items-center justify-content-between gap-2">
-                    <h5 class="panel-title mb-0"><i class="fas fa-map-marked-alt me-2"></i>Store Locations Management</h5>
+                    <h5 class="panel-title mb-0"><i class="fas fa-map-marked-alt me-2"></i>Store Locations Management
+                    </h5>
                     <div class="d-flex align-items-center gap-2">
                         <div class="input-group input-group-sm" style="max-width: 250px;">
-                            <span class="input-group-text bg-white border-end-0 rounded-start-3"><i class="fas fa-search text-muted"></i></span>
-                            <input type="text" id="storeLocationTableSearch" class="form-control border-start-0 rounded-end-3" placeholder="Search locations..." oninput="filterStoreLocationTable(this)">
+                            <span class="input-group-text bg-white border-end-0 rounded-start-3"><i
+                                    class="fas fa-search text-muted"></i></span>
+                            <input type="text" id="storeLocationTableSearch"
+                                class="form-control border-start-0 rounded-end-3" placeholder="Search locations..."
+                                oninput="filterStoreLocationTable(this)">
                         </div>
-                        <button class="btn-primary-snug" data-bs-toggle="modal" data-bs-target="#createStoreLocationModal"><i class="fas fa-plus"></i> Add Location</button>
+                        <button class="btn-primary-snug" data-bs-toggle="modal"
+                            data-bs-target="#createStoreLocationModal"><i class="fas fa-plus"></i> Add
+                            Location</button>
                     </div>
                 </div>
                 <div class="table-responsive" style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
@@ -1272,30 +1309,44 @@
                                     <td data-label="ID">#{{ $loc->id }}</td>
                                     <td><strong>{{ $loc->name }}</strong></td>
                                     <td data-label="Badge">
-                                        @if($loc->badge)
-                                            <span class="badge bg-secondary px-2 py-1"><i class="fas fa-tag me-1"></i>{{ $loc->badge }}</span>
+                                        @if ($loc->badge)
+                                            <span class="badge bg-secondary px-2 py-1"><i
+                                                    class="fas fa-tag me-1"></i>{{ $loc->badge }}</span>
                                         @else
                                             <span class="text-muted small">-</span>
                                         @endif
                                     </td>
-                                    <td data-label="Address"><small class="text-muted"><i class="fas fa-map-marker-alt text-danger me-1"></i>{{ $loc->address }}</small></td>
-                                    <td data-label="Working Hours"><small><i class="fas fa-clock text-primary me-1"></i>{{ $loc->formatted_working_hours }}</small></td>
-                                    <td data-label="Phone"><small><i class="fas fa-phone text-success me-1"></i>{{ $loc->phone }}</small></td>
+                                    <td data-label="Address"><small class="text-muted"><i
+                                                class="fas fa-map-marker-alt text-danger me-1"></i>{{ $loc->address }}</small>
+                                    </td>
+                                    <td data-label="Working Hours"><small><i
+                                                class="fas fa-clock text-primary me-1"></i>{{ $loc->formatted_working_hours }}</small>
+                                    </td>
+                                    <td data-label="Phone"><small><i
+                                                class="fas fa-phone text-success me-1"></i>{{ $loc->phone }}</small>
+                                    </td>
                                     <td data-label="Status">
-                                        @if(($loc->status ?? 'open') === 'open')
-                                            <span class="badge bg-success px-2 py-1"><i class="fas fa-door-open me-1"></i>Open</span>
+                                        @if (($loc->status ?? 'open') === 'open')
+                                            <span class="badge bg-success px-2 py-1"><i
+                                                    class="fas fa-door-open me-1"></i>Open</span>
                                         @else
-                                            <span class="badge bg-danger px-2 py-1"><i class="fas fa-door-closed me-1"></i>Closed</span>
+                                            <span class="badge bg-danger px-2 py-1"><i
+                                                    class="fas fa-door-closed me-1"></i>Closed</span>
                                         @endif
                                     </td>
                                     <td>
-                                        <button class="btn-action" title="Edit" onclick="openEditStoreLocationModal({{ json_encode($loc) }})"><i class="fas fa-edit me-1"></i>Edit</button>
-                                        <button class="btn-action delete" title="Delete" onclick="deleteItem('/admin/store-locations/{{ $loc->id }}')"><i class="fas fa-trash-alt me-1"></i>Delete</button>
+                                        <button class="btn-action" title="Edit"
+                                            onclick="openEditStoreLocationModal({{ json_encode($loc) }})"><i
+                                                class="fas fa-edit me-1"></i>Edit</button>
+                                        <button class="btn-action delete" title="Delete"
+                                            onclick="deleteItem('/admin/store-locations/{{ $loc->id }}')"><i
+                                                class="fas fa-trash-alt me-1"></i>Delete</button>
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="8" class="text-center p-4 text-muted">No store locations created yet. Click "Add Location" to create one.</td>
+                                    <td colspan="8" class="text-center p-4 text-muted">No store locations created
+                                        yet. Click "Add Location" to create one.</td>
                                 </tr>
                             @endforelse
                         </tbody>
@@ -1311,8 +1362,11 @@
                     <h5 class="panel-title mb-0"><i class="fas fa-truck me-2"></i>Delivery Zones Management</h5>
                     <div class="d-flex align-items-center gap-2">
                         <div class="input-group input-group-sm" style="max-width: 250px;">
-                            <span class="input-group-text bg-white border-end-0 rounded-start-3"><i class="fas fa-search text-muted"></i></span>
-                            <input type="text" id="deliveryZoneTableSearch" class="form-control border-start-0 rounded-end-3" placeholder="Search delivery zones..." oninput="filterDeliveryZoneTable(this)">
+                            <span class="input-group-text bg-white border-end-0 rounded-start-3"><i
+                                    class="fas fa-search text-muted"></i></span>
+                            <input type="text" id="deliveryZoneTableSearch"
+                                class="form-control border-start-0 rounded-end-3"
+                                placeholder="Search delivery zones..." oninput="filterDeliveryZoneTable(this)">
                         </div>
                         <button class="btn-primary-snug" data-bs-toggle="modal"
                             data-bs-target="#createDeliveryZoneModal"><i class="fas fa-plus"></i> Add Delivery
@@ -1365,10 +1419,13 @@
         <div id="tab-orders" class="tab-content-panel">
             <div class="panel-card">
                 <div class="panel-head d-flex flex-wrap align-items-center justify-content-between gap-2">
-                    <h5 class="panel-title mb-0"><i class="fas fa-shopping-bag me-2"></i>Customer Orders Management</h5>
+                    <h5 class="panel-title mb-0"><i class="fas fa-shopping-bag me-2"></i>Customer Orders Management
+                    </h5>
                     <div class="input-group input-group-sm" style="max-width: 250px;">
-                        <span class="input-group-text bg-white border-end-0 rounded-start-3"><i class="fas fa-search text-muted"></i></span>
-                        <input type="text" id="orderTableSearch" class="form-control border-start-0 rounded-end-3" placeholder="Search orders..." oninput="filterOrderTable(this)">
+                        <span class="input-group-text bg-white border-end-0 rounded-start-3"><i
+                                class="fas fa-search text-muted"></i></span>
+                        <input type="text" id="orderTableSearch" class="form-control border-start-0 rounded-end-3"
+                            placeholder="Search orders..." oninput="filterOrderTable(this)">
                     </div>
                 </div>
                 <div class="table-responsive" style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
@@ -1509,7 +1566,8 @@
                             <select name="subcategory_id" class="form-select rounded-3" required>
                                 @foreach ($subcategories as $s)
                                     <option value="{{ $s->id }}">{{ $s->name }}
-                                        ({{ $s->category->name ?? '-' }})</option>
+                                        ({{ $s->category->name ?? '-' }})
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
@@ -1670,7 +1728,8 @@
                                 required>
                                 @foreach ($subcategories as $s)
                                     <option value="{{ $s->id }}">{{ $s->name }}
-                                        ({{ $s->category->name ?? '-' }})</option>
+                                        ({{ $s->category->name ?? '-' }})
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
@@ -1679,17 +1738,10 @@
                             <input type="text" name="name" id="editProductName" class="form-control rounded-3"
                                 required />
                         </div>
-                        <div class="row g-2 mb-3">
-                            <div class="col-6">
-                                <label class="form-label fw-bold">Price (EGP)</label>
-                                <input type="number" step="0.01" name="price" id="editProductPrice"
-                                    class="form-control rounded-3" required />
-                            </div>
-                            <div class="col-6">
-                                <label class="form-label fw-bold">Stock Available</label>
-                                <input type="number" name="stock" id="editProductStock"
-                                    class="form-control rounded-3" min="0" required />
-                            </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Price (EGP)</label>
+                            <input type="number" step="0.01" name="price" id="editProductPrice"
+                                class="form-control rounded-3" required />
                         </div>
                         <div class="row g-2 mb-3">
                             <div class="col-4">
@@ -1745,12 +1797,45 @@
             </div>
         </div>
     </div>
+
+    <!-- Edit Stock Modal -->
+    <div class="modal fade" id="editStockModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 border-0">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold"><i class="fas fa-boxes text-primary me-2"></i>Update Product Stock
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form id="editStockForm" onsubmit="submitStockForm(event)">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Product Name</label>
+                            <input type="text" id="stockProductName" class="form-control rounded-3 bg-light"
+                                readonly />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">New Stock Quantity (Units)</label>
+                            <input type="number" name="stock" id="stockProductQuantity"
+                                class="form-control rounded-3" min="0" required
+                                placeholder="Enter new stock quantity..." />
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0">
+                        <button type="submit" class="btn-primary-snug w-100"><i class="fas fa-save me-1"></i>Update
+                            Stock Quantity</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <!-- Create Addon Modal -->
     <div class="modal fade" id="createAddonModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content rounded-4 border-0">
                 <div class="modal-header border-0 pb-0">
-                    <h5 class="modal-title fw-bold"><i class="fas fa-cookie-bite text-primary me-2"></i>Add New Add-On</h5>
+                    <h5 class="modal-title fw-bold"><i class="fas fa-cookie-bite text-primary me-2"></i>Add New Add-On
+                    </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <form onsubmit="submitApiForm(event, '/admin/add-ons', 'POST')">
@@ -1769,7 +1854,8 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-bold">Applicability / Scope</label>
-                            <select name="scope" id="createAddonScope" class="form-select rounded-3" onchange="toggleAddonScopeFields('createAddonScope', 'createAddonCategoryDiv', 'createAddonSubcategoryDiv', 'createAddonProductDiv')">
+                            <select name="scope" id="createAddonScope" class="form-select rounded-3"
+                                onchange="toggleAddonScopeFields('createAddonScope', 'createAddonCategoryDiv', 'createAddonSubcategoryDiv', 'createAddonProductDiv')">
                                 <option value="global" selected>Global (Applies to all products)</option>
                                 <option value="category">Category Specific</option>
                                 <option value="subcategory">Subcategory Specific</option>
@@ -1779,19 +1865,32 @@
                         <!-- Multi Select Container: Categories -->
                         <div class="mb-3 d-none" id="createAddonCategoryDiv">
                             <div class="d-flex justify-content-between align-items-center mb-2">
-                                <label class="form-label fw-bold mb-0">Select Target Categories <span class="badge bg-secondary ms-1" id="createCatBadge">0 selected</span></label>
+                                <label class="form-label fw-bold mb-0">Select Target Categories <span
+                                        class="badge bg-secondary ms-1" id="createCatBadge">0 selected</span></label>
                                 <div>
-                                    <button type="button" class="btn btn-link btn-sm text-decoration-none p-0 me-2" onclick="selectAllMulti('createAddonCategoryList', 'createCatBadge')">Select All</button>
-                                    <button type="button" class="btn btn-link btn-sm text-muted text-decoration-none p-0" onclick="clearAllMulti('createAddonCategoryList', 'createCatBadge')">Clear</button>
+                                    <button type="button" class="btn btn-link btn-sm text-decoration-none p-0 me-2"
+                                        onclick="selectAllMulti('createAddonCategoryList', 'createCatBadge')">Select
+                                        All</button>
+                                    <button type="button"
+                                        class="btn btn-link btn-sm text-muted text-decoration-none p-0"
+                                        onclick="clearAllMulti('createAddonCategoryList', 'createCatBadge')">Clear</button>
                                 </div>
                             </div>
                             <div class="mb-2">
-                                <input type="text" class="form-control form-control-sm rounded-3" placeholder="🔍 Search categories..." oninput="filterMultiSelect(this, 'createAddonCategoryList')">
+                                <input type="text" class="form-control form-control-sm rounded-3"
+                                    placeholder="🔍 Search categories..."
+                                    oninput="filterMultiSelect(this, 'createAddonCategoryList')">
                             </div>
-                            <div class="multi-select-card-container border rounded-3 p-2 bg-light" id="createAddonCategoryList" style="max-height: 200px; overflow-y: auto;">
-                                @foreach($categories as $cat)
-                                    <label class="multi-select-card-item d-flex align-items-center p-2 rounded-2 mb-1 cursor-pointer" style="background:#fff; border:1px solid #e6ded6; transition:all 0.2s;" data-search="{{ strtolower($cat->name) }}">
-                                        <input type="checkbox" name="category_ids[]" value="{{ $cat->id }}" class="form-check-input me-2 multi-cb" onchange="updateMultiBadge('createAddonCategoryList', 'createCatBadge')">
+                            <div class="multi-select-card-container border rounded-3 p-2 bg-light"
+                                id="createAddonCategoryList" style="max-height: 200px; overflow-y: auto;">
+                                @foreach ($categories as $cat)
+                                    <label
+                                        class="multi-select-card-item d-flex align-items-center p-2 rounded-2 mb-1 cursor-pointer"
+                                        style="background:#fff; border:1px solid #e6ded6; transition:all 0.2s;"
+                                        data-search="{{ strtolower($cat->name) }}">
+                                        <input type="checkbox" name="category_ids[]" value="{{ $cat->id }}"
+                                            class="form-check-input me-2 multi-cb"
+                                            onchange="updateMultiBadge('createAddonCategoryList', 'createCatBadge')">
                                         <span class="fw-semibold text-dark">{{ $cat->name }}</span>
                                     </label>
                                 @endforeach
@@ -1800,20 +1899,35 @@
                         <!-- Multi Select Container: Subcategories -->
                         <div class="mb-3 d-none" id="createAddonSubcategoryDiv">
                             <div class="d-flex justify-content-between align-items-center mb-2">
-                                <label class="form-label fw-bold mb-0">Select Target Subcategories <span class="badge bg-secondary ms-1" id="createSubcatBadge">0 selected</span></label>
+                                <label class="form-label fw-bold mb-0">Select Target Subcategories <span
+                                        class="badge bg-secondary ms-1" id="createSubcatBadge">0
+                                        selected</span></label>
                                 <div>
-                                    <button type="button" class="btn btn-link btn-sm text-decoration-none p-0 me-2" onclick="selectAllMulti('createAddonSubcategoryList', 'createSubcatBadge')">Select All</button>
-                                    <button type="button" class="btn btn-link btn-sm text-muted text-decoration-none p-0" onclick="clearAllMulti('createAddonSubcategoryList', 'createSubcatBadge')">Clear</button>
+                                    <button type="button" class="btn btn-link btn-sm text-decoration-none p-0 me-2"
+                                        onclick="selectAllMulti('createAddonSubcategoryList', 'createSubcatBadge')">Select
+                                        All</button>
+                                    <button type="button"
+                                        class="btn btn-link btn-sm text-muted text-decoration-none p-0"
+                                        onclick="clearAllMulti('createAddonSubcategoryList', 'createSubcatBadge')">Clear</button>
                                 </div>
                             </div>
                             <div class="mb-2">
-                                <input type="text" class="form-control form-control-sm rounded-3" placeholder="🔍 Search subcategories..." oninput="filterMultiSelect(this, 'createAddonSubcategoryList')">
+                                <input type="text" class="form-control form-control-sm rounded-3"
+                                    placeholder="🔍 Search subcategories..."
+                                    oninput="filterMultiSelect(this, 'createAddonSubcategoryList')">
                             </div>
-                            <div class="multi-select-card-container border rounded-3 p-2 bg-light" id="createAddonSubcategoryList" style="max-height: 200px; overflow-y: auto;">
-                                @foreach($subcategories as $subcat)
-                                    <label class="multi-select-card-item d-flex align-items-center p-2 rounded-2 mb-1 cursor-pointer" style="background:#fff; border:1px solid #e6ded6; transition:all 0.2s;" data-search="{{ strtolower($subcat->name . ' ' . ($subcat->category->name ?? '')) }}">
-                                        <input type="checkbox" name="subcategory_ids[]" value="{{ $subcat->id }}" class="form-check-input me-2 multi-cb" onchange="updateMultiBadge('createAddonSubcategoryList', 'createSubcatBadge')">
-                                        <span class="fw-semibold text-dark">{{ $subcat->name }} <small class="text-muted">({{ $subcat->category->name ?? '' }})</small></span>
+                            <div class="multi-select-card-container border rounded-3 p-2 bg-light"
+                                id="createAddonSubcategoryList" style="max-height: 200px; overflow-y: auto;">
+                                @foreach ($subcategories as $subcat)
+                                    <label
+                                        class="multi-select-card-item d-flex align-items-center p-2 rounded-2 mb-1 cursor-pointer"
+                                        style="background:#fff; border:1px solid #e6ded6; transition:all 0.2s;"
+                                        data-search="{{ strtolower($subcat->name . ' ' . ($subcat->category->name ?? '')) }}">
+                                        <input type="checkbox" name="subcategory_ids[]" value="{{ $subcat->id }}"
+                                            class="form-check-input me-2 multi-cb"
+                                            onchange="updateMultiBadge('createAddonSubcategoryList', 'createSubcatBadge')">
+                                        <span class="fw-semibold text-dark">{{ $subcat->name }} <small
+                                                class="text-muted">({{ $subcat->category->name ?? '' }})</small></span>
                                     </label>
                                 @endforeach
                             </div>
@@ -1821,19 +1935,32 @@
                         <!-- Multi Select Container: Products -->
                         <div class="mb-3 d-none" id="createAddonProductDiv">
                             <div class="d-flex justify-content-between align-items-center mb-2">
-                                <label class="form-label fw-bold mb-0">Select Target Products <span class="badge bg-secondary ms-1" id="createProdBadge">0 selected</span></label>
+                                <label class="form-label fw-bold mb-0">Select Target Products <span
+                                        class="badge bg-secondary ms-1" id="createProdBadge">0 selected</span></label>
                                 <div>
-                                    <button type="button" class="btn btn-link btn-sm text-decoration-none p-0 me-2" onclick="selectAllMulti('createAddonProductList', 'createProdBadge')">Select All</button>
-                                    <button type="button" class="btn btn-link btn-sm text-muted text-decoration-none p-0" onclick="clearAllMulti('createAddonProductList', 'createProdBadge')">Clear</button>
+                                    <button type="button" class="btn btn-link btn-sm text-decoration-none p-0 me-2"
+                                        onclick="selectAllMulti('createAddonProductList', 'createProdBadge')">Select
+                                        All</button>
+                                    <button type="button"
+                                        class="btn btn-link btn-sm text-muted text-decoration-none p-0"
+                                        onclick="clearAllMulti('createAddonProductList', 'createProdBadge')">Clear</button>
                                 </div>
                             </div>
                             <div class="mb-2">
-                                <input type="text" class="form-control form-control-sm rounded-3" placeholder="🔍 Search products..." oninput="filterMultiSelect(this, 'createAddonProductList')">
+                                <input type="text" class="form-control form-control-sm rounded-3"
+                                    placeholder="🔍 Search products..."
+                                    oninput="filterMultiSelect(this, 'createAddonProductList')">
                             </div>
-                            <div class="multi-select-card-container border rounded-3 p-2 bg-light" id="createAddonProductList" style="max-height: 200px; overflow-y: auto;">
-                                @foreach($products as $prod)
-                                    <label class="multi-select-card-item d-flex align-items-center p-2 rounded-2 mb-1 cursor-pointer" style="background:#fff; border:1px solid #e6ded6; transition:all 0.2s;" data-search="{{ strtolower($prod->name) }}">
-                                        <input type="checkbox" name="product_ids[]" value="{{ $prod->id }}" class="form-check-input me-2 multi-cb" onchange="updateMultiBadge('createAddonProductList', 'createProdBadge')">
+                            <div class="multi-select-card-container border rounded-3 p-2 bg-light"
+                                id="createAddonProductList" style="max-height: 200px; overflow-y: auto;">
+                                @foreach ($products as $prod)
+                                    <label
+                                        class="multi-select-card-item d-flex align-items-center p-2 rounded-2 mb-1 cursor-pointer"
+                                        style="background:#fff; border:1px solid #e6ded6; transition:all 0.2s;"
+                                        data-search="{{ strtolower($prod->name) }}">
+                                        <input type="checkbox" name="product_ids[]" value="{{ $prod->id }}"
+                                            class="form-check-input me-2 multi-cb"
+                                            onchange="updateMultiBadge('createAddonProductList', 'createProdBadge')">
                                         <span class="fw-semibold text-dark">{{ $prod->name }}</span>
                                     </label>
                                 @endforeach
@@ -1902,16 +2029,19 @@
                         <div class="row g-3 mb-3">
                             <div class="col-md-7">
                                 <label class="form-label fw-bold">Add-On Name</label>
-                                <input type="text" name="name" id="editAddonName" class="form-control rounded-3" required />
+                                <input type="text" name="name" id="editAddonName"
+                                    class="form-control rounded-3" required />
                             </div>
                             <div class="col-md-5">
                                 <label class="form-label fw-bold">Price Adjustment (EGP)</label>
-                                <input type="number" step="0.01" name="price_adjustment" id="editAddonPrice" class="form-control rounded-3" required />
+                                <input type="number" step="0.01" name="price_adjustment" id="editAddonPrice"
+                                    class="form-control rounded-3" required />
                             </div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-bold">Applicability / Scope</label>
-                            <select name="scope" id="editAddonScope" class="form-select rounded-3" onchange="toggleAddonScopeFields('editAddonScope', 'editAddonCategoryDiv', 'editAddonSubcategoryDiv', 'editAddonProductDiv')">
+                            <select name="scope" id="editAddonScope" class="form-select rounded-3"
+                                onchange="toggleAddonScopeFields('editAddonScope', 'editAddonCategoryDiv', 'editAddonSubcategoryDiv', 'editAddonProductDiv')">
                                 <option value="global">Global (Applies to all products)</option>
                                 <option value="category">Category Specific</option>
                                 <option value="subcategory">Subcategory Specific</option>
@@ -1921,19 +2051,33 @@
                         <!-- Multi Select Container: Categories -->
                         <div class="mb-3 d-none" id="editAddonCategoryDiv">
                             <div class="d-flex justify-content-between align-items-center mb-2">
-                                <label class="form-label fw-bold mb-0">Select Target Categories <span class="badge bg-secondary ms-1" id="editCatBadge">0 selected</span></label>
+                                <label class="form-label fw-bold mb-0">Select Target Categories <span
+                                        class="badge bg-secondary ms-1" id="editCatBadge">0 selected</span></label>
                                 <div>
-                                    <button type="button" class="btn btn-link btn-sm text-decoration-none p-0 me-2" onclick="selectAllMulti('editAddonCategoryList', 'editCatBadge')">Select All</button>
-                                    <button type="button" class="btn btn-link btn-sm text-muted text-decoration-none p-0" onclick="clearAllMulti('editAddonCategoryList', 'editCatBadge')">Clear</button>
+                                    <button type="button" class="btn btn-link btn-sm text-decoration-none p-0 me-2"
+                                        onclick="selectAllMulti('editAddonCategoryList', 'editCatBadge')">Select
+                                        All</button>
+                                    <button type="button"
+                                        class="btn btn-link btn-sm text-muted text-decoration-none p-0"
+                                        onclick="clearAllMulti('editAddonCategoryList', 'editCatBadge')">Clear</button>
                                 </div>
                             </div>
                             <div class="mb-2">
-                                <input type="text" class="form-control form-control-sm rounded-3" placeholder="🔍 Search categories..." oninput="filterMultiSelect(this, 'editAddonCategoryList')">
+                                <input type="text" class="form-control form-control-sm rounded-3"
+                                    placeholder="🔍 Search categories..."
+                                    oninput="filterMultiSelect(this, 'editAddonCategoryList')">
                             </div>
-                            <div class="multi-select-card-container border rounded-3 p-2 bg-light" id="editAddonCategoryList" style="max-height: 200px; overflow-y: auto;">
-                                @foreach($categories as $cat)
-                                    <label class="multi-select-card-item d-flex align-items-center p-2 rounded-2 mb-1 cursor-pointer" style="background:#fff; border:1px solid #e6ded6; transition:all 0.2s;" data-search="{{ strtolower($cat->name) }}">
-                                        <input type="checkbox" name="category_ids[]" value="{{ $cat->id }}" id="edit_cat_{{ $cat->id }}" class="form-check-input me-2 multi-cb" onchange="updateMultiBadge('editAddonCategoryList', 'editCatBadge')">
+                            <div class="multi-select-card-container border rounded-3 p-2 bg-light"
+                                id="editAddonCategoryList" style="max-height: 200px; overflow-y: auto;">
+                                @foreach ($categories as $cat)
+                                    <label
+                                        class="multi-select-card-item d-flex align-items-center p-2 rounded-2 mb-1 cursor-pointer"
+                                        style="background:#fff; border:1px solid #e6ded6; transition:all 0.2s;"
+                                        data-search="{{ strtolower($cat->name) }}">
+                                        <input type="checkbox" name="category_ids[]" value="{{ $cat->id }}"
+                                            id="edit_cat_{{ $cat->id }}"
+                                            class="form-check-input me-2 multi-cb"
+                                            onchange="updateMultiBadge('editAddonCategoryList', 'editCatBadge')">
                                         <span class="fw-semibold text-dark">{{ $cat->name }}</span>
                                     </label>
                                 @endforeach
@@ -1942,20 +2086,36 @@
                         <!-- Multi Select Container: Subcategories -->
                         <div class="mb-3 d-none" id="editAddonSubcategoryDiv">
                             <div class="d-flex justify-content-between align-items-center mb-2">
-                                <label class="form-label fw-bold mb-0">Select Target Subcategories <span class="badge bg-secondary ms-1" id="editSubcatBadge">0 selected</span></label>
+                                <label class="form-label fw-bold mb-0">Select Target Subcategories <span
+                                        class="badge bg-secondary ms-1" id="editSubcatBadge">0
+                                        selected</span></label>
                                 <div>
-                                    <button type="button" class="btn btn-link btn-sm text-decoration-none p-0 me-2" onclick="selectAllMulti('editAddonSubcategoryList', 'editSubcatBadge')">Select All</button>
-                                    <button type="button" class="btn btn-link btn-sm text-muted text-decoration-none p-0" onclick="clearAllMulti('editAddonSubcategoryList', 'editSubcatBadge')">Clear</button>
+                                    <button type="button" class="btn btn-link btn-sm text-decoration-none p-0 me-2"
+                                        onclick="selectAllMulti('editAddonSubcategoryList', 'editSubcatBadge')">Select
+                                        All</button>
+                                    <button type="button"
+                                        class="btn btn-link btn-sm text-muted text-decoration-none p-0"
+                                        onclick="clearAllMulti('editAddonSubcategoryList', 'editSubcatBadge')">Clear</button>
                                 </div>
                             </div>
                             <div class="mb-2">
-                                <input type="text" class="form-control form-control-sm rounded-3" placeholder="🔍 Search subcategories..." oninput="filterMultiSelect(this, 'editAddonSubcategoryList')">
+                                <input type="text" class="form-control form-control-sm rounded-3"
+                                    placeholder="🔍 Search subcategories..."
+                                    oninput="filterMultiSelect(this, 'editAddonSubcategoryList')">
                             </div>
-                            <div class="multi-select-card-container border rounded-3 p-2 bg-light" id="editAddonSubcategoryList" style="max-height: 200px; overflow-y: auto;">
-                                @foreach($subcategories as $subcat)
-                                    <label class="multi-select-card-item d-flex align-items-center p-2 rounded-2 mb-1 cursor-pointer" style="background:#fff; border:1px solid #e6ded6; transition:all 0.2s;" data-search="{{ strtolower($subcat->name . ' ' . ($subcat->category->name ?? '')) }}">
-                                        <input type="checkbox" name="subcategory_ids[]" value="{{ $subcat->id }}" id="edit_subcat_{{ $subcat->id }}" class="form-check-input me-2 multi-cb" onchange="updateMultiBadge('editAddonSubcategoryList', 'editSubcatBadge')">
-                                        <span class="fw-semibold text-dark">{{ $subcat->name }} <small class="text-muted">({{ $subcat->category->name ?? '' }})</small></span>
+                            <div class="multi-select-card-container border rounded-3 p-2 bg-light"
+                                id="editAddonSubcategoryList" style="max-height: 200px; overflow-y: auto;">
+                                @foreach ($subcategories as $subcat)
+                                    <label
+                                        class="multi-select-card-item d-flex align-items-center p-2 rounded-2 mb-1 cursor-pointer"
+                                        style="background:#fff; border:1px solid #e6ded6; transition:all 0.2s;"
+                                        data-search="{{ strtolower($subcat->name . ' ' . ($subcat->category->name ?? '')) }}">
+                                        <input type="checkbox" name="subcategory_ids[]"
+                                            value="{{ $subcat->id }}" id="edit_subcat_{{ $subcat->id }}"
+                                            class="form-check-input me-2 multi-cb"
+                                            onchange="updateMultiBadge('editAddonSubcategoryList', 'editSubcatBadge')">
+                                        <span class="fw-semibold text-dark">{{ $subcat->name }} <small
+                                                class="text-muted">({{ $subcat->category->name ?? '' }})</small></span>
                                     </label>
                                 @endforeach
                             </div>
@@ -1963,19 +2123,33 @@
                         <!-- Multi Select Container: Products -->
                         <div class="mb-3 d-none" id="editAddonProductDiv">
                             <div class="d-flex justify-content-between align-items-center mb-2">
-                                <label class="form-label fw-bold mb-0">Select Target Products <span class="badge bg-secondary ms-1" id="editProdBadge">0 selected</span></label>
+                                <label class="form-label fw-bold mb-0">Select Target Products <span
+                                        class="badge bg-secondary ms-1" id="editProdBadge">0 selected</span></label>
                                 <div>
-                                    <button type="button" class="btn btn-link btn-sm text-decoration-none p-0 me-2" onclick="selectAllMulti('editAddonProductList', 'editProdBadge')">Select All</button>
-                                    <button type="button" class="btn btn-link btn-sm text-muted text-decoration-none p-0" onclick="clearAllMulti('editAddonProductList', 'editProdBadge')">Clear</button>
+                                    <button type="button" class="btn btn-link btn-sm text-decoration-none p-0 me-2"
+                                        onclick="selectAllMulti('editAddonProductList', 'editProdBadge')">Select
+                                        All</button>
+                                    <button type="button"
+                                        class="btn btn-link btn-sm text-muted text-decoration-none p-0"
+                                        onclick="clearAllMulti('editAddonProductList', 'editProdBadge')">Clear</button>
                                 </div>
                             </div>
                             <div class="mb-2">
-                                <input type="text" class="form-control form-control-sm rounded-3" placeholder="🔍 Search products..." oninput="filterMultiSelect(this, 'editAddonProductList')">
+                                <input type="text" class="form-control form-control-sm rounded-3"
+                                    placeholder="🔍 Search products..."
+                                    oninput="filterMultiSelect(this, 'editAddonProductList')">
                             </div>
-                            <div class="multi-select-card-container border rounded-3 p-2 bg-light" id="editAddonProductList" style="max-height: 200px; overflow-y: auto;">
-                                @foreach($products as $prod)
-                                    <label class="multi-select-card-item d-flex align-items-center p-2 rounded-2 mb-1 cursor-pointer" style="background:#fff; border:1px solid #e6ded6; transition:all 0.2s;" data-search="{{ strtolower($prod->name) }}">
-                                        <input type="checkbox" name="product_ids[]" value="{{ $prod->id }}" id="edit_prod_{{ $prod->id }}" class="form-check-input me-2 multi-cb" onchange="updateMultiBadge('editAddonProductList', 'editProdBadge')">
+                            <div class="multi-select-card-container border rounded-3 p-2 bg-light"
+                                id="editAddonProductList" style="max-height: 200px; overflow-y: auto;">
+                                @foreach ($products as $prod)
+                                    <label
+                                        class="multi-select-card-item d-flex align-items-center p-2 rounded-2 mb-1 cursor-pointer"
+                                        style="background:#fff; border:1px solid #e6ded6; transition:all 0.2s;"
+                                        data-search="{{ strtolower($prod->name) }}">
+                                        <input type="checkbox" name="product_ids[]" value="{{ $prod->id }}"
+                                            id="edit_prod_{{ $prod->id }}"
+                                            class="form-check-input me-2 multi-cb"
+                                            onchange="updateMultiBadge('editAddonProductList', 'editProdBadge')">
                                         <span class="fw-semibold text-dark">{{ $prod->name }}</span>
                                     </label>
                                 @endforeach
@@ -2008,8 +2182,8 @@
                         <div class="row g-2 mb-3">
                             <div class="col-6">
                                 <label class="form-label fw-bold">Delivery Fee (EGP)</label>
-                                <input type="number" step="0.01" name="delivery_fee" id="editDeliveryZoneFee"
-                                    class="form-control rounded-3" required />
+                                <input type="number" step="0.01" name="delivery_fee"
+                                    id="editDeliveryZoneFee" class="form-control rounded-3" required />
                             </div>
                             <div class="col-6">
                                 <label class="form-label fw-bold">Min Order (EGP)</label>
@@ -2036,7 +2210,8 @@
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content rounded-4 border-0">
                 <div class="modal-header border-0 pb-0">
-                    <h5 class="modal-title fw-bold"><i class="fas fa-map-marked-alt text-primary me-2"></i>Add Store Location</h5>
+                    <h5 class="modal-title fw-bold"><i class="fas fa-map-marked-alt text-primary me-2"></i>Add Store
+                        Location</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <form onsubmit="submitApiForm(event, '/admin/store-locations', 'POST')">
@@ -2044,7 +2219,8 @@
                         <div class="row g-3 mb-3">
                             <div class="col-md-7">
                                 <label class="form-label fw-bold">Branch / Outlet Name</label>
-                                <input type="text" name="name" class="form-control rounded-3" required placeholder="e.g. Nasr City Branch" />
+                                <input type="text" name="name" class="form-control rounded-3" required
+                                    placeholder="e.g. Nasr City Branch" />
                             </div>
                             <div class="col-md-5">
                                 <label class="form-label fw-bold">Store Status</label>
@@ -2058,17 +2234,20 @@
                         <div class="row g-3 mb-3">
                             <div class="col-md-7">
                                 <label class="form-label fw-bold">Full Address</label>
-                                <input type="text" name="address" class="form-control rounded-3" required placeholder="e.g. Abbas El Akkad St, Nasr City, Cairo" />
+                                <input type="text" name="address" class="form-control rounded-3" required
+                                    placeholder="e.g. Abbas El Akkad St, Nasr City, Cairo" />
                             </div>
                             <div class="col-md-5">
                                 <label class="form-label fw-bold">Badge / Tag (Optional)</label>
-                                <input type="text" name="badge" class="form-control rounded-3" placeholder="e.g. Flagship Store, Co-Working Friendly" />
+                                <input type="text" name="badge" class="form-control rounded-3"
+                                    placeholder="e.g. Flagship Store, Co-Working Friendly" />
                             </div>
                         </div>
 
                         <!-- Professional Time Picker Component -->
                         <div class="card p-3 border-0 bg-light rounded-3 mb-3">
-                            <label class="form-label fw-bold text-dark mb-2"><i class="fas fa-clock text-primary me-1"></i>Working Hours Picker</label>
+                            <label class="form-label fw-bold text-dark mb-2"><i
+                                    class="fas fa-clock text-primary me-1"></i>Working Hours Picker</label>
                             <div class="row g-2">
                                 <div class="col-md-4">
                                     <label class="form-label small text-muted mb-1">Days Schedule</label>
@@ -2082,11 +2261,13 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label small text-muted mb-1">Opening Time</label>
-                                    <input type="time" name="opening_time" class="form-control form-control-sm rounded-3" required value="07:00" />
+                                    <input type="time" name="opening_time"
+                                        class="form-control form-control-sm rounded-3" required value="07:00" />
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label small text-muted mb-1">Closing Time</label>
-                                    <input type="time" name="closing_time" class="form-control form-control-sm rounded-3" required value="23:30" />
+                                    <input type="time" name="closing_time"
+                                        class="form-control form-control-sm rounded-3" required value="23:30" />
                                 </div>
                             </div>
                         </div>
@@ -2094,11 +2275,14 @@
                         <div class="row g-3 mb-3">
                             <div class="col-md-6">
                                 <label class="form-label fw-bold">Phone / Extension</label>
-                                <input type="text" name="phone" class="form-control rounded-3" required placeholder="+20 19696 (Ext. 1)" />
+                                <input type="text" name="phone" class="form-control rounded-3" required
+                                    placeholder="+20 19696 (Ext. 1)" />
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label fw-bold">Google Maps Directions Link <span class="text-danger">*</span></label>
-                                <input type="url" name="google_maps_url" class="form-control rounded-3" required placeholder="https://maps.google.com/?q=..." />
+                                <label class="form-label fw-bold">Google Maps Directions Link <span
+                                        class="text-danger">*</span></label>
+                                <input type="url" name="google_maps_url" class="form-control rounded-3"
+                                    required placeholder="https://maps.google.com/?q=..." />
                             </div>
                         </div>
                     </div>
@@ -2115,7 +2299,8 @@
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content rounded-4 border-0">
                 <div class="modal-header border-0 pb-0">
-                    <h5 class="modal-title fw-bold"><i class="fas fa-edit text-primary me-2"></i>Edit Store Location</h5>
+                    <h5 class="modal-title fw-bold"><i class="fas fa-edit text-primary me-2"></i>Edit Store Location
+                    </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <form id="editStoreLocationForm" onsubmit="submitApiForm(event, this.action, 'PUT')">
@@ -2123,7 +2308,8 @@
                         <div class="row g-3 mb-3">
                             <div class="col-md-7">
                                 <label class="form-label fw-bold">Branch / Outlet Name</label>
-                                <input type="text" name="name" id="editLocName" class="form-control rounded-3" required />
+                                <input type="text" name="name" id="editLocName"
+                                    class="form-control rounded-3" required />
                             </div>
                             <div class="col-md-5">
                                 <label class="form-label fw-bold">Store Status</label>
@@ -2137,21 +2323,25 @@
                         <div class="row g-3 mb-3">
                             <div class="col-md-7">
                                 <label class="form-label fw-bold">Full Address</label>
-                                <input type="text" name="address" id="editLocAddress" class="form-control rounded-3" required />
+                                <input type="text" name="address" id="editLocAddress"
+                                    class="form-control rounded-3" required />
                             </div>
                             <div class="col-md-5">
                                 <label class="form-label fw-bold">Badge / Tag (Optional)</label>
-                                <input type="text" name="badge" id="editLocBadge" class="form-control rounded-3" />
+                                <input type="text" name="badge" id="editLocBadge"
+                                    class="form-control rounded-3" />
                             </div>
                         </div>
 
                         <!-- Professional Time Picker Component -->
                         <div class="card p-3 border-0 bg-light rounded-3 mb-3">
-                            <label class="form-label fw-bold text-dark mb-2"><i class="fas fa-clock text-primary me-1"></i>Working Hours Picker</label>
+                            <label class="form-label fw-bold text-dark mb-2"><i
+                                    class="fas fa-clock text-primary me-1"></i>Working Hours Picker</label>
                             <div class="row g-2">
                                 <div class="col-md-4">
                                     <label class="form-label small text-muted mb-1">Days Schedule</label>
-                                    <select name="days_label" id="editLocDaysLabel" class="form-select form-select-sm rounded-3">
+                                    <select name="days_label" id="editLocDaysLabel"
+                                        class="form-select form-select-sm rounded-3">
                                         <option value="Daily">Daily</option>
                                         <option value="Mon - Fri">Mon - Fri</option>
                                         <option value="Sat - Sun">Sat - Sun</option>
@@ -2161,11 +2351,13 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label small text-muted mb-1">Opening Time</label>
-                                    <input type="time" name="opening_time" id="editLocOpeningTime" class="form-control form-control-sm rounded-3" required />
+                                    <input type="time" name="opening_time" id="editLocOpeningTime"
+                                        class="form-control form-control-sm rounded-3" required />
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label small text-muted mb-1">Closing Time</label>
-                                    <input type="time" name="closing_time" id="editLocClosingTime" class="form-control form-control-sm rounded-3" required />
+                                    <input type="time" name="closing_time" id="editLocClosingTime"
+                                        class="form-control form-control-sm rounded-3" required />
                                 </div>
                             </div>
                         </div>
@@ -2173,11 +2365,14 @@
                         <div class="row g-3 mb-3">
                             <div class="col-md-6">
                                 <label class="form-label fw-bold">Phone / Extension</label>
-                                <input type="text" name="phone" id="editLocPhone" class="form-control rounded-3" required />
+                                <input type="text" name="phone" id="editLocPhone"
+                                    class="form-control rounded-3" required />
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label fw-bold">Google Maps Directions Link <span class="text-danger">*</span></label>
-                                <input type="url" name="google_maps_url" id="editLocMapsUrl" class="form-control rounded-3" required />
+                                <label class="form-label fw-bold">Google Maps Directions Link <span
+                                        class="text-danger">*</span></label>
+                                <input type="url" name="google_maps_url" id="editLocMapsUrl"
+                                    class="form-control rounded-3" required />
                             </div>
                         </div>
                     </div>
@@ -2283,37 +2478,15 @@
                 });
 
                 if (res.ok) {
-                    const resData = await res.json();
-                    let successTitle = 'Success!';
-                    let successMsg = 'Action completed successfully!';
-                    let timerVal = 1500;
-                    let showClose = false;
-
-                    // Check if this was a product edit
-                    if (url.includes('/admin/products') && method === 'POST') {
-                        // If the product was restocked to > 10
-                        if (resData && resData.data && resData.data.stock > 10) {
-                            successTitle = 'Restocked!';
-                            successMsg = 'Restocked successfully';
-                            timerVal = 4000;
-                            showClose = true;
-                        }
-                    }
-
                     closeAllModals();
                     reloadPageContent();
 
                     Swal.fire({
-                        toast: showClose, // Use toast style for restock
-                        position: showClose ? 'top-end' : 'center',
-                        title: successTitle,
-                        text: successMsg,
+                        title: 'Success!',
+                        text: 'Action completed successfully!',
                         icon: 'success',
                         confirmButtonColor: '#9C7A5B',
-                        timer: timerVal,
-                        timerProgressBar: showClose,
-                        showConfirmButton: !showClose,
-                        showCloseButton: showClose
+                        timer: 1500
                     });
                 } else {
                     const err = await res.json();
@@ -2347,11 +2520,68 @@
             new bootstrap.Modal(document.getElementById('editSubcategoryModal')).show();
         }
 
+        let activeStockProductId = null;
+
+        function openStockModal(prod) {
+            activeStockProductId = prod.id;
+            document.getElementById('stockProductName').value = prod.name;
+            document.getElementById('stockProductQuantity').value = prod.stock;
+            new bootstrap.Modal(document.getElementById('editStockModal')).show();
+        }
+
+        async function submitStockForm(e) {
+            e.preventDefault();
+            if (!activeStockProductId) return;
+
+            const stockVal = document.getElementById('stockProductQuantity').value;
+            const formData = new FormData();
+            formData.append('_method', 'PUT');
+            formData.append('stock', stockVal);
+
+            try {
+                const res = await fetch('/admin/products/' + activeStockProductId, {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                    },
+                    body: formData
+                });
+
+                if (res.ok) {
+                    closeAllModals();
+                    await reloadPageContent();
+                    Swal.fire({
+                        title: 'Stock Updated!',
+                        text: 'Product stock quantity updated successfully.',
+                        icon: 'success',
+                        confirmButtonColor: '#9C7A5B',
+                        timer: 2000
+                    });
+                } else {
+                    const err = await res.json();
+                    Swal.fire({
+                        title: 'Error!',
+                        text: err.message || 'Failed to update stock quantity.',
+                        icon: 'error',
+                        confirmButtonColor: '#9C7A5B'
+                    });
+                }
+            } catch (err) {
+                console.error(err);
+                Swal.fire({
+                    title: 'Server Error!',
+                    text: 'An error occurred while updating stock.',
+                    icon: 'error',
+                    confirmButtonColor: '#9C7A5B'
+                });
+            }
+        }
+
         function openEditProductModal(prod) {
             document.getElementById('editProductName').value = prod.name;
             document.getElementById('editProductSubcategoryId').value = prod.subcategory_id;
             document.getElementById('editProductPrice').value = prod.price;
-            document.getElementById('editProductStock').value = prod.stock;
             document.getElementById('editProductDesc').value = prod.description || '';
             document.getElementById('editProductCalories').value = prod.calories !== null ? prod.calories : 180;
             document.getElementById('editProductPrepTime').value = prod.prep_time !== null ? prod.prep_time : 5;
@@ -2540,7 +2770,8 @@
             });
             updateMultiBadge('editAddonProductList', 'editProdBadge');
 
-            toggleAddonScopeFields('editAddonScope', 'editAddonCategoryDiv', 'editAddonSubcategoryDiv', 'editAddonProductDiv');
+            toggleAddonScopeFields('editAddonScope', 'editAddonCategoryDiv', 'editAddonSubcategoryDiv',
+                'editAddonProductDiv');
 
             document.getElementById('editAddonForm').action = '/admin/add-ons/' + addon.id;
             new bootstrap.Modal(document.getElementById('editAddonModal')).show();

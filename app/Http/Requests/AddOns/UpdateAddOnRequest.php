@@ -41,5 +41,5 @@ class UpdateAddOnRequest extends FormRequest
       'price_adjustment.required' => 'The price_adjustment must not be empty!',
 
     ];
-   } 
+   }
 }

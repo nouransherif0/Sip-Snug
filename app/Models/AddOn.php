@@ -82,39 +82,39 @@ class AddOn extends Model
             if ($categoryId) {
                 $query->orWhere(function ($q) use ($categoryId) {
                     $q->where('scope', 'category')
-                      ->where(function ($q2) use ($categoryId) {
-                          $q2->where('category_id', $categoryId)
-                             ->orWhereHas('categories', function ($q3) use ($categoryId) {
-                                 $q3->where('categories.id', $categoryId);
-                             });
-                      });
+                        ->where(function ($q2) use ($categoryId) {
+                            $q2->where('category_id', $categoryId)
+                                ->orWhereHas('categories', function ($q3) use ($categoryId) {
+                                    $q3->where('categories.id', $categoryId);
+                                });
+                        });
                 });
             }
 
             if ($subcategoryId) {
                 $query->orWhere(function ($q) use ($subcategoryId) {
                     $q->where('scope', 'subcategory')
-                      ->where(function ($q2) use ($subcategoryId) {
-                          $q2->where('subcategory_id', $subcategoryId)
-                             ->orWhereHas('subcategories', function ($q3) use ($subcategoryId) {
-                                 $q3->where('subcategories.id', $subcategoryId);
-                             });
-                      });
+                        ->where(function ($q2) use ($subcategoryId) {
+                            $q2->where('subcategory_id', $subcategoryId)
+                                ->orWhereHas('subcategories', function ($q3) use ($subcategoryId) {
+                                    $q3->where('subcategories.id', $subcategoryId);
+                                });
+                        });
                 });
             }
 
             $query->orWhere(function ($q) use ($product) {
                 $q->where('scope', 'product')
-                  ->where(function ($q2) use ($product) {
-                      $q2->where('product_id', $product->id)
-                         ->orWhereHas('products', function ($q3) use ($product) {
-                             $q3->where('products.id', $product->id);
-                         });
-                  });
+                    ->where(function ($q2) use ($product) {
+                        $q2->where('product_id', $product->id)
+                            ->orWhereHas('products', function ($q3) use ($product) {
+                                $q3->where('products.id', $product->id);
+                            });
+                    });
             })
-            ->orWhereHas('products_item_addon', function ($q) use ($product) {
-                $q->where('products.id', $product->id);
-            });
+                ->orWhereHas('products_item_addon', function ($q) use ($product) {
+                    $q->where('products.id', $product->id);
+                });
         })->get();
     }
 }
