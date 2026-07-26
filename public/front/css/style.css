@@ -1535,7 +1535,7 @@ section {
 .fctrl:focus {
   border-color: var(--primary);
 }
-.fcard {
+.form-card {
   background: #fff;
   border-radius: 18px;
   padding: 32px;
@@ -2696,7 +2696,7 @@ footer {
     width: 100%;
     border-radius: 12px;
   }
-  .fcard {
+  .form-card {
     padding: 22px 18px;
   }
 }

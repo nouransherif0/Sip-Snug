@@ -86,7 +86,7 @@
                            <li class="p-3 border-bottom bg-light"><h6 class="m-0 text-danger"><i class="fas fa-exclamation-circle me-2"></i>Low Stock Alerts</h6></li>
                            @foreach($lowStockProducts as $prod)
                               <li>
-                                 <a class="dropdown-item py-3 border-bottom text-wrap" href="{{ route('admin.dashboard') }}?tab=products">
+                                 <a class="dropdown-item py-3 border-bottom text-wrap" href="{{ route('web.admin.dashboard') }}?tab=products">
                                     <strong class="d-block text-dark">{{ $prod->name }}</strong>
                                     <small class="text-danger">Alert: Only {{ $prod->stock }} left!</small>
                                  </a>
@@ -131,7 +131,7 @@
                               <li class="p-3 border-bottom bg-light"><h6 class="m-0 text-danger"><i class="fas fa-exclamation-circle me-2"></i>Low Stock Alerts</h6></li>
                               @foreach($lowStockProducts as $prod)
                                  <li>
-                                    <a class="dropdown-item py-3 border-bottom text-wrap" href="{{ route('admin.dashboard') }}?tab=products">
+                                    <a class="dropdown-item py-3 border-bottom text-wrap" href="{{ route('web.admin.dashboard') }}?tab=products">
                                        <strong class="d-block text-dark">{{ $prod->name }}</strong>
                                        <small class="text-danger">Alert: Product has only {{ $prod->stock }} left!</small>
                                     </a>
@@ -360,8 +360,8 @@
                   <p class="sm-email">{{ Auth::user()->email }}</p>
                </div>
                <div class="sm-profile-actions">
-                  @if(Auth::user()->isAdmin())
-                     <a href="{{ route('admin.dashboard') }}" class="sm-btn sm-btn-primary mb-2 w-100"><i class="fas fa-chart-line me-1"></i> Admin Dashboard</a>
+                  @if(auth()->user()->isAdmin())
+                     <a href="{{ route('web.admin.dashboard') }}" class="sm-btn sm-btn-primary mb-2 w-100"><i class="fas fa-chart-line me-1"></i> Admin Dashboard</a>
                   @endif
                   <div class="d-flex w-100 gap-2">
                      <a href="{{ route('profile.edit') }}" class="sm-btn sm-btn-outline" style="flex:1;"><i class="fas fa-user-gear me-1"></i> My Profile</a>

@@ -770,7 +770,7 @@
             <div class="row g-4 align-items-start">
                 <!-- Reservation Form (First on Mobile, Second on Desktop) -->
                 <div class="col-lg-8 col-12 order-1 order-lg-2" data-aos="fade-left">
-                    <div class="fcard">
+                    <div class="form-card">
                         <div class="row g-3">
                             <div class="col-12">
                                 <label class="flbl">Full Name *</label>
@@ -834,7 +834,7 @@
 
                 <!-- Contact Info Card (Second on Mobile, First on Desktop) -->
                 <div class="col-lg-4 col-12 order-2 order-lg-1" data-aos="fade-right">
-                    <div style="background:var(--dark);border-radius:18px;padding:28px 24px;">
+                    <div style="background:var(--dark);border-radius:18px;padding:32px 24px;">
                         <h4 style="color:#fff;font-size:1.2rem;margin-bottom:6px;">Contact Info</h4>
                         <p style="color:rgba(255,255,255,.55);font-size:.82rem;margin-bottom:20px;">We're happy to help you plan the perfect dining experience.</p>
                         <div class="row g-3">
@@ -985,7 +985,7 @@
             <div class="row g-4">
                 <!-- Contact Form (First on Mobile, Second on Desktop) -->
                 <div class="col-lg-8 col-12 order-1 order-lg-2" data-aos="fade-left">
-                    <div class="fcard">
+                    <div class="form-card">
                         <div class="row g-3">
                             <div class="col-6">
                                 <label class="flbl">Your Name *</label>
