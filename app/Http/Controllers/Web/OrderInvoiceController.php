@@ -50,10 +50,51 @@ class OrderInvoiceController extends Controller
         return Pdf::view('front.orders.invoice', compact('order'))
             ->format('a4')
             ->withBrowsershot(function (Browsershot $browsershot) {
-                $browsershot->setNodeBinary('/usr/bin/node')
-                            ->setNpmBinary('/usr/bin/npm')
-                            ->setChromePath('/home/figo/.cache/puppeteer/chrome/linux-130.0.6723.116/chrome-linux64/chrome')
-                            ->noSandbox();
+                $nodePath = env('NODE_BINARY');
+                if (!$nodePath) {
+                    foreach (['/opt/homebrew/bin/node', '/usr/local/bin/node', '/usr/bin/node'] as $path) {
+                        if (file_exists($path)) {
+                            $nodePath = $path;
+                            break;
+                        }
+                    }
+                }
+                if ($nodePath) {
+                    $browsershot->setNodeBinary($nodePath);
+                }
+
+                $npmPath = env('NPM_BINARY');
+                if (!$npmPath) {
+                    foreach (['/opt/homebrew/bin/npm', '/usr/local/bin/npm', '/usr/bin/npm'] as $path) {
+                        if (file_exists($path)) {
+                            $npmPath = $path;
+                            break;
+                        }
+                    }
+                }
+                if ($npmPath) {
+                    $browsershot->setNpmBinary($npmPath);
+                }
+
+                $chromePath = env('CHROME_PATH');
+                if (!$chromePath) {
+                    foreach ([
+                        '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+                        '/usr/bin/google-chrome',
+                        '/usr/bin/chromium',
+                        '/usr/bin/chromium-browser',
+                    ] as $path) {
+                        if (file_exists($path)) {
+                            $chromePath = $path;
+                            break;
+                        }
+                    }
+                }
+                if ($chromePath) {
+                    $browsershot->setChromePath($chromePath);
+                }
+
+                $browsershot->noSandbox();
             })
             ->name('Invoice_SipAndSnug_' . substr($order->id, -8) . '.pdf')
             ->download();
