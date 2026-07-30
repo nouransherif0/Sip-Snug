@@ -168,8 +168,8 @@ If you prefer to run PHP and MySQL directly on your host machine:
 
 ```bash
 # 1. Clone the Repository
-git clone https://github.com/nouransherif0/G2_NTI_Laravel.git
-cd G2_NTI_Laravel
+git clone https://github.com/nouransherif0/Sip-Snug.git
+cd Sip-Snug
 
 # 2. Install PHP Dependencies
 composer install
