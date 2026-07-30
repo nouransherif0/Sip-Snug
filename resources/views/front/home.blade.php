@@ -84,7 +84,7 @@
             <div class="row g-2 g-sm-3 justify-content-center">
                 <div class="col-4 col-sm-4 col-md-3 col-lg-2" data-aos="zoom-in" data-aos-delay="0">
                     <div class="catcard active" data-filter="all">
-                        <img class="catimg" src="{{ asset('front/photos/coffee/coffee cate.jpg') }}" alt="" />
+                        <img loading="lazy" class="catimg" src="{{ asset('front/photos/coffee/coffee cate.jpg') }}" alt="" />
                         <div class="catnm">All Drinks</div>
                         <div class="catct">{{ $products->count() }} favorites</div>
                     </div>
@@ -92,7 +92,7 @@
                 @foreach ($categories as $category)
                     <div class="col-4 col-sm-4 col-md-3 col-lg-2" data-aos="zoom-in" data-aos-delay="70">
                         <div class="catcard" data-filter="{{ strtolower($category->name) }}">
-                            <img class="catimg"
+                            <img loading="lazy" class="catimg"
                                 src="{{ $category->image ? asset($category->image) : asset('front/photos/coffee/esspresso.jpg') }}"
                                 alt="{{ $category->name }}" />
                             <div class="catnm">{{ $category->name }}</div>
@@ -110,9 +110,9 @@
                 <div class="col-lg-5 col-12" data-aos="fade-right">
                     <div class="astack">
                         <div class="aexp"><span class="anum">12+</span><small>Years of<br />Coffee Craft</small></div>
-                        <div class="amain"><img src="{{ asset('front/photos/coffee/hot coffee category .jpg') }}"
+                        <div class="amain"><img loading="lazy" src="{{ asset('front/photos/coffee/hot coffee category .jpg') }}"
                                 alt="Cafe interior" /></div>
-                        <div class="asm"><img src="{{ asset('front/photos/coffee/iced coffee category .jpg') }}"
+                        <div class="asm"><img loading="lazy" src="{{ asset('front/photos/coffee/iced coffee category .jpg') }}"
                                 alt="Coffee drinks" /></div>
                     </div>
                 </div>
@@ -190,7 +190,7 @@
                             data-tags="{{ $product->is_bestseller ? 'Bestseller,' : '' }}{{ $product->is_featured ? 'Hot' : '' }}"
                             data-addons="{{ json_encode($product->applicableAddOns()) }}">
                             <div class="mimg">
-                                <img src="{{ $product->image ? asset($product->image) : asset('front/photos/coffee/esspresso.jpg') }}"
+                                <img loading="lazy" src="{{ $product->image ? asset($product->image) : asset('front/photos/coffee/esspresso.jpg') }}"
                                     alt="{{ $product->name }}" loading="lazy" />
                                 @if ($product->is_featured)
                                     <div class="mbdg hot"><i class="fas fa-star"></i> Hot</div>
@@ -278,7 +278,7 @@
     <div id="menuPop">
         <div class="mpbox">
             <button class="mpclose" id="mpClose"><i class="fas fa-times"></i></button>
-            <div class="mpimg"><img id="mpImg" src="" alt="" /></div>
+            <div class="mpimg"><img loading="lazy" id="mpImg" src="" alt="" /></div>
             <div class="mpbody">
                 <div id="mpCat"></div>
                 <div id="mpTitle"></div>
@@ -360,7 +360,7 @@
                     <div class="spimgw">
                         <div class="spglow"></div>
                         <div class="sppbdg"><span class="old">$6.20</span><span class="np">$4.95</span></div>
-                        <img src="{{ asset('front/photos/coffee/hot dark mocha.jpg') }}" alt="Latte special" />
+                        <img loading="lazy" src="{{ asset('front/photos/coffee/hot dark mocha.jpg') }}" alt="Latte special" />
                     </div>
                 </div>
             </div>
@@ -382,31 +382,31 @@
                 <div class="gitem" data-gi="0" data-gimg="{{ asset('front/photos/coffee/hot latte.jpg') }}"
                     data-gtitle="Signature Latte"
                     data-gdesc="Creamy espresso and steamed milk topped with comfort in every sip.">
-                    <img src="{{ asset('front/photos/coffee/hot latte.jpg') }}" alt="Latte" />
+                    <img loading="lazy" src="{{ asset('front/photos/coffee/hot latte.jpg') }}" alt="Latte" />
                     <div class="gover"><span><i class="fas fa-expand-alt"></i> Signature Latte</span></div>
                 </div>
                 <div class="gitem" data-gi="1" data-gimg="{{ asset('front/photos/matcha/pink matcha.jpg') }}"
                     data-gtitle="Pink Matcha"
                     data-gdesc="A colorful and refreshing matcha made for bright afternoons and Instagram moments.">
-                    <img src="{{ asset('front/photos/matcha/pink matcha.jpg') }}" alt="Matcha" />
+                    <img loading="lazy" src="{{ asset('front/photos/matcha/pink matcha.jpg') }}" alt="Matcha" />
                     <div class="gover"><span><i class="fas fa-expand-alt"></i> Pink Matcha</span></div>
                 </div>
                 <div class="gitem" data-gi="2"
                     data-gimg="{{ asset('front/photos/fresh juice/Beet-Apple Juice.jpg') }}" data-gtitle="Fresh Juice"
                     data-gdesc="Cold-pressed blends packed with natural sweetness and vibrant color.">
-                    <img src="{{ asset('front/photos/fresh juice/Beet-Apple Juice.jpg') }}" alt="Juice" />
+                    <img loading="lazy" src="{{ asset('front/photos/fresh juice/Beet-Apple Juice.jpg') }}" alt="Juice" />
                     <div class="gover"><span><i class="fas fa-expand-alt"></i> Fresh Juice</span></div>
                 </div>
                 <div class="gitem" data-gi="3" data-gimg="{{ asset('front/photos/refreshers/mojito.jpg') }}"
                     data-gtitle="Refreshing Mojito"
                     data-gdesc="A bright iced refresher with tropical notes that feel like summer in a glass.">
-                    <img src="{{ asset('front/photos/refreshers/mojito.jpg') }}" alt="Refresher" />
+                    <img loading="lazy" src="{{ asset('front/photos/refreshers/mojito.jpg') }}" alt="Refresher" />
                     <div class="gover"><span><i class="fas fa-expand-alt"></i> Refreshing Mojito</span></div>
                 </div>
                 <div class="gitem" data-gi="4" data-gimg="{{ asset('front/photos/smoothies/berry.jpg') }}"
                     data-gtitle="Berry Smoothie"
                     data-gdesc="A creamy smoothie made with fresh berries and a soft, sweet finish.">
-                    <img src="{{ asset('front/photos/smoothies/berry.jpg') }}" alt="Smoothie" />
+                    <img loading="lazy" src="{{ asset('front/photos/smoothies/berry.jpg') }}" alt="Smoothie" />
                     <div class="gover"><span><i class="fas fa-expand-alt"></i> Berry Smoothie</span></div>
                 </div>
             </div>
@@ -416,7 +416,7 @@
     <div id="galPop">
         <div class="gpbox">
             <button class="gpclose" id="gpClose"><i class="fas fa-times"></i></button>
-            <img id="gpImg" src="" alt="" />
+            <img loading="lazy" id="gpImg" src="" alt="" />
             <div class="gpcap">
                 <h5 id="gpTitle"></h5>
                 <p id="gpDesc"></p>
@@ -531,7 +531,7 @@
                 <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
                     <div class="chcard">
                         <div class="chimg">
-                            <img src="{{ asset('front/photos/baristas/anna.jpg') }}" alt="" />
+                            <img loading="lazy" src="{{ asset('front/photos/baristas/anna.jpg') }}" alt="" />
                             <div class="chsoc"><a href="#"><i class="fab fa-instagram"></i></a><a
                                     href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i
                                         class="fab fa-twitter"></i></a></div>
@@ -546,7 +546,7 @@
                 <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="80">
                     <div class="chcard">
                         <div class="chimg">
-                            <img src="{{ asset('front/photos/baristas/Michael.jpg') }}" alt="" />
+                            <img loading="lazy" src="{{ asset('front/photos/baristas/Michael.jpg') }}" alt="" />
                             <div class="chsoc"><a href="#"><i class="fab fa-instagram"></i></a><a
                                     href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i
                                         class="fab fa-twitter"></i></a></div>
@@ -561,7 +561,7 @@
                 <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="160">
                     <div class="chcard">
                         <div class="chimg">
-                            <img src="{{ asset('front/photos/baristas/Faz .jpg') }}" alt="" />
+                            <img loading="lazy" src="{{ asset('front/photos/baristas/Faz .jpg') }}" alt="" />
                             <div class="chsoc"><a href="#"><i class="fab fa-instagram"></i></a><a
                                     href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i
                                         class="fab fa-twitter"></i></a></div>
@@ -576,7 +576,7 @@
                 <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="240">
                     <div class="chcard">
                         <div class="chimg">
-                            <img src="{{ asset('front/photos/baristas/William.jpg') }}" alt="" />
+                            <img loading="lazy" src="{{ asset('front/photos/baristas/William.jpg') }}" alt="" />
                             <div class="chsoc"><a href="#"><i class="fab fa-instagram"></i></a><a
                                     href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i
                                         class="fab fa-twitter"></i></a></div>
@@ -695,7 +695,7 @@
                             <p class="testxt">The honey latte is the perfect comfort drink. It is cozy, smooth and exactly
                                 what I want on a slow morning.</p>
                             <div class="tesauth">
-                                <img src="{{ asset('front/photos/blogs/monica.jpg') }}" alt="" />
+                                <img loading="lazy" src="{{ asset('front/photos/blogs/monica.jpg') }}" alt="" />
                                 <div>
                                     <div class="tesnm">Monica Wilber</div>
                                     <div class="tesrl">Regular Customer</div>
@@ -711,7 +711,7 @@
                             <p class="testxt">The delivery was quick and the drinks arrived fresh and perfectly chilled.
                                 Sip & Snug has become my go-to comfort spot without question.</p>
                             <div class="tesauth">
-                                <img src="{{ asset('front/photos/blogs/cameron.jpg') }}" alt="" />
+                                <img loading="lazy" src="{{ asset('front/photos/blogs/cameron.jpg') }}" alt="" />
                                 <div>
                                     <div class="tesnm">Cameron Fox</div>
                                     <div class="tesrl">Food Blogger</div>
@@ -727,7 +727,7 @@
                             <p class="testxt">The matcha here is so fresh and balanced. The ambiance is calm and beautiful,
                                 and the staff always make you feel welcome.</p>
                             <div class="tesauth">
-                                <img src="{{ asset('front/photos/blogs/priya.jpg') }}" alt="" />
+                                <img loading="lazy" src="{{ asset('front/photos/blogs/priya.jpg') }}" alt="" />
                                 <div>
                                     <div class="tesnm">Priya Sharma</div>
                                     <div class="tesrl">Food Enthusiast</div>
@@ -743,7 +743,7 @@
                             <p class="testxt">We ordered fresh juices and smoothies for our office meeting and everything
                                 was perfect. Bright, tasty and beautifully presented.</p>
                             <div class="tesauth">
-                                <img src="{{ asset('front/photos/blogs/david.jpg') }}" alt="" />
+                                <img loading="lazy" src="{{ asset('front/photos/blogs/david.jpg') }}" alt="" />
                                 <div>
                                     <div class="tesnm">David Park</div>
                                     <div class="tesrl">Corporate Client</div>
@@ -901,7 +901,7 @@
                 <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="0">
                     <div class="blcard">
                         <div class="blimg">
-                            <img src="{{ asset('front/photos/blog posts/healthy.jpg') }}" alt="" />
+                            <img loading="lazy" src="{{ asset('front/photos/blog posts/healthy.jpg') }}" alt="" />
                             <div class="bldatebdg"><span class="bd">14</span><span class="bm">Mar</span></div>
                         </div>
                         <div class="blbody">
@@ -917,7 +917,7 @@
                 <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="80">
                     <div class="blcard">
                         <div class="blimg">
-                            <img src="{{ asset('front/photos/blog posts/cafe culture.jpg') }}" alt="" />
+                            <img loading="lazy" src="{{ asset('front/photos/blog posts/cafe culture.jpg') }}" alt="" />
                             <div class="bldatebdg"><span class="bd">28</span><span class="bm">Feb</span></div>
                         </div>
                         <div class="blbody">
@@ -933,7 +933,7 @@
                 <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="160">
                     <div class="blcard">
                         <div class="blimg">
-                            <img src="{{ asset('front/photos/blog posts/homemade.jpg') }}" alt="" />
+                            <img loading="lazy" src="{{ asset('front/photos/blog posts/homemade.jpg') }}" alt="" />
                             <div class="bldatebdg"><span class="bd">05</span><span class="bm">Jan</span></div>
                         </div>
                         <div class="blbody">

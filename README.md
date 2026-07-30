@@ -140,8 +140,8 @@ Run the entire stack (Laravel, PHP 8.3, Nginx, MySQL 8.0, Swagger) with a single
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/nouransherif0/G2_NTI_Laravel.git
-cd G2_NTI_Laravel
+git clone https://github.com/nouransherif0/Sip-Snug.git
+cd Sip-Snug
 
 # 2. Build and start containers
 docker compose up -d --build

@@ -13,21 +13,38 @@
       <meta name="csrf-token" content="{{ csrf_token() }}">
       <title>Sip & Snug Cafe - Coffee House</title>
       <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
-      <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet"/>
-      <!-- Bootstrap 5.3 -->
+
+      <!-- ✅ Preconnect to speed up Google Fonts -->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+      <!-- ✅ Google Fonts - non-blocking (async) -->
+      <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+      <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet"/></noscript>
+
+      <!-- ✅ Critical CSS first (blocking is OK for these) -->
       <link href="{{ asset('front/css/bootstrap.min.css') }}" rel="stylesheet"/>
-      <!-- AOS Animate on Scroll -->
-      <link href="{{ asset('front/css/aos.css') }}" rel="stylesheet"/>
-      <!-- Swiper -->
-      <link href="{{ asset('front/css/swiper-bundle.min.css') }}" rel="stylesheet"/>
-      <!-- all min css -->
       <link rel="stylesheet" href="{{ asset('front/css/all.min.css') }}"/>
-      <!-- magnific CSS -->
-      <link rel="stylesheet" href="{{ asset('front/css/magnific-popup.css') }}"/>
-      <!-- Style CSS -->
       <link rel="stylesheet" href="{{ asset('front/css/style.css') }}" />
+
+      <!-- ✅ Non-critical CSS - loaded async (non-blocking) -->
+      <link rel="preload" href="{{ asset('front/css/aos.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+      <noscript><link href="{{ asset('front/css/aos.css') }}" rel="stylesheet"/></noscript>
+
+      <link rel="preload" href="{{ asset('front/css/swiper-bundle.min.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+      <noscript><link href="{{ asset('front/css/swiper-bundle.min.css') }}" rel="stylesheet"/></noscript>
+
+      <link rel="preload" href="{{ asset('front/css/magnific-popup.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+      <noscript><link href="{{ asset('front/css/magnific-popup.css') }}" rel="stylesheet"/></noscript>
    </head>
    <body>
+      <!-- ✅ Page Loader - prevents flash of unstyled content -->
+      <div id="page-loader">
+         <div class="loader-inner">
+            <div class="loader-cup"><i class="fas fa-mug-hot"></i></div>
+            <div class="loader-dots"><span></span><span></span><span></span></div>
+         </div>
+      </div>
       <!-- ============================================================
          TOP BAR
          ============================================================ -->
@@ -293,18 +310,77 @@
       <!-- Back to top -->
       <button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-chevron-up"></i></button>
 
-	<!-- jQuery -->
-      <script src="{{ asset('front/js/jquery-3.7.1.min.js') }}"></script>
-      <!-- Bootstrap 5 -->
-      <script src="{{ asset('front/js/bootstrap.bundle.min.js') }}"></script>
-      <!-- AOS -->
-      <script src="{{ asset('front/js/aos.js') }}"></script>
-      <!-- Swiper -->
-      <script src="{{ asset('front/js/swiper-bundle.min.js') }}"></script>
-      <!-- CounterUp -->
-      <script src="{{ asset('front/js/jquery.magnific-popup.min.js') }}"></script>
-      <!-- Main js -->
-      <script src="{{ asset('front/js/main.js') }}"></script>
+	<!-- ✅ JS with defer - non-blocking, runs after HTML parsed -->
+      <script src="{{ asset('front/js/jquery-3.7.1.min.js') }}" defer></script>
+      <script src="{{ asset('front/js/bootstrap.bundle.min.js') }}" defer></script>
+      <script src="{{ asset('front/js/aos.js') }}" defer></script>
+      <script src="{{ asset('front/js/swiper-bundle.min.js') }}" defer></script>
+      <script src="{{ asset('front/js/jquery.magnific-popup.min.js') }}" defer></script>
+      <script src="{{ asset('front/js/main.js') }}" defer></script>
+
+      <!-- ✅ Page Transition & Loader Script -->
+      <script>
+        (function() {
+          var loader = document.getElementById('page-loader');
+
+          // --- Hide loader after page fully loads ---
+          function hideLoader() {
+            if (loader) {
+              loader.classList.add('loaded');
+              setTimeout(function() {
+                if (loader) loader.style.display = 'none';
+              }, 600);
+            }
+          }
+          if (document.readyState === 'complete') {
+            hideLoader();
+          } else {
+            window.addEventListener('load', hideLoader);
+            setTimeout(hideLoader, 3000); // fallback
+          }
+
+          // --- Smooth fade-out on navigation ---
+          document.addEventListener('click', function(e) {
+            // Find closest anchor tag
+            var link = e.target.closest('a');
+            if (!link) return;
+
+            var href = link.getAttribute('href');
+            if (!href) return;
+
+            // Skip: anchors (#), external links, new tabs, javascript:, mailto:, tel:
+            if (
+              href.startsWith('#') ||
+              href.startsWith('mailto:') ||
+              href.startsWith('tel:') ||
+              href.startsWith('javascript:') ||
+              link.target === '_blank' ||
+              link.hasAttribute('download') ||
+              (link.hostname && link.hostname !== window.location.hostname)
+            ) return;
+
+            // Skip: Ctrl/Cmd/Shift click (open in new tab)
+            if (e.ctrlKey || e.metaKey || e.shiftKey) return;
+
+            e.preventDefault();
+            document.body.classList.add('page-exit');
+
+            setTimeout(function() {
+              window.location.href = href;
+            }, 260); // match pageOut animation duration
+          });
+
+          // --- Handle browser back/forward (bfcache) ---
+          window.addEventListener('pageshow', function(e) {
+            if (e.persisted) {
+              document.body.classList.remove('page-exit');
+              document.body.style.animation = 'none';
+              document.body.offsetHeight; // reflow
+              document.body.style.animation = '';
+            }
+          });
+        })();
+      </script>
 
       @auth
       <script>
