@@ -25,3 +25,9 @@ _ide_helper.php
 Homestead.json
 Homestead.yaml
 Thumbs.db
+# Terraform & Security Files
+terraform-infrastructure/*.pem
+terraform-infrastructure/.terraform/
+terraform-infrastructure/*.tfstate
+terraform-infrastructure/*.tfstate.backup
+terraform-infrastructure/.terraform.lock.hcl
