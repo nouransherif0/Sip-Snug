@@ -35,7 +35,7 @@ echo "Running Laravel Artisan commands..."
 php artisan key:generate --no-interaction --force || true
 php artisan storage:link --no-interaction --force || true
 php artisan migrate --force || true
-php artisan db:seed --force || true
+#php artisan db:seed --force || true
 php artisan l5-swagger:generate || true
 php artisan config:clear
 php artisan route:clear
