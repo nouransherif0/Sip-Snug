@@ -18,7 +18,7 @@ resource "aws_security_group" "production_sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"] # Note: In strict production, replace with your specific IP
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
@@ -36,6 +36,24 @@ resource "aws_security_group" "production_sg" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  # --- New Rules-----
+  ingress {
+    description = "Laravel Direct Access"
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "phpMyAdmin Direct Access"
+    from_port   = 8081
+    to_port     = 8081
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  # ---------------------------------------------------------
 
   # Outbound Rules (Egress)
   egress {
